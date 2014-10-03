@@ -28,5 +28,7 @@ RSpec.configure do |config|
 
   config.profile_examples = 10
   config.order = :random
+
+  config.include FactoryGirl::Syntax::Methods
   Kernel.srand config.seed
 end
