@@ -2,6 +2,9 @@ module Adhoq
   class Report
     autoload 'XlsxReporter', 'adhoq/report/xlsx_reporter'
 
+    delegate :name,      to: '@execution'
+    delegate :mime_type, to: :format_reporter
+
     def initialize(execution)
       @execution = execution
     end

@@ -15,6 +15,10 @@ module Adhoq
           [query.name, query.description]
         ])
       end
+
+      specify do
+        expect(report.name).to match /#{query.name}\.[\d\-]+\.xlsx/
+      end
     end
   end
 end

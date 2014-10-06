@@ -3,6 +3,11 @@ require 'axlsx'
 module Adhoq
   class Report
     class XlsxReporter
+
+      def self.mime_type
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      end
+
       def initialize(result)
         @result = result
       end
