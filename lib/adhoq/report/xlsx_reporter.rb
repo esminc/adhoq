@@ -8,12 +8,19 @@ module Adhoq
       end
 
       def build_report
-        Axlsx::Package.new.tap {|xlsx|
-          xlsx.workbook.add_worksheet do |sheet|
-            sheet.add_row @result.header
-            @result.rows.each {|row| sheet.add_row row }
-          end
-        }.to_stream
+        xlsx = Axlsx::Package.new
+        write_result!(xlsx)
+
+        xlsx.to_stream
+      end
+
+      private
+
+      def write_result!(xlsx)
+        xlsx.workbook.add_worksheet do |sheet|
+          sheet.add_row @result.header
+          @result.rows.each {|row| sheet.add_row row }
+        end
       end
     end
   end
