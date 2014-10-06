@@ -4,6 +4,8 @@ require_relative 'dummy/config/environment'
 require 'rspec/rails'
 require 'factory_girl_rails'
 
+require 'pry-byebug'
+
 Rails.backtrace_cleaner.remove_silencers!
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f }
 
