@@ -1,0 +1,7 @@
+#contents
+  h1 Adhoq Queries
+  section.queries-index
+    ul.queries
+      - @queries.each do |query|
+        li= link_to query.name, query_path(query)
+

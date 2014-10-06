@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title Adhoq
+    = stylesheet_link_tag    'adhoq/application', media: 'all'
+    = javascript_include_tag 'adhoq/application'
+    = csrf_meta_tags
+
+  body
+    nav.header
+      ul
+        li= link_to 'Adhoq', root_path
+        - if main_app.respond_to?(:root_path)
+          li= link_to main_app.root_path, 'Back to app'
+
+    #contents= yield
