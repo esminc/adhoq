@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003095645) do
+ActiveRecord::Schema.define(version: 20141006014750) do
+
+  create_table "adhoq_executions", force: true do |t|
+    t.integer  "query_id",                            null: false
+    t.text     "raw_sql",                             null: false
+    t.string   "report_format",                       null: false
+    t.string   "status",        default: "requested", null: false
+    t.text     "log"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "adhoq_queries", force: true do |t|
     t.string   "name"
