@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006014750) do
+ActiveRecord::Schema.define(version: 20141007052308) do
 
   create_table "adhoq_executions", force: true do |t|
     t.integer  "query_id",                            null: false
@@ -30,5 +30,16 @@ ActiveRecord::Schema.define(version: 20141006014750) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "adhoq_reports", force: true do |t|
+    t.integer  "execution_id", null: false
+    t.string   "identifier",   null: false
+    t.time     "generated_at", null: false
+    t.string   "storage",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "adhoq_reports", ["execution_id"], name: "index_adhoq_reports_on_execution_id"
 
 end

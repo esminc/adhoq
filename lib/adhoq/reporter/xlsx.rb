@@ -1,8 +1,8 @@
 require 'axlsx'
 
 module Adhoq
-  class Report
-    class XlsxReporter
+  module Reporter
+    class Xlsx
 
       def self.mime_type
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'

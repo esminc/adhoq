@@ -7,12 +7,17 @@ module Adhoq
         @root = Pathname.new(root_path)
       end
 
+      def identifier
+        "file://#{@root.realpath}"
+      end
+
       def store(suffix = nil, seed = Time.now, &block)
         calculate_identifier(suffix, seed).tap do |identifier|
           mkpath!(identifier)
 
           (@root + identifier).open('w:BINARY') do |file|
             yield file, identifier
+            file.flush
           end
         end
       end

@@ -9,7 +9,7 @@ RSpec::Matchers.define :have_values_in_xlsx_sheet do |values|
   private
 
   def extract_values(data)
-    Tempfile.open(%w[actual .xlsx]) do |f|
+    Tempfile.open(%w[actual .xlsx], Dir.tmpdir, encoding: 'BINARY') do |f|
       f.write data.read
       f.flush
 

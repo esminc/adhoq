@@ -5,17 +5,14 @@ module Adhoq
     include Adhoq::Concerns::TimeBasedOrders
 
     belongs_to :query
+    has_one    :report, dependent: :destroy, inverse_of: :execution
 
     def supported_formats
       %w[xlsx]
     end
 
     def generate_report!
-      report.generate!
-    end
-
-    def report
-      Adhoq::Report.new(self)
+      build_report.generate!
     end
 
     def name
