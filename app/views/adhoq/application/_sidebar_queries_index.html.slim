@@ -1,6 +1,6 @@
-h2 Queries
-.new-query
-  = link_to 'Create new', new_query_path, class: 'btn btn-primary'
+h2
+  | Queries
+  = link_to 'Create new', new_query_path, class: 'btn btn-primary new-query'
 ul.queries.list-unstyled
   - Adhoq::Query.recent_first.each do |query|
     li.panel.panel-default[query]

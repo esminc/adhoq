@@ -14,13 +14,24 @@ section.query
     label
       margin-right: $short-span
 
-#sidebar ul.queries
-  li.panel
-    margin-bottom: $short-span
+#main > section > .page-header
+  margin-top: 0
 
-  .panel-heading h2
-    margin:   0
-    font-size: $font-size-base
+#sidebar
+  h2 a.new-query
+    float: right
 
-  p.panel-body.description
-    margin-bottom: 0
+  ul.queries
+    li.panel
+      margin-bottom: $short-span
+
+    .panel-heading h2
+      margin:   0
+      font-size: $font-size-base
+
+    p.panel-body.description
+      margin-bottom: 0
+
+form.query-form
+  textarea#query_query
+    font-family: monospace

@@ -16,5 +16,14 @@ module Adhoq
     def name
       [query.name, created_at.strftime('%Y%m%d-%H%M%S'), report_format].join('.')
     end
+
+    def success?
+      report.try(:success?)
+    end
+
+    # TODO go decorator or view model or so
+    def status_label
+      success? ? :success : :failure
+    end
   end
 end

@@ -32,6 +32,6 @@ section.query
             tr[exec]
               td.wip
               td.created_at= exec.created_at.localtime.iso8601
-              td.status=     exec.status
-              td.report=     link_to exec.report_format, [query, exec, format: exec.report_format], class: 'badge'
+              td.status=     exec.status_label
+              td.report=     exec.success? && link_to(exec.report_format, [query, exec, format: exec.report_format], class: 'badge')
 

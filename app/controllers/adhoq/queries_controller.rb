@@ -18,6 +18,17 @@ module Adhoq
       redirect_to @query
     end
 
+    def edit
+      @query = Adhoq::Query.find(params[:id])
+    end
+
+    def update
+      @query = Adhoq::Query.find(params[:id])
+      @query.update_attributes!(query_attributes)
+
+      redirect_to @query
+    end
+
     private
 
     def query_attributes

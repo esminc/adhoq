@@ -15,6 +15,10 @@ module Adhoq
       save!
     end
 
+    def success?
+      data.present?
+    end
+
     def data(storage = Adhoq.current_storage)
       storage.get(identifier)
     end
