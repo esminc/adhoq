@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.1.6"
 
   s.add_dependency 'axlsx'
+  s.add_dependency 'coffee-rails'
+  s.add_dependency 'jquery-rails'
   s.add_dependency 'sass-rails'
   s.add_dependency 'slim-rails'
 

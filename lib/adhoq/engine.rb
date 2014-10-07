@@ -1,4 +1,6 @@
-require 'slim-rails' # TODO where to write?
+# TODO where to write?
+require 'jquery-rails'
+require 'slim-rails'
 
 module Adhoq
   class Engine < ::Rails::Engine
