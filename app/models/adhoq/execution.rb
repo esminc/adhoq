@@ -1,8 +1,6 @@
-require 'adhoq/concerns/time_based_orders'
-
 module Adhoq
   class Execution < ActiveRecord::Base
-    include Adhoq::Concerns::TimeBasedOrders
+    include Adhoq::TimeBasedOrders
 
     belongs_to :query
     has_one    :report, dependent: :destroy, inverse_of: :execution

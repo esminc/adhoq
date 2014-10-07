@@ -5,7 +5,7 @@ module Adhoq
     belongs_to :execution
 
     delegate :name,      to: 'execution'
-    delegate :mime_type, to: :format_reporter
+    delegate :mime_type, to: :reporter
 
     def generate!(storage = Adhoq.current_storage)
       self.identifier   = generate_and_persist_report!(storage)
