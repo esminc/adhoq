@@ -1,0 +1,9 @@
+nav#global-nav.navbar.navbar-default(role='navigation')
+  .container-fluid
+    .navbar-header
+      = link_to 'Adhoq', root_path, class: 'navbar-brand'
+    .navbar-collapse.collapse
+      ul.nav.navbar-nav.navbar-right
+        - if main_app.respond_to?(:root_path)
+          li= link_to 'Back to main app', main_app.root_path
+

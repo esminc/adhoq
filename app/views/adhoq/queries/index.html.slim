@@ -1,15 +1,1 @@
-.adhoq-queries-index.row
-  .col-md-3.sidebar.index
-    h1 Queries
-    .new-query
-      = link_to 'Create new', new_query_path, class: 'btn btn-primary'
-    ul.queries.list-unstyled
-      - @queries.each do |query|
-        li.panel.panel-default[query]
-          .panel-heading
-            h2= link_to query.name, query_path(query)
-          p.panel-body.description= query.description
-
-  #current-query.col-md-9
-    = render 'query', query: @queries.first
-
+= render 'query', query: @queries.first

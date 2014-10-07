@@ -7,5 +7,9 @@ module Adhoq
     def show
       @query = Adhoq::Query.find(params[:id])
     end
+
+    def new
+      @query = Adhoq::Query.new
+    end
   end
 end
