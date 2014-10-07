@@ -1,0 +1,37 @@
+section.query
+  .page-header
+    h1
+      = query.name
+      small= "Updated at #{l(query.updated_at, format: :short)}"
+      = link_to 'Edit', [:edit, query], class: 'btn btn-default'
+  p.description= query.description
+
+  pre.query= query.query
+
+  section.new-execution
+    h2 Create report
+    = form_for [query, query.executions.build], html: {class: 'form-inline', role: 'form'} do |f|
+      .form-group.report_format
+        = f.label  :report_format
+        = f.select :report_format, f.object.supported_formats, {}, class: 'form-control'
+      .form-group
+        = f.submit 'Create report', class: 'btn btn-default'
+
+  section.past-executions
+    h2 Reports
+    .col-md-10
+      table.executions.table.table-striped.table-hover
+        thead
+          tr
+            th.wip &nbsp;
+            th.created_at= human(Adhoq::Execution, :created_at)
+            th.status=     human(Adhoq::Execution, :status)
+            th.report
+        tbody
+          - query.executions.recent_first.each do |exec|
+            tr[exec]
+              td.wip
+              td.created_at= exec.created_at.localtime.iso8601
+              td.status=     exec.status
+              td.report=     link_to exec.report_format, [query, exec, format: exec.report_format], class: 'badge'
+

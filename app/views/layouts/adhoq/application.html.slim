@@ -7,10 +7,14 @@ html
     = csrf_meta_tags
 
   body
-    nav.header
-      ul
-        li= link_to 'Adhoq', root_path
-        - if main_app.respond_to?(:root_path)
-          li= link_to main_app.root_path, 'Back to app'
+    .container
+      nav.navbar.navbar-default(role='navigation')
+        .container-fluid
+          .navbar-header
+            = link_to 'Adhoq', root_path, class: 'navbar-brand'
+          .navbar-collapse.collapse
+            ul.nav.navbar-nav.navbar-right
+              - if main_app.respond_to?(:root_path)
+                li= link_to 'Back to main app', main_app.root_path
 
-    #contents= yield
+      #contents= yield
