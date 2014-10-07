@@ -5,9 +5,8 @@ module Adhoq
     def create
       begin
         @result = Adhoq::Executor.new(params[:query]).execute
-      rescue ActiveRecord::StatementInvalid => ex
-        @statement_invalid = ex
-        render 'statement_invalid'
+      rescue ActiveRecord::StatementInvalid => @statement_invalid
+        render 'statement_invalid', status: :unprocessable_entity
       end
     end
   end
