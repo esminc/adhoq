@@ -1,17 +1,26 @@
 @import  "bootstrap/_variables"
+$short-span:  $font-size-base / 2
+
 // engine styles
 section.query
   .page-header h1 small
     margin: 0 10px
     font-size: $font-size-base
 
-ul.queries .panel-heading h2
-  margin:   0
-  font-size: $font-size-base
-
 .new-execution form.form-inline
   .form-group.report_format
     margin-right: $font-size-base
 
     label
-      margin-right: $font-size-base / 2
+      margin-right: $short-span
+
+#sidebar ul.queries
+  li.panel
+    margin-bottom: $short-span
+
+  .panel-heading h2
+    margin:   0
+    font-size: $font-size-base
+
+  p.panel-body.description
+    margin-bottom: 0
