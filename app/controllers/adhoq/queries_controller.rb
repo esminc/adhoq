@@ -11,5 +11,17 @@ module Adhoq
     def new
       @query = Adhoq::Query.new
     end
+
+    def create
+      @query = Adhoq::Query.create!(query_attributes)
+
+      redirect_to @query
+    end
+
+    private
+
+    def query_attributes
+      params.require(:query).permit(:name, :description, :query)
+    end
   end
 end
