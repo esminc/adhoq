@@ -22,7 +22,7 @@ RSpec.configure do |config|
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
 
-  config.warnings = true
+  config.warnings = ENV['SHOW_WARNING']
 
   if config.files_to_run.one?
     config.default_formatter = 'doc'
