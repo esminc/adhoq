@@ -7,10 +7,10 @@ module Adhoq
     has_many :executions, dependent: :destroy, inverse_of: :query
 
     def execute!(report_format)
-      executions.create! do |exe|
+      executions.create! {|exe|
         exe.report_format = report_format
         exe.raw_sql       = query
-      end
+      }.tap(&:generate_report!)
     end
   end
 end

@@ -10,6 +10,10 @@ module Adhoq
       %w[xlsx]
     end
 
+    def generate_report!
+      report.generate!
+    end
+
     def report
       Adhoq::Report.new(self)
     end
