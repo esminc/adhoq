@@ -4,7 +4,8 @@
       = title
       .actions.btn-in-header
         = f.submit class: 'btn btn-primary'
-        = link_to 'Cancel', f.object, class: 'btn btn-default'
+        - if f.object.persisted?
+          = link_to 'Cancel', f.object, class: 'btn btn-default'
 
   .form-group
     = f.label :name, class: 'col-sm-2 control-label'
@@ -25,19 +26,10 @@
   h2
     | Preview
     .btn-in-header
-      = link_to 'Update', '/preview', method: :post, class: 'btn btn-default'
+      = link_to 'Update', preview_path, class: 'btn btn-default js-preview-button', data: {source: '#query_query', result: '.js-preview-result', remote: true, method: 'POST'}
 
   .js-preview-result
-    table.table.table-striped
-      thead
-        tr
-          th id
-          th name
-      tbody
-        tr
-          td 42
-          td Deep blue
-        tr
-          td 108
-          td Bon-no
+    .alert Preview is shown here
 
+javascript:
+  $(function() { Adhoq.enablePreview($('.preview a.js-preview-button')) })

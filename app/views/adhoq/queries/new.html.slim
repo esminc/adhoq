@@ -1,6 +1,2 @@
 section.new-query
-  .page-header
-    h1  New query
-
-  .new-query-form.col-md-9
-    = render 'form', query: @query
+  = render 'form', query: @query, title: 'New query'
