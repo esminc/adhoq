@@ -1,11 +1,8 @@
 @import  "bootstrap/_variables"
+$mid-span:    $font-size-base * 1.5
 $short-span:  $font-size-base / 2
 
 // engine styles
-section.query
-  .page-header h1 small
-    margin: 0 10px
-    font-size: $font-size-base
 
 .new-execution form.form-inline
   .form-group.report_format
@@ -14,8 +11,12 @@ section.query
     label
       margin-right: $short-span
 
-#main > section > .page-header
+#main > section > .page-header, #main > section > form.query-form .page-header
   margin-top: 0
+
+  small
+    margin: 0 10px
+    font-size: $font-size-base
 
 #sidebar
   h2 a.new-query
@@ -35,3 +36,11 @@ section.query
 form.query-form
   textarea#query_query
     font-family: monospace
+
+.btn-in-header
+  display:  inline-block
+  margin-left: 0.5em
+
+  .btn
+    margin-left: $short-span
+
