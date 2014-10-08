@@ -7,16 +7,16 @@ require "adhoq/version"
 Gem::Specification.new do |s|
   s.name        = "adhoq"
   s.version     = Adhoq::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Adhoq."
-  s.description = "TODO: Description of Adhoq."
+  s.authors     = ['Kyosuke MOROHASHI']
+  s.email       = ['moronatural@gmail.com']
+  s.homepage    = 'https://github.com/esminc/adhoq'
+  s.summary     = 'DB management console in the wild.'
+  s.description = 'Rails engine to generate instant reports from adhoc SQL query.'
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE.txt", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", "~> 4.1.6"
+  s.add_dependency "rails", "~> 4.0"
 
   s.add_dependency 'axlsx'
   s.add_dependency 'coffee-rails'

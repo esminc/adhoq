@@ -6,7 +6,7 @@ PATH
       coffee-rails
       font-awesome-sass
       jquery-rails
-      rails (~> 4.1.6)
+      rails (~> 4.0)
       sass-rails
       slim-rails
 
