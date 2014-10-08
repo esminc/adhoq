@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adhoq (0.0.1)
+    adhoq (0.0.2)
       axlsx
       coffee-rails
       font-awesome-sass
