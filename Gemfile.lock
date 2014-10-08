@@ -4,6 +4,7 @@ PATH
     adhoq (0.0.1)
       axlsx
       coffee-rails
+      font-awesome-sass
       jquery-rails
       rails (~> 4.1.6)
       sass-rails
@@ -66,6 +67,8 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    font-awesome-sass (4.2.0)
+      sass (~> 3.2)
     hike (1.2.3)
     htmlentities (4.3.2)
     i18n (0.6.11)
@@ -76,7 +79,7 @@ GEM
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
-    mime-types (2.3)
+    mime-types (2.4.1)
     mini_portile (0.6.0)
     minitest (5.4.2)
     multi_json (1.10.1)

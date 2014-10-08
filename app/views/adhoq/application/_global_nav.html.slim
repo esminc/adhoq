@@ -5,5 +5,7 @@ nav#global-nav.navbar.navbar-default(role='navigation')
     .navbar-collapse.collapse
       ul.nav.navbar-nav.navbar-right
         - if main_app.respond_to?(:root_path)
-          li= link_to 'Back to main app', main_app.root_path
-
+          li
+            = link_to main_app.root_path do
+              | Back to main app
+              i.fa.fa-arrow-circle-right.padding

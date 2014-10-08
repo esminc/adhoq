@@ -34,4 +34,8 @@ section.query
               td.created_at= exec.created_at.localtime.iso8601
               td.status
                 span.label[class=(exec.success? ? 'label-success' : 'label-danger')]= exec.status_label
-              td.report=     exec.success? && link_to(exec.report_format, [query, exec, format: exec.report_format], class: 'btn btn-sm btn-default')
+              td.report
+                - if exec.success?
+                  = link_to([query, exec, format: exec.report_format], class: 'btn btn-sm btn-default') do
+                    i.fa.fa-download.padding
+                    = exec.report_format
