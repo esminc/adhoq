@@ -4,14 +4,14 @@ Rails engine to generate instant reports from adhoc SQL query.
 
 ## Features
 
-- [ ] Rails 4.x support
+- [x] Rails 4.x support
 - [ ] Rails 3.2 support
 - Export reports in some formats:
-  - [ ] .xlsx
+  - [x] .xlsx
   - [ ] .csv
   - [ ] .json
 - Report storage supports:
-  - [ ] as local file
+  - [x] as local file
   - [ ] S3 (via `Fog::Storage`)
 - [ ] In application export function helper
 
@@ -34,6 +34,34 @@ Or install it yourself as:
 ## Usage
 
 ### As Rails engine
+
+Install migrations
+
+```sh
+$ bundle exec rake adhoq:install:migrations
+$ bundle exec rake db:migrate
+```
+
+Mount it in `config/routes.rb`
+
+```ruby
+Rails.application.routes.draw do
+  root  to: 'hi#show'
+
+  mount Adhoq::Engine => "/adhoq"
+end
+```
+
+Edit initialization file in `config/initializer/adhoq.rb`
+
+```ruby
+Adhoq.configure do |config|
+  config.storage       = [:local_file, Rails.root + '/path/to/store/report/files']
+  config.authorization = ->(controller) { controller.signed_in? }
+end
+```
+
+Then restart server and try it out.
 
 ### As Plain old library (application export helper)
 
