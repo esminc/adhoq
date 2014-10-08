@@ -9,7 +9,7 @@ module Adhoq
     def create
       @execution = current_query.execute!(params[:execution][:report_format])
 
-      redirect_to [current_query, @execution, format: @execution.report_format]
+      redirect_to current_query
     end
 
     private
