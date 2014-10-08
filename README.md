@@ -61,6 +61,8 @@ Adhoq.configure do |config|
 end
 ```
 
+See configuration example in [dummy app](https://github.com/esminc/adhoq/commit/63cc31fe209baae7211c10f76e7b1c35f4c699ef).
+
 Then restart server and try it out.
 
 ### As Plain old library (application export helper)
