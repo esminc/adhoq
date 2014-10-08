@@ -3,7 +3,9 @@
     h1
       = title
       .actions.btn-in-header
-        = f.submit class: 'btn btn-primary'
+        button.btn.btn-primary
+          i.fa.fa-floppy-o.padding
+          | Save
         - if f.object.persisted?
           = link_to 'Cancel', f.object, class: 'btn btn-default'
 
