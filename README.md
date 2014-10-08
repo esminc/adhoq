@@ -1,5 +1,7 @@
 # Adhoq
 
+[![Build Status](https://travis-ci.org/esminc/adhoq.svg)](https://travis-ci.org/esminc/adhoq)
+
 Rails engine to generate instant reports from adhoc SQL query.
 
 ![adhoq](https://cloud.githubusercontent.com/assets/3419/4556639/7f06340a-4ecb-11e4-87c4-b074580e77f5.png)
