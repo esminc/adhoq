@@ -1,4 +1,5 @@
 module Adhoq
-  class ApplicationController < ActionController::Base
+  class ApplicationController < ::ApplicationController
+    include Adhoq::AuthorizationMethods
   end
 end

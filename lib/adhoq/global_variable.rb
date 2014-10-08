@@ -8,8 +8,16 @@ module Adhoq
 
     def current_storage
       synchronize {
-        @current_storage ||= setup_storage(*Adhoq::Engine.config.storage)
+        @current_storage ||= setup_storage(*Adhoq.config.storage)
       }
+    end
+
+    def configure(&block)
+      yield config
+    end
+
+    def config
+      @config ||= Adhoq::Configuration.new
     end
 
     private
