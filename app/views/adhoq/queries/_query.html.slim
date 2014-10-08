@@ -3,7 +3,9 @@ section.query
     h1
       = query.name
       small= "Updated at #{l(query.updated_at, format: :short)}"
-      = link_to 'Edit', [:edit, query], class: 'btn btn-default'
+      = link_to [:edit, query], class: 'btn btn-default' do
+        i.fa.fa-pencil.fa-pad-r
+        | Edit
   p.description= query.description
 
   pre.query= query.query
@@ -37,5 +39,5 @@ section.query
               td.report
                 - if exec.success?
                   = link_to([query, exec, format: exec.report_format], class: 'btn btn-sm btn-default') do
-                    i.fa.fa-download.padding
+                    i.fa.fa-download.fa-pad-r
                     = exec.report_format

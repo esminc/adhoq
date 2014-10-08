@@ -4,7 +4,7 @@
       = title
       .actions.btn-in-header
         button.btn.btn-primary
-          i.fa.fa-floppy-o.padding
+          i.fa.fa-floppy-o.fa-pad-r
           | Save
         - if f.object.persisted?
           = link_to 'Cancel', f.object, class: 'btn btn-default'
@@ -28,7 +28,8 @@
   h2
     | Preview
     .btn-in-header
-      = link_to 'Update', preview_path, class: 'btn btn-default js-preview-button', data: {source: '#query_query', result: '.js-preview-result', remote: true, method: 'POST'}
+      = link_to preview_path, class: 'btn btn-default btn-sm js-preview-button', data: {source: '#query_query', result: '.js-preview-result', remote: true, method: 'POST'} do
+        i.fa.fa-refresh[data-title='Refresh preview']
 
   .js-preview-result
     .alert Preview is shown here
