@@ -2,6 +2,8 @@
 
 Rails engine to generate instant reports from adhoc SQL query.
 
+![adhoq](https://cloud.githubusercontent.com/assets/3419/4556639/7f06340a-4ecb-11e4-87c4-b074580e77f5.png)
+
 ## Features
 
 - [x] Rails 4.x support
