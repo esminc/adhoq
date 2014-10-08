@@ -32,5 +32,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'tapp'
 
-  s.test_files = Dir['spec/**/*']
+  s.test_files = Dir['spec/{adhoq,factories,models,support}/**/*', 'spec/spec_helper.rb']
 end
