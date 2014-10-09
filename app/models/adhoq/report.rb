@@ -15,8 +15,8 @@ module Adhoq
       save!
     end
 
-    def success?
-      data.present?
+    def available?
+      identifier.present? && (storage == Adhoq.current_storage.identifier)
     end
 
     def data(storage = Adhoq.current_storage)

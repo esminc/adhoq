@@ -1,44 +1,25 @@
+require 'fog'
+
 module Adhoq
   module Storage
-    class LocalFile
+    class LocalFile < FogStorage
       attr_reader :root
 
       def initialize(root_path)
-        @root = Pathname.new(root_path)
+        path = Pathname.new(root_path)
+
+        @fog = Fog::Storage.new(provider: 'Local', local_root: path.parent)
+        @dir = path.basename.to_s
       end
 
       def identifier
-        "file://#{@root.realpath}"
-      end
-
-      def store(suffix = nil, seed = Time.now, &block)
-        calculate_identifier(suffix, seed).tap do |identifier|
-          mkpath!(identifier)
-
-          (@root + identifier).open('w:BINARY') do |file|
-            yield file, identifier
-            file.flush
-          end
-        end
-      end
-
-      def get(identifier)
-        (@root + identifier).open('r:BINARY')
+        "file://#{[@fog.local_root, @dir].join('/')}"
       end
 
       private
 
-      def calculate_identifier(suffix, seed)
-        dirname, fname_seed = ['%Y-%m-%d', '%H%M%S.%L'].map {|f| seed.strftime(f) }
-
-        basename = "%s_%05d%s" % [fname_seed, Process.pid, suffix]
-
-        identifier = [dirname, basename].join('/')
-      end
-
-      def mkpath!(identifier)
-        dir = identifier.split('/').first
-        (@root + dir).mkpath
+      def directory
+        @fog.directories.get(@dir) || @fog.directories.create(key: @dir)
       end
     end
   end

@@ -22,13 +22,16 @@ module Adhoq
 
     private
 
-    # TODO Implement S3
     def setup_storage(type, *args)
-      unless type == :local_file
-        raise NotImplementedError
-      end
+      klass =
+        case type
+        when :local_file then Adhoq::Storage::LocalFile
+        when :s3         then Adhoq::Storage::S3
+        else
+          raise NotImplementedError
+        end
 
-      Adhoq::Storage::LocalFile.new(*args)
+      klass.new(*args)
     end
   end
 end
