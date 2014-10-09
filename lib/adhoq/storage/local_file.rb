@@ -1,3 +1,5 @@
+require 'fog'
+
 module Adhoq
   module Storage
     class LocalFile < FogStorage
@@ -11,7 +13,7 @@ module Adhoq
       end
 
       def identifier
-        "file://#{@root.realpath}"
+        "file://#{[@fog.local_root, @dir].join('/')}"
       end
 
       private
