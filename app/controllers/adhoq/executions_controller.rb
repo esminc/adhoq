@@ -19,7 +19,7 @@ module Adhoq
     end
 
     def respond_report(report)
-      send_data report.data.read, type: report.mime_type, filename: report.name, disposition: 'attachment'
+      send_data report.data, type: report.mime_type, filename: report.name, disposition: 'attachment'
     end
   end
 end

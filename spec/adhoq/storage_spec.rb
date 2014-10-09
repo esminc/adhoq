@@ -13,7 +13,7 @@ module Adhoq
         storage.store('.txt') {|file, ident| file.puts 'Hello adhoq!' }
       end
 
-      specify { expect(storage.get(identifier).read).to eq "Hello adhoq!\n" }
+      specify { expect(storage.get(identifier)).to eq "Hello adhoq!\n" }
     end
 
     describe Storage::S3, :fog_mock do
@@ -23,7 +23,7 @@ module Adhoq
         storage.store('.txt') {|file, ident| file.puts 'Hello adhoq!' }
       end
 
-      specify { expect(storage.get(identifier).read).to eq "Hello adhoq!\n" }
+      specify { expect(storage.get(identifier)).to eq "Hello adhoq!\n" }
     end
   end
 end

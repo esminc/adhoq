@@ -15,13 +15,8 @@ module Adhoq
         end
       end
 
-      # FIXME Should change interface
       def get(identifier)
-        Tempfile.open('adhoq-storage-s3').tap do |file|
-          file.binmode
-          file.write get_raw(identifier).body
-          file.rewind
-        end
+        get_raw(identifier).body
       end
 
       def get_raw(identifier)
