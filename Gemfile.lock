@@ -67,6 +67,7 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     columnize (0.8.9)
+    database_cleaner (1.3.0)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -220,6 +221,7 @@ PLATFORMS
 DEPENDENCIES
   adhoq!
   capybara (~> 2.4.3)
+  database_cleaner
   factory_girl_rails
   launchy
   poltergeist (~> 1.5.1)

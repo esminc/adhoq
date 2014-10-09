@@ -2,10 +2,11 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative 'dummy/config/environment'
 
 require 'rspec/rails'
-require 'factory_girl_rails'
+
 require 'capybara/rspec'
 require 'capybara/poltergeist'
-
+require 'database_cleaner'
+require 'factory_girl_rails'
 require 'pry-byebug'
 
 Rails.backtrace_cleaner.remove_silencers!
@@ -22,7 +23,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
 
@@ -46,6 +47,25 @@ RSpec.configure do |config|
       example.run
     ensure
       Fog.unmock!
+    end
+  end
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with :truncation
+  end
+
+  config.around(:each) do |example|
+    begin
+      if example.metadata[:type] == :feature
+        DatabaseCleaner.strategy = :truncation
+      end
+
+      DatabaseCleaner.cleaning do
+        example.run
+      end
+    ensure
+      DatabaseCleaner.strategy = :transaction
     end
   end
 end
