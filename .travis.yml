@@ -7,3 +7,7 @@ before_script:
 env:
   global:
     secure: a+K4odT4GG5TVJ/vgK4JRcgV1ZaT8uLNNshf0h0ZjOsJQEvc60NF7i4C8epZatnx66YhKHzFaI3T/hvmVVbtefanBCnPfCH1NJQWFpmaeya8M7GBPWmQgXVpgqWR3tVuOZNzTQDEAdAg04JMYdGs1hDY9P+RIHHBbj7yeVgQZcI=
+gemfile:
+- gemfiles/Gemfile-rails-3.2.x
+- gemfiles/Gemfile-rails-4.0.x
+- gemfiles/Gemfile-rails-4.1.x

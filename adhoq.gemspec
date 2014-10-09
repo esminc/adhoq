@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE.txt", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", "~> 4.0"
+  s.add_dependency "rails", ">= 3.2"
 
   s.add_dependency 'axlsx', '~> 2.0'
   s.add_dependency 'coffee-rails'

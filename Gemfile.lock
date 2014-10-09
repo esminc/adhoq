@@ -7,7 +7,7 @@ PATH
       fog (~> 1.23)
       font-awesome-sass
       jquery-rails
-      rails (~> 4.0)
+      rails (>= 3.2)
       sass-rails
       slim-rails
 
