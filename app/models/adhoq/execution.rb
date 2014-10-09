@@ -18,7 +18,7 @@ module Adhoq
     end
 
     def success?
-      report.try(:success?)
+      report.try(:available?)
     end
 
     # TODO go decorator or view model or so
