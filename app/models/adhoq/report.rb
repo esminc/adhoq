@@ -16,7 +16,7 @@ module Adhoq
     end
 
     def success?
-      data.present?
+      identifier.present?
     end
 
     def data(storage = Adhoq.current_storage)
