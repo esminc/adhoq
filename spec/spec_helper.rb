@@ -3,11 +3,15 @@ require_relative 'dummy/config/environment'
 
 require 'rspec/rails'
 require 'factory_girl_rails'
+require 'capybara/rspec'
+require 'capybara/poltergeist'
 
 require 'pry-byebug'
 
 Rails.backtrace_cleaner.remove_silencers!
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f }
+
+Capybara.default_driver = :poltergeist
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
