@@ -3,9 +3,9 @@ require 'fog'
 module Adhoq
   module Storage
     class S3 < FogStorage
-      def initialize(bucket, fog_options = {})
+      def initialize(bucket, s3_options = {})
         @bucket = bucket
-        @s3     = Fog::Storage.new({provider: 'AWS'}.merge(fog_options))
+        @s3     = Fog::Storage.new({provider: 'AWS'}.merge(s3_options))
       end
 
       def identifier
