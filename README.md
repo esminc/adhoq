@@ -14,9 +14,9 @@ Rails engine to generate instant reports from adhoc SQL query.
   - [x] .xlsx
   - [ ] .csv
   - [ ] .json
-- Report storage supports:
-  - [x] as local file
-  - [ ] S3 (via `Fog::Storage`)
+- Report storage supports (based on `Fog::Storage`):
+  - [x] Local File
+  - [x] S3
 - [ ] In application export function helper
 
 ## Installation
@@ -60,12 +60,12 @@ Edit initialization file in `config/initializer/adhoq.rb`
 
 ```ruby
 Adhoq.configure do |config|
-  config.storage       = [:local_file, Rails.root + '/path/to/store/report/files']
+  config.storage       = [:local_file, Rails.root + './path/to/store/report/files']
   config.authorization = ->(controller) { controller.signed_in? }
 end
 ```
 
-See configuration example in [dummy app](https://github.com/esminc/adhoq/commit/63cc31fe209baae7211c10f76e7b1c35f4c699ef).
+See configuration example in [dummy app](https://github.com/esminc/adhoq/blob/master/spec/dummy/config/initializers/adhoq.rb).
 
 Then restart server and try it out.
 
