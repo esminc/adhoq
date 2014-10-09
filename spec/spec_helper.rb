@@ -37,9 +37,11 @@ RSpec.configure do |config|
   config.around(:each, :fog_mock) do |example|
     begin
       Fog.mock!
+      Fog::Mock.reset
+
       example.run
     ensure
-      Fog::Mock.reset
+      Fog.unmock!
     end
   end
 end
