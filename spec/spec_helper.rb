@@ -33,4 +33,13 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
   Kernel.srand config.seed
+
+  config.around(:each, :fog_mock) do |example|
+    begin
+      Fog.mock!
+      example.run
+    ensure
+      Fog::Mock.reset
+    end
+  end
 end
