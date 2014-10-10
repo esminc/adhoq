@@ -8,7 +8,7 @@ Rails engine to generate instant reports from adhoc SQL query.
 ## Features
 
 - [x] Rails 4.x support
-- [ ] Rails 3.2 support
+- [x] Rails 3.2 support
 - Export reports in some formats:
   - [x] .xlsx
   - [ ] .csv

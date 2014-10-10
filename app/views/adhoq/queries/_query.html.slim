@@ -38,6 +38,6 @@ section.query
                 span.label[class=(exec.success? ? 'label-success' : 'label-danger')]= exec.status_label
               td.report
                 - if exec.success?
-                  = link_to([query, exec, format: exec.report_format], class: 'btn btn-sm btn-default') do
+                  = link_to(adhoq.query_execution_path(query, exec, format: exec.report_format), class: 'btn btn-sm btn-default') do
                     i.fa.fa-download.fa-pad-r
                     = exec.report_format

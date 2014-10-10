@@ -2,17 +2,22 @@ module Adhoq
   class Executor
     class << self
       def select(query)
-        c = current_connection
-        begin
-          c.begin_transaction
-          c.send(:select, query)
-        ensure
-          c.rollback_transaction
+        with_sandbox do
+          current_connection.exec_query(query)
         end
       end
 
       def current_connection
         ActiveRecord::Base.connection
+      end
+
+      def with_sandbox
+        result = nil
+        ActiveRecord::Base.transaction do
+          result = yield
+          raise ActiveRecord::Rollback
+        end
+        result
       end
     end
 
