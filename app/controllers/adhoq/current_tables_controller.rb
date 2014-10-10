@@ -4,6 +4,8 @@ module Adhoq
 
     def index
       @ar_classes = ActiveRecord::Base.subclasses.sort_by(&:name)
+
+      render layout: false
     end
 
     private

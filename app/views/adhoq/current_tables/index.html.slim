@@ -1,29 +1,35 @@
-section#current-tables
-  .page-header
-    h1
-      | Currenta Tables
-      small TODO: show schema version here
+.modal-header
+  button type="button" class="close" data-dismiss="modal"
+    span aria-hidden="true" &times;
+    span.sr-only Close
+  h4
+    | Currenta Tables
+    small TODO: show schema version here
 
+.modal-body#current-tables
   ul.list-unstyled.tables
     - @ar_classes.each do |ar_class|
       li.ar_class data-table-name=ar_class.table_name
-        h2= ar_class.table_name
+        h4= ar_class.table_name
 
-        table.table.table-striped.table-hover
+        table.table.table-striped.table-hover.table-bordered
           thead
             tr
-              th.pk    PK
-              th.name  Name
-              th.type  Type
-              th.null  Null-able
-              th.limit Limit
-              th.default  Default
+              th.col-sm-1.pk    PK
+              th.col-sm-4.name  Name
+              th.col-sm-2.type  Type
+              th.col-sm-2.null  Non-Null
+              th.col-sm-1.limit Limit
+              th.col-sm-3.default  Default
           tbody
             - ar_class.columns.each do |column|
               tr
-                td.pk= column.primary ? icon_fa('check-circle') : ''
+                td.pk.icon= column.primary ? icon_fa('check-circle') : ''
                 td= column.name
                 td= column.type
-                td.null= column.null ? icon_fa('check') : ''
-                td= column.limit
+                td.null.icon= column.null ? '' : icon_fa('check')
+                td.limit.number= column.limit
                 td= column.default
+
+.modal-footer
+  button type='button' class='btn btn-default' data-dismiss='modal' Close
