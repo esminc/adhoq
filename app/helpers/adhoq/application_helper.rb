@@ -7,5 +7,9 @@ module Adhoq
         klass.model_name.humanize
       end
     end
+
+    def icon_fa(name, additional_classes = [])
+      tag('i', class: ['fa', "fa-#{name}", *additional_classes])
+    end
   end
 end

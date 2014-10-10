@@ -5,5 +5,6 @@ Adhoq::Engine.routes.draw do
     resources :executions, only: %w(create show)
   end
 
-  resource  :preview, only: 'create'
+  resource  :preview,        only: 'create'
+  resources :current_tables, only: 'index'
 end

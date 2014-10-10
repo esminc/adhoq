@@ -1,0 +1,29 @@
+section#current-tables
+  .page-header
+    h1
+      | Currenta Tables
+      small TODO: show schema version here
+
+  ul.list-unstyled.tables
+    - @ar_classes.each do |ar_class|
+      li.ar_class data-table-name=ar_class.table_name
+        h2= ar_class.table_name
+
+        table.table.table-striped.table-hover
+          thead
+            tr
+              th.pk    PK
+              th.name  Name
+              th.type  Type
+              th.null  Null-able
+              th.limit Limit
+              th.default  Default
+          tbody
+            - ar_class.columns.each do |column|
+              tr
+                td.pk= column.primary ? icon_fa('check-circle') : ''
+                td= column.name
+                td= column.type
+                td.null= column.null ? icon_fa('check') : ''
+                td= column.limit
+                td= column.default
