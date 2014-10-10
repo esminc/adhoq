@@ -2,12 +2,17 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative 'dummy/config/environment'
 
 require 'rspec/rails'
-require 'factory_girl_rails'
 
+require 'capybara/rspec'
+require 'capybara/poltergeist'
+require 'database_cleaner'
+require 'factory_girl_rails'
 require 'pry-byebug'
 
 Rails.backtrace_cleaner.remove_silencers!
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f }
+
+Capybara.default_driver = :poltergeist
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -18,7 +23,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
 
@@ -42,6 +47,17 @@ RSpec.configure do |config|
       example.run
     ensure
       Fog.unmock!
+    end
+  end
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with :truncation
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
     end
   end
 end

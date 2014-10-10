@@ -26,7 +26,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails'
   s.add_dependency 'slim-rails'
 
+  s.add_development_dependency 'capybara', '~> 2.4.3'
+  s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'factory_girl_rails'
+  s.add_development_dependency 'launchy'
+  s.add_development_dependency 'poltergeist', '~> 1.5.1'
   s.add_development_dependency 'pry-byebug'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'simple_xlsx_reader'
