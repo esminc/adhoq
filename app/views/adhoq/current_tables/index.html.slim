@@ -1,5 +1,5 @@
 h3
-  | Currenta Tables
+  | Current database schema
   small= "Version #{ActiveRecord::SchemaMigration.maximum(:version)}"
 
 ul.list-unstyled.tables
@@ -7,9 +7,10 @@ ul.list-unstyled.tables
     - first_record = ar_class.unscoped.order(:id).first
 
     li.ar_class data-table-name=ar_class.table_name
-      h4= ar_class.table_name
-
       table.table.table-striped.table-hover.table-bordered
+        caption
+          span.name= ar_class.table_name
+          small.count #{ar_class.unscoped.count} rows
         thead
           tr
             th.col-sm-1.pk PK
@@ -23,7 +24,7 @@ ul.list-unstyled.tables
           - ar_class.columns.each do |column|
             tr
               td.pk.icon= column.primary ? icon_fa('check-circle') : ''
-              td= column.name
+              td.monospace= column.name
               td= column.type
               td.null.icon= column.null ? '' : icon_fa('check')
               td.limit.number= column.limit
