@@ -7,5 +7,18 @@ module Adhoq
         klass.model_name.humanize
       end
     end
+
+    def icon_fa(name, additional_classes = [])
+      tag('i', class: ['fa', "fa-#{name}", *additional_classes])
+    end
+
+    def schema_version
+      if defined?(ActiveRecord::SchemaMigration)
+        ActiveRecord::SchemaMigration.maximum(:version)
+      else
+        result = Adhoq::Executor.select("SELECT MAX(version) AS current_version FROM #{ActiveRecord::Migrator.schema_migrations_table_name}")
+        result.rows.first
+      end
+    end
   end
 end

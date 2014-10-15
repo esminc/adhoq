@@ -1,0 +1,32 @@
+h3
+  | Current database schema
+  small= "Version #{schema_version}"
+
+ul.list-unstyled.tables
+  - @ar_classes.each do |ar_class|
+    - first_record = ar_class.unscoped.order(:id).first
+
+    li.ar_class data-table-name=ar_class.table_name
+      table.table.table-striped.table-hover.table-bordered
+        caption
+          span.name= ar_class.table_name
+          small.count #{ar_class.unscoped.count} rows
+        thead
+          tr
+            th.col-sm-1.pk PK
+            th.col-sm-2.name  Name
+            th.col-sm-1.type  Type
+            th.col-sm-1.null  Non-Null
+            th.col-sm-1.limit Limit
+            th.col-sm-2.default  Default
+            th.col-sm-4.data  unscoped.first
+        tbody
+          - ar_class.columns.each do |column|
+            tr
+              td.pk.icon= column.primary ? icon_fa('check-circle') : ''
+              td.monospace= column.name
+              td= column.type
+              td.null.icon= column.null ? '' : icon_fa('check')
+              td.limit.number= column.limit
+              td= column.default
+              td.monospace= first_record.try {|r| truncate(r.read_attribute_before_type_cast(column.name).to_s, length: 50) }

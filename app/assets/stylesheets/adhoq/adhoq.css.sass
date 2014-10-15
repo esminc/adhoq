@@ -55,3 +55,47 @@ form.query-form
 
 .fa-pad-l
   padding-left: $short-span / 2
+
+#current-tables
+  font-size: $font-size-base * 0.9
+
+  table
+    width: 800px
+
+    caption
+      text-align: left
+      margin-bottom:  $short-span
+      font-size:  $font-size-base * 1.5
+
+      span.name
+        font-family:  monospace
+      small.count
+        font-size:  $font-size-base * 1
+        color:      gray
+        margin-left:  $font-size-base
+
+    th.pk, td.pk
+      width: $font-size-base * 1.5
+    th, td.icon
+      text-align: center
+    th.number, td.number
+      text-align: right
+    th.monospace, td.monospace
+      font-family: monospace
+    th.data
+      width: $font-size-base * 10
+
+.tab-content
+  margin-top:  $font-size-base
+  padding-left:  1em
+  padding-right: 1em
+
+  max-height: 600px
+  overflow:   scroll
+
+  .tab-pane > h3
+    font-size: $font-size-base * 1.5
+
+    small
+      font-size: $font-size-base
+      margin-left: $font-size-base

@@ -15,5 +15,6 @@
 //= require jquery_ujs
 //= require ./bootstrap
 //= require ./previewer
+//= require ./current_tables
 
 window.Adhoq = {}

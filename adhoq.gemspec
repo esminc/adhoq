@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'axlsx', '~> 2.0'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'fog',   '~> 1.23'
-  s.add_dependency 'font-awesome-sass'
+  s.add_dependency 'font-awesome-sass', '~> 4.2.0'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'sass-rails'
   s.add_dependency 'slim-rails'
