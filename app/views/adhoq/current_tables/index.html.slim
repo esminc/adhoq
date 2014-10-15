@@ -1,6 +1,6 @@
 h3
   | Current database schema
-  small= "Version #{ActiveRecord::SchemaMigration.maximum(:version)}"
+  small= "Version #{schema_version}"
 
 ul.list-unstyled.tables
   - @ar_classes.each do |ar_class|
