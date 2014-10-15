@@ -1,6 +1,4 @@
-Adhoq.hookCurrentTablesHelp = ($el)->
-  $el.on 'click', ->
-    $($el.data('inner')).load $el.attr('href'), ->
-      $($el.data('target')).modal()
+Adhoq.loadCurrentTableTabOnce = ($el)->
+  pane = $("#{$el.attr('href')}:has(.loading)")
 
-    false
+  pane.load(pane.find('a.loading').attr('href'))

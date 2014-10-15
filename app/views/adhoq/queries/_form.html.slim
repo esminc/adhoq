@@ -24,15 +24,35 @@
     .col-sm-8
       = f.text_area :query, class: 'form-control', rows: 10, required: true
 
-.preview
-  h2
-    | Preview
-    .btn-in-header
-      = link_to preview_path, class: 'btn btn-default btn-sm js-preview-button', data: {source: '#query_query', result: '.js-preview-result', remote: true, method: 'POST'} do
-        i.fa.fa-refresh[data-title='Refresh preview']
+ul.nav.nav-tabs[role='tablist']
+  li.active
+    a[role='tab' data-toggle='tab' href='#preview' ]
+      i.fa.fa-eye.fa-pad-r
+      | Preview
+  li
+    a[role='tab' data-toggle='tab' href='#current-tables']
+      i.fa.fa-database.fa-pad-r
+      | Tables
 
-  .js-preview-result
-    .alert Preview is shown here
+.tab-content
+  #preview.tab-pane.active
+    h3
+      | Query preview
+      small
+        = link_to preview_path, class: 'js-preview-button', data: {source: '#query_query', result: '.js-preview-result', remote: true, method: 'POST'} do
+          i.fa.fa-refresh.fa-pad-r[data-title='Refresh preview']
+          | Reflesh
+
+    .js-preview-result
+      .alert.alert-info Preview is shown here
+
+  #current-tables.tab-pane
+    a.loading[href=current_tables_path]
 
 javascript:
-  $(function() { Adhoq.enablePreview($('.preview a.js-preview-button')) })
+  $(function() {
+    Adhoq.enablePreview($('#preview a.js-preview-button'));
+
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(ev) { Adhoq.loadCurrentTableTabOnce($(ev.target)) });
+  });
+

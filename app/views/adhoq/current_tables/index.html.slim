@@ -1,35 +1,31 @@
-.modal-header
-  button type="button" class="close" data-dismiss="modal"
-    span aria-hidden="true" &times;
-    span.sr-only Close
-  h4
-    | Currenta Tables
-    small TODO: show schema version here
+h3
+  | Currenta Tables
+  small= "Version #{ActiveRecord::SchemaMigration.maximum(:version)}"
 
-.modal-body#current-tables
-  ul.list-unstyled.tables
-    - @ar_classes.each do |ar_class|
-      li.ar_class data-table-name=ar_class.table_name
-        h4= ar_class.table_name
+ul.list-unstyled.tables
+  - @ar_classes.each do |ar_class|
+    - first_record = ar_class.unscoped.order(:id).first
 
-        table.table.table-striped.table-hover.table-bordered
-          thead
+    li.ar_class data-table-name=ar_class.table_name
+      h4= ar_class.table_name
+
+      table.table.table-striped.table-hover.table-bordered
+        thead
+          tr
+            th.col-sm-1.pk PK
+            th.col-sm-2.name  Name
+            th.col-sm-1.type  Type
+            th.col-sm-1.null  Non-Null
+            th.col-sm-1.limit Limit
+            th.col-sm-2.default  Default
+            th.col-sm-4.data  unscoped.first
+        tbody
+          - ar_class.columns.each do |column|
             tr
-              th.col-sm-1.pk    PK
-              th.col-sm-4.name  Name
-              th.col-sm-2.type  Type
-              th.col-sm-2.null  Non-Null
-              th.col-sm-1.limit Limit
-              th.col-sm-3.default  Default
-          tbody
-            - ar_class.columns.each do |column|
-              tr
-                td.pk.icon= column.primary ? icon_fa('check-circle') : ''
-                td= column.name
-                td= column.type
-                td.null.icon= column.null ? '' : icon_fa('check')
-                td.limit.number= column.limit
-                td= column.default
-
-.modal-footer
-  button type='button' class='btn btn-default' data-dismiss='modal' Close
+              td.pk.icon= column.primary ? icon_fa('check-circle') : ''
+              td= column.name
+              td= column.type
+              td.null.icon= column.null ? '' : icon_fa('check')
+              td.limit.number= column.limit
+              td= column.default
+              td.monospace= first_record.try {|r| truncate(r.read_attribute_before_type_cast(column.name).to_s, length: 50) }

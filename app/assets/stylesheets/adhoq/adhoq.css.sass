@@ -59,9 +59,31 @@ form.query-form
 #current-tables
   font-size: $font-size-base * 0.9
 
-  th.pk, td.pk
-    width: $font-size-base * 1.5
-  th, td.icon
-    text-align: center
-  th.number, td.number
-    text-align: right
+  table
+    width: 800px
+
+    th.pk, td.pk
+      width: $font-size-base * 1.5
+    th, td.icon
+      text-align: center
+    th.number, td.number
+      text-align: right
+    th.monospace, td.monospace
+      font-family: monospace
+    th.data
+      width: $font-size-base * 10
+
+.tab-content
+  margin-top:  $font-size-base
+  padding-left:  1em
+  padding-right: 1em
+
+  max-height: 600px
+  overflow:   scroll
+
+  .tab-pane > h3
+    font-size: $font-size-base * 1.5
+
+    small
+      font-size: $font-size-base
+      margin-left: $font-size-base
