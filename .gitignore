@@ -8,3 +8,6 @@ spec/dummy/tmp/
 spec/dummy/.envrc
 spec/dummy/.sass-cache
 tmp/*
+coverage/*
+gemfiles/Gemfile-rails-3.2.x.lock
+gemfiles/Gemfile-rails-4.0.x.lock
