@@ -1,7 +1,5 @@
 feature 'Golden-path: execute adhoc query' do
-  def table_contant(table)
-    first(table).all('tr').map {|row| row.all('th, td').map(&:text) }
-  end
+  include FeatureSpecHelper
 
   scenario 'Visit root, input query and generate report then we get a report' do
     visit '/adhoq'
