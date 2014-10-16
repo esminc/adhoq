@@ -16,7 +16,7 @@ Rails engine to generate instant reports from adhoc SQL query.
 - Report storage supports (based on `Fog::Storage`):
   - [x] Local File
   - [x] S3
-- [ ] In application export function helper
+- [x] In application export function helper
 
 ## Installation
 
@@ -70,7 +70,26 @@ Then restart server and try it out.
 
 ### As Plain old library (application export helper)
 
-TODO: Write usage instructions here
+Adhoq also provides report generation from SQL string, not from mounted rails engine.
+
+```ruby
+execution = Adhoq::AdhocExecution.new('xlsx', 'SELECT "hello" AS name ,"English greeting message" AS description')
+Adhoq::Reporter.generate(execution) #=> report data
+```
+
+Persistence is also available without engine via `Adhoq::Storage::SomeClass#store`.
+Below is example that generating report and persist to in Rails application report method.
+
+```ruby
+execution = Adhoq::AdhocExecution.new('xlsx', 'SELECT "hello" AS name ,"English greeting message" AS description')
+storage   = Storage::S3.new('my-adhoq-bucket', aws_access_key_id: 'key_id', aws_secret_access_key: 'access_key')
+
+# generate report and store it to S3, returns `key` to get report data
+key = storage.store('.xlsx') { Adhoq::Reporter.generate(execution) }
+
+...
+storage.get(key) #=> report data
+```
 
 ## Contributing
 
