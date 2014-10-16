@@ -1,4 +1,4 @@
-Adhoq [![Build Status](https://travis-ci.org/esminc/adhoq.svg)](https://travis-ci.org/esminc/adhoq)[![Code Climate](https://codeclimate.com/github/esminc/adhoq/badges/gpa.svg)](https://codeclimate.com/github/esminc/adhoq)
+Adhoq [![Build Status](https://travis-ci.org/esminc/adhoq.svg)](https://travis-ci.org/esminc/adhoq) [![Code Climate](https://codeclimate.com/github/esminc/adhoq/badges/gpa.svg)](https://codeclimate.com/github/esminc/adhoq)
 ====
 
 Rails engine to generate instant reports from adhoc SQL query.
