@@ -10,7 +10,7 @@ module Adhoq
       let(:storage) { Storage::LocalFile.new(tempdir) }
 
       let(:identifier) do
-        storage.store('.txt') {|file, ident| file.puts 'Hello adhoq!' }
+        storage.store('.txt') { StringIO.new("Hello adhoq!\n") }
       end
 
       specify { expect(storage.get(identifier)).to eq "Hello adhoq!\n" }
@@ -20,7 +20,7 @@ module Adhoq
       let(:storage) { Storage::S3.new('my-adhoq-bucket', aws_access_key_id: 'key_id', aws_secret_access_key: 'access_key') }
 
       let(:identifier) do
-        storage.store('.txt') {|file, ident| file.puts 'Hello adhoq!' }
+        storage.store('.txt') { StringIO.new("Hello adhoq!\n") }
       end
 
       specify { expect(storage.get(identifier)).to eq "Hello adhoq!\n" }

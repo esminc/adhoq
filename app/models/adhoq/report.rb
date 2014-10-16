@@ -2,7 +2,7 @@ module Adhoq
   class Report < ActiveRecord::Base
     belongs_to :execution
 
-    delegate :name,      to: 'execution'
+    delegate :name, to: 'execution'
 
     def generate!(storage = Adhoq.current_storage)
       self.identifier   = generate_and_persist_report!(storage)
@@ -27,9 +27,9 @@ module Adhoq
     private
 
     def generate_and_persist_report!(storage)
-      storage.store_io(".#{execution.report_format}") do
+      storage.store(".#{execution.report_format}") {
         Adhoq::Reporter.generate(execution)
-      end
+      }
     end
   end
 end
