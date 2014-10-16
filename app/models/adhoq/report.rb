@@ -1,7 +1,5 @@
 module Adhoq
   class Report < ActiveRecord::Base
-    BUFSIZE = 10.kilobytes.to_i
-
     belongs_to :execution
 
     delegate :name,      to: 'execution'
@@ -29,10 +27,8 @@ module Adhoq
     private
 
     def generate_and_persist_report!(storage)
-      storage.store(".#{execution.report_format}") do |file, *|
-        Adhoq::Reporter.generate(execution).each(BUFSIZE) do |chunk|
-          file.write chunk
-        end
+      storage.store_io(".#{execution.report_format}") do
+        Adhoq::Reporter.generate(execution)
       end
     end
   end
