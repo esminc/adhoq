@@ -1,17 +1,12 @@
 module Adhoq
   module Storage
     class FogStorage
-
       def store(suffix = nil, seed = Time.now, &block)
         Adhoq::Storage.with_new_identifier(suffix, seed) do |identifier|
-          Tempfile.open('adhoq-storage-s3') do |file|
-            file.binmode
+          io = yield
+          io.rewind
 
-            yield file, identifier
-            file.rewind
-
-            directory.files.create(key: identifier, body: file, public: false)
-          end
+          directory.files.create(key: identifier, body: io, public: false)
         end
       end
 
