@@ -7,16 +7,17 @@ Rails engine to generate instant reports from adhoc SQL query.
 
 ## Features
 
-- [x] Rails 4.x support
-- [x] Rails 3.2 support
+- Export ad-hoc SQL result to .xlsx file
+- Persist generated report as local file or in AWS S3
+- Rails 4.x & 3.2 support
+- Nice administration console with rails engine
+
+### Future planning
+
 - Export reports in some formats:
-  - [x] .xlsx
   - [ ] .csv
   - [ ] .json
-- Report storage supports (based on `Fog::Storage`):
-  - [x] Local File
-  - [x] S3
-- [x] In application export function helper
+- [ ] Label data substitution
 
 ## Installation
 
