@@ -25,5 +25,11 @@ FactoryGirl.define do
           use_count DESC, id ASC
       SQL
     end
+
+    trait :greeting do
+      name        'greeting'
+      description 'Static query for testing data'
+      query       'SELECT "hello" AS name ,"English greeting message" AS description'
+    end
   end
 end
