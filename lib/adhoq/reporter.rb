@@ -12,8 +12,17 @@ module Adhoq
       end
 
       def lookup(format)
-        @map ||= {'xlsx' => Adhoq::Reporter::Xlsx, 'csv' => Adhoq::Reporter::Csv}
-        @map[format]
+        reporters[format.to_s]
+      end
+
+      def supported_formats
+        reporters.keys.sort
+      end
+
+      private
+
+      def reporters
+        @reporters ||= {'xlsx' => Adhoq::Reporter::Xlsx, 'csv' => Adhoq::Reporter::Csv}
       end
     end
   end

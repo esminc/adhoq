@@ -5,9 +5,7 @@ module Adhoq
     belongs_to :query
     has_one    :report, dependent: :destroy, inverse_of: :execution
 
-    def supported_formats
-      %w[xlsx]
-    end
+    delegate   :supported_formats, to: Adhoq::Reporter
 
     def generate_report!
       build_report.generate!
