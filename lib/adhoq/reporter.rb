@@ -1,5 +1,7 @@
 module Adhoq
   module Reporter
+    class UnsupportedFormat < Adhoq::Error; end
+
     autoload 'Csv',  'adhoq/reporter/csv'
     autoload 'Json', 'adhoq/reporter/json'
     autoload 'Xlsx', 'adhoq/reporter/xlsx'
@@ -13,7 +15,7 @@ module Adhoq
       end
 
       def lookup(format)
-        reporters[format.to_s]
+        reporters[format.to_s] || raise(UnsupportedFormat)
       end
 
       def supported_formats
