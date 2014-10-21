@@ -1,6 +1,7 @@
 module Adhoq
   module Reporter
     autoload 'Csv',  'adhoq/reporter/csv'
+    autoload 'Json', 'adhoq/reporter/json'
     autoload 'Xlsx', 'adhoq/reporter/xlsx'
 
     class << self
@@ -22,7 +23,11 @@ module Adhoq
       private
 
       def reporters
-        @reporters ||= {'xlsx' => Adhoq::Reporter::Xlsx, 'csv' => Adhoq::Reporter::Csv}
+        @reporters ||= {
+          'csv'  => Adhoq::Reporter::Csv,
+          'json' => Adhoq::Reporter::Json,
+          'xlsx' => Adhoq::Reporter::Xlsx,
+        }
       end
     end
   end
