@@ -2,9 +2,9 @@ module Adhoq
   RSpec.describe Reporter::Xlsx, type: :model do
     context 'create xlsx report' do
       let(:report_data) do
-        Adhoq::Reporter.generate(Adhoq::AdhocExecution.new('xlsx', <<-SQL.strip_heredoc))
-          SELECT "hello" AS name ,"English greeting message" AS description
-        SQL
+        ex = Adhoq::AdhocExecution.new('xlsx', attributes_for(:adhoq_query, :greeting)[:query])
+
+        Adhoq::Reporter.generate(ex)
       end
 
       specify do
