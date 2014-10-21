@@ -13,14 +13,13 @@ module Adhoq
       end
 
       def build_report
-        tf = Tempfile.new(['adhoq-reporter', '.csv'], Dir.tmpdir, encoding: 'UTF-8')
+        file = Tempfile.new(['adhoq-reporter', '.csv'], Dir.tmpdir, encoding: 'UTF-8')
+        csv  = CSV.new(file)
 
-        CSV.open(tf.path, 'w:UTF-8') do |csv|
-          csv << @result.header
-          @result.rows.each {|row| csv << row }
-        end
+        csv << @result.header
+        @result.rows.each {|row| csv << row }
 
-        tf.tap(&:rewind)
+        file.tap(&:rewind)
       end
     end
   end
