@@ -4,10 +4,16 @@ feature 'Golden-path: execute adhoc query' do
   scenario 'Visit root, input query and generate report then we get a report' do
     visit '/adhoq'
 
+    fill_in 'Query', with: 'SELECT * from adhoq_queries'
+    click_link 'Explain'
+    first('a.js-explain-button').click
+    expect(find('.js-explain-result')).to have_content(/SCAN TABLE adhoq_querie/)
+
     fill_in 'Name',        with: 'My new query'
     fill_in 'Description', with: 'Description about this query'
     fill_in 'Query',       with: 'SELECT 42 AS "answer number", "Hello adhoq" AS message'
 
+    click_link 'Preview'
     first('a.js-preview-button').click
     within '.js-preview-result' do
       expect(page).to have_content('Hello')
