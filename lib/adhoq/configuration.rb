@@ -10,6 +10,10 @@ module Adhoq
 
     config_accessor :current_user
 
+    config_accessor :database_connection do
+      -> { ActiveRecord::Base.connection }
+    end
+
     def callablize(name)
       if (c = config[name]).respond_to?(:call)
         c
