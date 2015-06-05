@@ -30,6 +30,10 @@ ul.nav.nav-tabs[role='tablist']
       i.fa.fa-eye.fa-pad-r
       | Preview
   li
+    a[role='tab' data-toggle='tab' href='#explain' ]
+      i.fa.fa-info.fa-pad-r
+      | Explain
+  li
     a[role='tab' data-toggle='tab' href='#current-tables']
       i.fa.fa-database.fa-pad-r
       | Tables
@@ -46,12 +50,24 @@ ul.nav.nav-tabs[role='tablist']
     .js-preview-result
       .alert.alert-info Preview is shown here
 
+  #explain.tab-pane
+    h3
+      | Query explain
+      small
+        = link_to explain_path, class: 'js-explain-button', data: {source: '#query_query', result: '.js-explain-result', remote: true, method: 'POST'} do
+          i.fa.fa-refresh.fa-pad-r[data-title='Refresh explain']
+          | Reflesh
+
+    .js-explain-result
+      .alert.alert-info Explain result is shown here
+
   #current-tables.tab-pane
     a.loading[href=current_tables_path]
 
 javascript:
   $(function() {
     Adhoq.enablePreview($('#preview a.js-preview-button'));
+    Adhoq.enablePreview($('#explain a.js-explain-button'));
 
     $('a[data-toggle="tab"]').on('show.bs.tab', function(ev) { Adhoq.loadCurrentTableTabOnce($(ev.target)) });
   });

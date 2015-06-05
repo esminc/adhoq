@@ -7,6 +7,12 @@ module Adhoq
         end
       end
 
+      def explain(query)
+        with_sandbox do
+          current_connection.explain(query)
+        end
+      end
+
       def current_connection
         ActiveRecord::Base.connection
       end
@@ -27,6 +33,10 @@ module Adhoq
 
     def execute
       wrap_result(self.class.select(@query))
+    end
+
+    def explain
+      self.class.explain(@query)
     end
 
     private
