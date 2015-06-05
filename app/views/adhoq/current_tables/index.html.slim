@@ -23,7 +23,7 @@ ul.list-unstyled.tables
         tbody
           - ar_class.columns.each do |column|
             tr
-              td.pk.icon= column.primary ? icon_fa('check-circle') : ''
+              td.pk.icon= column.name == ar_class.primary_key ? icon_fa('check-circle') : ''
               td.monospace= column.name
               td= column.type
               td.null.icon= column.null ? '' : icon_fa('check')
