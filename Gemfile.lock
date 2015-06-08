@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adhoq (0.0.4)
+    adhoq (0.0.5)
       axlsx (~> 2.0)
       coffee-rails
       fog (~> 1.23)
