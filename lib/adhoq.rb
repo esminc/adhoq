@@ -11,4 +11,8 @@ module Adhoq
   autoload 'Storage',        'adhoq/storage'
 
   extend Adhoq::GlobalVariable
+
+  configure do |config|
+    config.authorization = proc { true }
+  end
 end
