@@ -12,3 +12,4 @@ gemfile:
 - gemfiles/Gemfile-rails-4.0.x
 - gemfiles/Gemfile-rails-4.1.x
 - gemfiles/Gemfile-rails-4.2.x
+- gemfiles/Gemfile-axlsx-2.1.0pre

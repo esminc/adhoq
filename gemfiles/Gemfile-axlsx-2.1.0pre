@@ -1,0 +1,11 @@
+source 'http://rubygems.org'
+
+gemspec path: '..'
+
+gem 'axlsx',   '>= 2.1.0pre'
+gem 'rubyzip', '1.1.7'
+
+gem 'rails', '~> 4.2.0'
+group :test do
+  gem 'codeclimate-test-reporter', require: false
+end

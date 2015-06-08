@@ -23,6 +23,7 @@ module Adhoq
 
       def write_result!(xlsx)
         xlsx.workbook.add_worksheet do |sheet|
+          sheet.name = 'Query result'
           sheet.add_row @result.header
           @result.rows.each {|row| sheet.add_row row }
         end
