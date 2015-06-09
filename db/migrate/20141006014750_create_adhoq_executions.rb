@@ -7,7 +7,7 @@ class CreateAdhoqExecutions < ActiveRecord::Migration
       t.string     :status,         null: false, default: 'requested'
       t.text       :log
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

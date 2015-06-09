@@ -5,7 +5,7 @@ class CreateAdhoqQueries < ActiveRecord::Migration
       t.string :description
       t.text :query
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

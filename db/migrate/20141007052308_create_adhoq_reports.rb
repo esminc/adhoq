@@ -6,7 +6,7 @@ class CreateAdhoqReports < ActiveRecord::Migration
       t.time       :generated_at, null: false
       t.string     :storage,      null: false
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
