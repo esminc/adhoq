@@ -25,5 +25,19 @@ module Adhoq
 
       specify { expect(storage.get(identifier)).to eq "Hello adhoq!\n" }
     end
+
+    describe Storage::OnTheFly do
+      let(:storage) { Storage::OnTheFly.new }
+
+      let!(:identifier) do
+        storage.store('.txt') { StringIO.new("Hello adhoq!\n") }
+      end
+
+      specify { expect(storage.get(identifier)).to eq "Hello adhoq!\n" }
+
+      specify do
+        expect { storage.get(identifier) }.to change { storage.reports.size }.by(-1)
+      end
+    end
   end
 end
