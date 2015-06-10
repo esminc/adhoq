@@ -1,7 +1,8 @@
 module Adhoq
   RSpec.describe Execution, :type => :model do
     before do
-      Adhoq.config.storage = :on_the_fly
+      storage = Adhoq::Storage::OnTheFly.new
+      allow(Adhoq).to receive(:current_storage) { storage }
     end
 
     let(:execution) do
