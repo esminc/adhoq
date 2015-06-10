@@ -12,6 +12,10 @@ module Adhoq
       save!
     end
 
+    def on_the_fly?
+      storage.start_with?(Adhoq::Storage::OnTheFly::PREFIX)
+    end
+
     def available?
       identifier.present? && (storage == Adhoq.current_storage.identifier)
     end
