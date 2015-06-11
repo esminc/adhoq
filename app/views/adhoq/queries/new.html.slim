@@ -8,7 +8,6 @@
 javascript:
   $(function() {
     $(document).on('click', '[data-trigger="toggleCurrentTables"]', function($ev) {
-      console.log($($ev.target));
       Adhoq.toggleCurrentTables($($ev.target).attr('role'), {main: '#main', tables: '#current-tables'});
     })
   });
