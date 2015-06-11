@@ -46,7 +46,7 @@
         | Back to Index
 
     .pull-right
-      a.btn.btn-default.btn-sm[data-toggle='modal' data-target='#nameAndDesc']
+      = link_to '#nameAndDesc', class: 'btn btn-default btn-sm', data: {toggle: 'modal', target: '#nameAndDesc'} do
         i.fa.fa-floppy-o.fa-pad-r
         | Save as...
 

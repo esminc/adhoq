@@ -4,10 +4,11 @@ feature 'Can see database schema at editing form' do
   scenario 'See database schema' do
     visit adhoq.root_path
 
-    click_on 'Tables'
+    click_on 'Show tables'
 
-    within('.tab-content') do
-      expect(page).to have_text('Current database schema')
+    within('#current-tables') do
+      expect(page).to have_text('Current tables')
+      expect(page).to have_text(/Version \d+/)
 
       main_names_and_types = table_contant('li[data-table-name="adhoq_queries"] table').from(2).map {|row| row[1, 2] }.take(3)
 
