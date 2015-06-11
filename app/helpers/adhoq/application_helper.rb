@@ -17,7 +17,7 @@ module Adhoq
         ActiveRecord::SchemaMigration.maximum(:version)
       else
         result = Adhoq::Executor.select("SELECT MAX(version) AS current_version FROM #{ActiveRecord::Migrator.schema_migrations_table_name}")
-        result.rows.first
+        result.rows.first.first
       end
     end
 
