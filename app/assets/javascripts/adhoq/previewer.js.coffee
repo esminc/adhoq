@@ -2,8 +2,10 @@ class Previewer
   constructor: (@el)->
 
   init: ->
+    @el.on 'adhoq:updatePreview', => @update()
+
     @el.on 'click', =>
-      @update()
+      @el.trigger 'adhoq:updatePreview'
       false
 
   update: ->
@@ -23,3 +25,10 @@ class Previewer
 
 Adhoq.enablePreview = ($el)->
   (new Previewer($el)).init()
+
+Adhoq.enablePreviewKeybordShortCut= ($textarea, previewSelector)->
+  $textarea.on 'keyup', (ev)->
+    if(ev.ctrlKey && ev.keyCode is 82)
+      $(previewSelector).trigger('adhoq:updatePreview')
+
+    false

@@ -15,7 +15,10 @@
       .modal-content
         .modal-header
           button.close[data-dismiss='modal' aria-label='Close']
-          h4 Add name and description
+          button.close[type='button' data-dismiss='modal' aria-label='Close']
+            span[aria-hidden='true'] &times;
+
+          h4 Add name and description to query
         .modal-body
           .form-horizontal
             .form-group
@@ -28,21 +31,24 @@
               .col-sm-8
                 = f.text_area :description, class: 'form-control', required: true
         .modal-footer
-          button.btn.btn-primary
+          button.btn.btn-primary.center-block
             i.fa.fa-floppy-o.fa-pad-r
             | Save
 
-.actions
-  button.btn.btn-default
-    i.fa.fa-refresh.fa-pad-r
-    | Reflesh
+  .actions
+    - if query.persisted?
+      = link_to query do
+        i.fa.fa-arrow-left.fa-pad-r
+        | Cancel
+    - else
+      = link_to :queries do
+        i.fa.fa-arrow-left.fa-pad-r
+        | Back to Index
 
-  button.btn.btn-primary[data-toggle='modal' data-target='#nameAndDesc']
-    i.fa.fa-floppy-o.fa-pad-r
-    | Save as...
-
-  - if query.persisted?
-    = link_to 'Cancel', f.object, class: 'btn btn-default'
+    .pull-right
+      a.btn.btn-default.btn-sm[data-toggle='modal' data-target='#nameAndDesc']
+        i.fa.fa-floppy-o.fa-pad-r
+        | Save as...
 
 ul.nav.nav-tabs[role='tablist']
   li.active
@@ -54,7 +60,7 @@ ul.nav.nav-tabs[role='tablist']
       i.fa.fa-info.fa-pad-r
       | Explain
 
-.tab-content
+#previews.tab-content
   #preview.tab-pane.active
     h3
       | Query preview
@@ -81,5 +87,7 @@ javascript:
   $(function() {
     Adhoq.enablePreview($('#preview a.js-preview-button'));
     Adhoq.enablePreview($('#explain a.js-explain-button'));
+
+    Adhoq.enablePreviewKeybordShortCut($('#query_query'), '#previews .tab-pane.active a:has(".fa-refresh")')
   });
 
