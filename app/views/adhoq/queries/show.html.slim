@@ -1,1 +1,11 @@
-= render 'query', query: @query
+.col-md-12
+  ol.breadcrumb
+    li= link_to 'Index', :queries
+    li.active Query: #{@query.name}
+
+#queries.col-md-3
+  section.queries
+    = render 'queries', queries: Adhoq::Query.recent_first
+
+#the-query.col-md-9
+  = render 'query', query: @query

@@ -2,10 +2,12 @@ section.query
   .page-header
     h1
       = query.name
+      .pull-right
+        = link_to [:edit, query], class: 'btn btn-default btn-sm' do
+          i.fa.fa-pencil.fa-pad-r
+          | Edit
+      .clearfix
       small= "Updated at #{l(query.updated_at, format: :short)}"
-      = link_to [:edit, query], class: 'btn btn-default' do
-        i.fa.fa-pencil.fa-pad-r
-        | Edit
   p.description= query.description
 
   pre.query= query.query
@@ -21,23 +23,22 @@ section.query
 
   section.past-executions
     h2 Reports
-    .col-md-10
-      table.executions.table.table-striped.table-hover
-        thead
-          tr
-            th.wip &nbsp;
-            th.created_at= human(Adhoq::Execution, :created_at)
-            th.status=     human(Adhoq::Execution, :status)
-            th.report
-        tbody
-          - query.executions.recent_first.each do |exec|
-            tr[exec]
-              td.wip
-              td.created_at= exec.created_at.localtime.iso8601
-              td.status
-                span.label[class=(exec.success? ? 'label-success' : 'label-danger')]= exec.status_label
-              td.report
-                - if exec.success?
-                  = link_to(query_execution_path(query, exec, format: exec.report_format), class: 'btn btn-sm btn-default') do
-                    i.fa.fa-download.fa-pad-r
-                    = exec.report_format
+    table.executions.table.table-striped.table-hover
+      thead
+        tr
+          th.wip &nbsp;
+          th.created_at= human(Adhoq::Execution, :created_at)
+          th.status=     human(Adhoq::Execution, :status)
+          th.report
+      tbody
+        - query.executions.recent_first.each do |exec|
+          tr[exec]
+            td.wip
+            td.created_at= exec.created_at.localtime.iso8601
+            td.status
+              span.label[class=(exec.success? ? 'label-success' : 'label-danger')]= exec.status_label
+            td.report
+              - if exec.success?
+                = link_to(query_execution_path(query, exec, format: exec.report_format), class: 'btn btn-sm btn-default') do
+                  i.fa.fa-download.fa-pad-r
+                  = exec.report_format

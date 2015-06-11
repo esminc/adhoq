@@ -1,1 +1,10 @@
-= render 'query', query: @queries.first
+.col-md-12
+  ol.breadcrumb
+    li.active Index
+
+#queries.col-md-3
+  section.queries
+    = render 'queries', queries: @queries
+
+#the-query.col-md-9
+  = render 'query', query: @queries.first

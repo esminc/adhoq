@@ -1,0 +1,12 @@
+section
+  = link_to :root, class: 'btn btn-default new-query btn-sm center-block' do
+    i.fa.fa-plus-square.fa-pad-r
+    | New query
+
+  ol.queries-index.list-unstyled
+    - queries.each do |query|
+      li.panel.panel-default[query]
+        .panel-heading
+          h2= link_to query.name, query_path(query)
+        p.panel-body.description= query.description
+

@@ -1,3 +1,8 @@
+.col-md-12
+  ol.breadcrumb
+    li= link_to 'Index', :queries
+    li.active  New query
+
 #main.col-md-12
   section.new-query
     = render 'form', query: @query, title: 'New query'
