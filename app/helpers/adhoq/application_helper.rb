@@ -20,5 +20,10 @@ module Adhoq
         result.rows.first
       end
     end
+
+    # TODO extract into presenter
+    def query_friendly_name(query)
+      "Query: #{query.name}"
+    end
   end
 end

@@ -7,13 +7,4 @@
   section.new-query
     = render 'form', query: @query, title: 'New query'
 
-#current-tables[style='display:none']
-  a.loading[href=current_tables_path]
-
-javascript:
-  $(function() {
-    $(document).on('click', '[data-trigger="toggleCurrentTables"]', function($ev) {
-      Adhoq.toggleCurrentTables($($ev.target).attr('role'), {main: '#main', tables: '#current-tables'});
-    })
-  });
-
+= render 'current_tables_leftbar'
