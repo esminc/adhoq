@@ -1,28 +1,48 @@
-= form_for query, html: {class: 'form form-horizontal query-form', role: 'form'} do |f|
+= form_for query, html: {class: 'form query-form', role: 'form'} do |f|
   .page-header
     h1
-      = title
-      .actions.btn-in-header
-        button.btn.btn-primary
-          i.fa.fa-floppy-o.fa-pad-r
-          | Save
-        - if f.object.persisted?
-          = link_to 'Cancel', f.object, class: 'btn btn-default'
+      = f.label :query, title, class: 'control-label'
+      .pull-right
+        a.btn.btn-default.btn-sm[href='#' data-trigger='toggleCurrentTables' role='show']
+          i.fa.fa-database.fa-pad-r
+          | Show tables
 
   .form-group
-    = f.label :name, class: 'col-sm-2 control-label'
-    .col-sm-8
-      = f.text_field :name, class: 'form-control', required: true
+    = f.text_area :query, class: 'form-control', rows: 10, required: true
 
-  .form-group
-    = f.label :description, class: 'col-sm-2 control-label'
-    .col-sm-8
-      = f.text_area :description, class: 'form-control', required: true
+  .modal.fade#nameAndDesc[role='dialog']
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close[data-dismiss='modal' aria-label='Close']
+          h4 Add name and description
+        .modal-body
+          .form-horizontal
+            .form-group
+              = f.label :name, class: 'control-label col-sm-2'
+              .col-sm-8
+                = f.text_field :name, class: 'form-control', required: true
 
-  .form-group
-    = f.label :query, class: 'col-sm-2 control-label'
-    .col-sm-8
-      = f.text_area :query, class: 'form-control', rows: 10, required: true
+            .form-group
+              = f.label :description, class: 'control-label col-sm-2'
+              .col-sm-8
+                = f.text_area :description, class: 'form-control', required: true
+        .modal-footer
+          button.btn.btn-primary
+            i.fa.fa-floppy-o.fa-pad-r
+            | Save
+
+.actions
+  button.btn.btn-default
+    i.fa.fa-refresh.fa-pad-r
+    | Reflesh
+
+  button.btn.btn-primary[data-toggle='modal' data-target='#nameAndDesc']
+    i.fa.fa-floppy-o.fa-pad-r
+    | Save as...
+
+  - if query.persisted?
+    = link_to 'Cancel', f.object, class: 'btn btn-default'
 
 ul.nav.nav-tabs[role='tablist']
   li.active
@@ -33,10 +53,6 @@ ul.nav.nav-tabs[role='tablist']
     a[role='tab' data-toggle='tab' href='#explain' ]
       i.fa.fa-info.fa-pad-r
       | Explain
-  li
-    a[role='tab' data-toggle='tab' href='#current-tables']
-      i.fa.fa-database.fa-pad-r
-      | Tables
 
 .tab-content
   #preview.tab-pane.active
@@ -61,14 +77,9 @@ ul.nav.nav-tabs[role='tablist']
     .js-explain-result
       .alert.alert-info Explain result is shown here
 
-  #current-tables.tab-pane
-    a.loading[href=current_tables_path]
-
 javascript:
   $(function() {
     Adhoq.enablePreview($('#preview a.js-preview-button'));
     Adhoq.enablePreview($('#explain a.js-explain-button'));
-
-    $('a[data-toggle="tab"]').on('show.bs.tab', function(ev) { Adhoq.loadCurrentTableTabOnce($(ev.target)) });
   });
 

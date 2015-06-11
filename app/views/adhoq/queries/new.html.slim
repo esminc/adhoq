@@ -1,2 +1,15 @@
-section.new-query
-  = render 'form', query: @query, title: 'New query'
+#main.col-md-12
+  section.new-query
+    = render 'form', query: @query, title: 'New query'
+
+#current-tables[style='display:none']
+  a.loading[href=current_tables_path]
+
+javascript:
+  $(function() {
+    $(document).on('click', '[data-trigger="toggleCurrentTables"]', function($ev) {
+      console.log($($ev.target));
+      Adhoq.toggleCurrentTables($($ev.target).attr('role'), {main: '#main', tables: '#current-tables'});
+    })
+  });
+
