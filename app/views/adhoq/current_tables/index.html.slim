@@ -1,6 +1,10 @@
 h3
-  | Current database schema
+  i.fa.fa-database.fa-pad-r
+  | Current tables
   small= "Version #{schema_version}"
+  .pull-right
+    button.close[data-trigger="toggleCurrentTables" role='close']
+      span[aria-hidden=true] &times;
 
 ul.list-unstyled.tables
   - @ar_classes.each do |ar_class|
@@ -14,12 +18,11 @@ ul.list-unstyled.tables
         thead
           tr
             th.col-sm-1.pk PK
-            th.col-sm-2.name  Name
-            th.col-sm-1.type  Type
+            th.col-sm-3.name  Name
+            th.col-sm-2.type  Type
             th.col-sm-1.null  Non-Null
-            th.col-sm-1.limit Limit
-            th.col-sm-2.default  Default
-            th.col-sm-4.data  unscoped.first
+            th.col-sm-2.limit Limit
+            th.col-sm-3.default  Default
         tbody
           - ar_class.columns.each do |column|
             tr
@@ -29,4 +32,3 @@ ul.list-unstyled.tables
               td.null.icon= column.null ? '' : icon_fa('check')
               td.limit.number= column.limit
               td= column.default
-              td.monospace= first_record.try {|r| truncate(r.read_attribute_before_type_cast(column.name).to_s, length: 50) }

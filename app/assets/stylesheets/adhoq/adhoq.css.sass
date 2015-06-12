@@ -21,22 +21,41 @@ $short-span:  $font-size-base / 2
     margin: 0 10px
     font-size: $font-size-base
 
-#sidebar
-  h2 a.new-query
-    float: right
+#queries
+  a.new-query
+    margin-bottom: $short-span
 
-  ul.queries
+  ol.queries-index
     li.panel
       margin-bottom: $short-span
 
-    .panel-heading h2
-      margin:   0
-      font-size: $font-size-base
+    .panel-heading
+      padding: $short-span $short-span * 2
+      h2
+        margin:   0
+        font-size: $font-size-base
 
     p.panel-body.description
       margin-bottom: 0
+      font-size: $font-size-base * 0.9
+
+#the-query
+  .page-header
+    margin-top: 0
+    h1
+      margin-top: 0
+
+      small
+        font-size: $font-size-base
 
 form.query-form
+  margin-bottom: 30px
+
+  h1
+    font-size: $font-size-base
+    margin-top: $font-size-base / 2
+    margin-bottom: $font-size-base / 4
+
   textarea#query_query
     font-family: monospace
 
@@ -57,10 +76,17 @@ form.query-form
   padding-left: $short-span / 2
 
 #current-tables
+  display: none
   font-size: $font-size-base * 0.9
 
+  h3
+    font-size: $font-size-base
+    margin-top: $font-size-base / 2
+    margin-bottom: $font-size-base / 4
+
+    small
+      margin-left: $font-size-base
   table
-    width: 800px
 
     caption
       text-align: left
@@ -95,7 +121,11 @@ form.query-form
 
   .tab-pane > h3
     font-size: $font-size-base * 1.5
+    margin-top: $font-size-base / 2
 
     small
       font-size: $font-size-base
       margin-left: $font-size-base
+
+.js-preview-result table, .js-explain-result pre
+  font-family: monospace
