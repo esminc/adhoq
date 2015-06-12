@@ -27,6 +27,7 @@ module Adhoq
         case type
         when :local_file then Adhoq::Storage::LocalFile
         when :s3         then Adhoq::Storage::S3
+        when :on_the_fly then Adhoq::Storage::OnTheFly
         else
           raise NotImplementedError
         end

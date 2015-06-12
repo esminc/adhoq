@@ -31,6 +31,7 @@ section.query
             th.report
         tbody
           - query.executions.recent_first.each do |exec|
+            - next if exec.report.on_the_fly?
             tr[exec]
               td.wip
               td.created_at= exec.created_at.localtime.iso8601
