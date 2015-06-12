@@ -1,42 +1,18 @@
 module Adhoq
   class Executor
-    class << self
-      def select(query)
-        with_sandbox do
-          current_connection.exec_query(query)
-        end
-      end
-
-      def explain(query)
-        with_sandbox do
-          current_connection.explain(query)
-        end
-      end
-
-      def current_connection
-        ActiveRecord::Base.connection
-      end
-
-      def with_sandbox
-        result = nil
-        ActiveRecord::Base.transaction do
-          result = yield
-          raise ActiveRecord::Rollback
-        end
-        result
-      end
-    end
+    autoload 'ConnectionWrapper', 'adhoq/executor/connection_wrapper'
 
     def initialize(query)
+      @connection = ConnectionWrapper.new
       @query = query
     end
 
     def execute
-      wrap_result(self.class.select(@query))
+      wrap_result(@connection.select(@query))
     end
 
     def explain
-      self.class.explain(@query)
+      @connection.explain(@query)
     end
 
     private

@@ -14,5 +14,6 @@ module Adhoq
 
   configure do |config|
     config.authorization = proc { true }
+    config.database_connection = proc { ActiveRecord::Base.connection }
   end
 end
