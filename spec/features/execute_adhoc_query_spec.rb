@@ -7,13 +7,13 @@ feature 'Golden-path: execute adhoc query' do
     fill_in 'New query', with: 'SELECT * from adhoq_queries'
 
     click_on 'Explain'
-    click_on 'Reflesh'
+    click_on 'Refresh'
     expect(find('.js-explain-result')).to have_content(/SCAN TABLE adhoq_querie/)
 
     fill_in 'New query', with: 'SELECT 42 AS "answer number", "Hello adhoq" AS message'
 
     click_on 'Preview'
-    click_on 'Reflesh'
+    click_on 'Refresh'
     within '.js-preview-result' do
       expect(page).to have_content('Hello')
 
