@@ -30,5 +30,21 @@ module Adhoq
     def table_order_key(ar_class)
       ar_class.primary_key || ar_class.columns.first.name
     end
+
+    def query_parameter_field(name, type)
+      field_tag =
+        case type
+        when "string", "text"
+          text_field_tag "parameters[#{name}][value]", nil, class: "form-control"
+        when "int"
+          number_field_tag "parameters[#{name}][value]", nil, class: "form-control"
+        when "date"
+          date_field_tag "parameters[#{name}][value]", nil, placeholder: "ex. 2001/10/25", class: "form-control"
+        when "datetime"
+          datetime_field_tag "parameters[#{name}][value]", nil, placeholder: "ex. 2001/10/25 21:40:01", class: "form-control"
+        end
+
+      field_tag + hidden_field_tag("parameters[#{name}][type]", type)
+    end
   end
 end

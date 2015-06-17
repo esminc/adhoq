@@ -13,7 +13,7 @@ module Adhoq
     private
 
     def synced_create
-      @execution = current_query.execute!(params[:execution][:report_format])
+      @execution = current_query.execute!(params[:execution][:report_format], params[:parameters])
 
       if @execution.report.on_the_fly?
         respond_report(@execution.report)
@@ -23,7 +23,7 @@ module Adhoq
     end
 
     def asynced_create
-      Adhoq::ExecuteJob.perform_later(current_query, params[:execution][:report_format])
+      Adhoq::ExecuteJob.perform_later(current_query, params[:execution][:report_format], params[:parameters])
       redirect_to current_query
     end
 

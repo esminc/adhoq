@@ -19,10 +19,17 @@ section.query
 
   section.new-execution
     h2 Create report
-    = form_for [query, query.executions.build], html: {class: 'form-inline', role: 'form'} do |f|
-      .form-group.report_format
+    = form_for [query, query.executions.build], html: {role: 'form'} do |f|
+      .form-inline.form-group.report_format
         = f.label  :report_format
         = f.select :report_format, f.object.supported_formats, {}, class: 'form-control'
+      - if query.parameters.present?
+        h4 Query parameters
+        .form-group.query_parameters
+          - query.parameters.each do |query_parameter|
+            .form-inline.query_parameter
+              = label_tag "parameters_#{query_parameter[:name]}", "#{query_parameter[:name]}"
+              = query_parameter_field(query_parameter[:name], query_parameter[:type])
       .form-group
         = f.submit 'Create report', class: 'btn btn-default'
 
