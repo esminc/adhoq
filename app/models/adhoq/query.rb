@@ -5,7 +5,7 @@ module Adhoq
     has_many :executions, dependent: :destroy, inverse_of: :query
 
     PARAMETER_PATTERN = /\$(?<name>\w+)::(?<type>\w+)/i.freeze
-    SUPPORT_PARAMETER_TYPES = %w(text string int date datetime).freeze
+    SUPPORT_PARAMETER_TYPES = %w(text string int float date datetime).freeze
 
     def execute!(report_format, query_parameters = {})
       executions.create! {|exe|

@@ -36,7 +36,7 @@ module Adhoq
         case type
         when "string", "text"
           text_field_tag "parameters[#{name}][value]", nil, class: "form-control"
-        when "int"
+        when "int", "float"
           number_field_tag "parameters[#{name}][value]", nil, class: "form-control"
         when "date"
           date_field_tag "parameters[#{name}][value]", nil, placeholder: "ex. 2001/10/25", class: "form-control"
