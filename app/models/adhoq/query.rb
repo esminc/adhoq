@@ -55,7 +55,7 @@ module Adhoq
       when "date"
         value.to_date
       when "datetime"
-        value.to_time
+        value.in_time_zone
       end
     end
   end

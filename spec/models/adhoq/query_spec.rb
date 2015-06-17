@@ -17,7 +17,7 @@ module Adhoq
           time: {value: "2010-10-1 10:00:00", type: "datetime"},
           activated: {value: "1", type: "int"},
         })
-        expect(sanitized).to eq "SELECT * FROM users where created_at > '2010-10-01 01:00:00.000000' AND activated = 1"
+        expect(sanitized).to eq "SELECT * FROM users where created_at > '2010-10-01 10:00:00.000000' AND activated = 1"
       end
 
       context "query doesn't need parameter" do
