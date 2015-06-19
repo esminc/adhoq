@@ -19,7 +19,9 @@ module Adhoq
 
       @parameters = query.scan(PARAMETER_PATTERN).each_with_object([]) do |(name, type), arr|
         if SUPPORT_PARAMETER_TYPES.include?(type.downcase)
-          arr << {name: name.downcase, type: type.downcase}
+          if arr.none? { |param| param[:name] == name.downcase }
+            arr << {name: name.downcase, type: type.downcase}
+          end
         end
       end
     end
