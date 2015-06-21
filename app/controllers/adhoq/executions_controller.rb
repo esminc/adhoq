@@ -23,7 +23,11 @@ module Adhoq
     end
 
     def respond_report(report)
-      send_data report.data, type: report.mime_type, filename: report.name, disposition: 'attachment'
+      if Adhoq.current_storage.direct_download?
+        redirect_to report.data_url
+      else
+        send_data report.data, type: report.mime_type, filename: report.name, disposition: 'attachment'
+      end
     end
   end
 end

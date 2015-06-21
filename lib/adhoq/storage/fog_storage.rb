@@ -10,6 +10,10 @@ module Adhoq
         end
       end
 
+      def direct_download?
+        false
+      end
+
       def get(identifier)
         get_raw(identifier).body
       end

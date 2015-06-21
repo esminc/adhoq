@@ -24,6 +24,16 @@ module Adhoq
       storage.get(identifier)
     end
 
+    def data_url(storage = Adhoq.current_storage)
+      storage.get_url(
+        identifier,
+        query: {
+          'response-content-disposition' => "attachment; filename=\"#{name}\"",
+          'response-content-type' => mime_type,
+        }
+      )
+    end
+
     def mime_type
       Adhoq::Reporter.lookup(execution.report_format).mime_type
     end
