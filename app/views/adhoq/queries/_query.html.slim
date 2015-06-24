@@ -33,13 +33,4 @@ section.query
       tbody
         - query.executions.recent_first.each do |exec|
           - next if exec.report.try(:on_the_fly?)
-          tr[exec]
-            td.wip
-            td.created_at= exec.created_at.localtime.iso8601
-            td.status
-              span.label[class=(exec.success? ? 'label-success' : 'label-danger')]= exec.status_label
-            td.report
-              - if exec.success?
-                = link_to(query_execution_path(query, exec, format: exec.report_format), class: 'btn btn-sm btn-default') do
-                  i.fa.fa-download.fa-pad-r
-                  = exec.report_format
+          = render 'execution', query: query, exec: exec

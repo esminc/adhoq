@@ -9,6 +9,9 @@ module Adhoq
 
     def generate_report!
       build_report.generate!
+      update_attributes(status: :success)
+    rescue
+      update_attributes(status: :failure)
     end
 
     def name
@@ -16,12 +19,7 @@ module Adhoq
     end
 
     def success?
-      report.try(:available?)
-    end
-
-    # TODO go decorator or view model or so
-    def status_label
-      success? ? :success : :failure
+      report.try(:available?) || status == "success"
     end
   end
 end

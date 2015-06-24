@@ -2,6 +2,7 @@
 require 'font-awesome-sass'
 require 'jquery-rails'
 require 'slim-rails'
+require 'active_decorator'
 
 module Adhoq
   class Engine < ::Rails::Engine
