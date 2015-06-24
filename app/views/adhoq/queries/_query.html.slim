@@ -10,7 +10,9 @@ section.query
       small= "Updated at #{l(query.updated_at, format: :short)}"
   p.description= query.description
 
-  pre.query= query.query
+  pre.query
+    code.sql
+      = query.query
 
   section.new-execution
     h2 Create report
