@@ -16,6 +16,10 @@ module Adhoq
         end
       end
 
+      def direct_download?
+        false
+      end
+
       def get(identifier)
         if item = @reports.delete(identifier)
           item.read.tap { item.close }
