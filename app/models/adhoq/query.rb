@@ -30,7 +30,8 @@ module Adhoq
       return query if parameters.empty?
 
       casted = query_parameters.each_with_object(HashWithIndifferentAccess.new) do |(name, value_and_type), hash|
-        hash[name] = cast_query_parameter(value_and_type)
+        value, type = value_and_type.values_at(:value, :type)
+        hash[name] = cast_query_parameter(value, type)
       end
 
       base_query = query.gsub(PARAMETER_PATTERN) do
@@ -43,10 +44,7 @@ module Adhoq
 
     private
 
-    def cast_query_parameter(value_and_type)
-      value = value_and_type[:value]
-      type = value_and_type[:type]
-
+    def cast_query_parameter(value, type)
       case type
       when "string", "text"
         value.to_s
