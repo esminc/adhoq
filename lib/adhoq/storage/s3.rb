@@ -37,7 +37,7 @@ module Adhoq
         proc do |report|
           {
             query: {
-              'response-content-disposition' => "attachment; filename=\"#{name}\"",
+              'response-content-disposition' => "attachment; filename*=UTF-8''#{URI.encode_www_form_component(report.name)}",
               'response-content-type' => report.mime_type,
             }
           }
