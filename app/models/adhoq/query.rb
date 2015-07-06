@@ -10,7 +10,7 @@ module Adhoq
     def execute!(report_format, query_parameters = {})
       executions.create! {|exe|
         exe.report_format = report_format
-        exe.raw_sql       = sanitized_query(query_parameters)
+        exe.raw_sql       = sanitized_query(query_parameters.with_indifferent_access)
       }.tap(&:generate_report!)
     end
 
