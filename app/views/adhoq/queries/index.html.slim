@@ -7,4 +7,5 @@
     = render 'queries', queries: @queries
 
 #the-query.col-md-9
-  = render 'query', query: @queries.first
+  - if first_query = @queries.first
+    = render 'query', query: first_query
