@@ -1,5 +1,5 @@
 module Adhoq
-  class PreviewsController < ApplicationController
+  class PreviewsController < Adhoq::ApplicationController
     layout false
 
     def create

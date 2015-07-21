@@ -1,5 +1,5 @@
 module Adhoq
-  class QueriesController < ApplicationController
+  class QueriesController < Adhoq::ApplicationController
     def index
       @queries = Adhoq::Query.recent_first
     end
