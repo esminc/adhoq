@@ -1,5 +1,5 @@
 module Adhoq
-  class ExplainsController < ApplicationController
+  class ExplainsController < Adhoq::ApplicationController
     layout false
 
     def create
