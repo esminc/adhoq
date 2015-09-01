@@ -3,6 +3,7 @@ sudo: false
 rvm:
 - 2.1
 - 2.2
+cache: bundler
 before_script:
 - bundle exec rake db:migrate
 env:
