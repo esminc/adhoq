@@ -10,7 +10,10 @@ section.query
       small= "Updated at #{l(query.updated_at, format: :short)}"
   p.description= query.description
 
-  pre.query= query.query
+  css:
+    #{Rouge::Themes::Github.render(scope: '.highlight')}
+
+  = raw query.query_with_highlight
 
   section.new-execution
     h2 Create report
