@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     adhoq (0.0.5)
+      active_decorator
       axlsx (~> 2.0)
       coffee-rails
       fog (~> 1.23)
@@ -34,6 +35,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_decorator (0.5.3)
     activejob (4.2.4)
       activesupport (= 4.2.4)
       globalid (>= 0.3.0)
