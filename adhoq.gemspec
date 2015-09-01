@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails'
   s.add_dependency 'slim-rails'
   s.add_dependency 'active_decorator'
+  s.add_dependency 'rouge'
 
   s.add_development_dependency 'capybara', '~> 2.4.3'
   s.add_development_dependency 'database_cleaner'
