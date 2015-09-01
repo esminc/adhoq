@@ -5,6 +5,8 @@ html
     = stylesheet_link_tag    'adhoq/application', media: 'all'
     = javascript_include_tag 'adhoq/application'
     = csrf_meta_tags
+    javascript:
+      hljs.initHighlightingOnLoad();
 
   body
     .container

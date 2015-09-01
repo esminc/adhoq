@@ -13,8 +13,9 @@
 //= require_self
 //= require jquery
 //= require jquery_ujs
+//= require ./highlight.pack
 //= require ./bootstrap
 //= require ./previewer
 //= require ./current_tables
 
-window.Adhoq = {}
+window.Adhoq = {};
