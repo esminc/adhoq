@@ -65,6 +65,8 @@ feature 'Golden-path: execute adhoc query' do
 
         ex.call
 
+        Adhoq::ExecuteJob.queue_adapter.performed_jobs.clear
+
         Adhoq.config.async_execution = current_async_execution
         Adhoq::Engine.config.active_job.queue_adapter = current_active_job_queue_adapter
       end
@@ -103,6 +105,8 @@ feature 'Golden-path: execute adhoc query' do
         Adhoq::ExecuteJob.queue_adapter.perform_enqueued_jobs = true
 
         ex.call
+
+        Adhoq::ExecuteJob.queue_adapter.performed_jobs.clear
 
         Adhoq.config.async_execution = current_async_execution
         Adhoq::Engine.config.active_job.queue_adapter = current_active_job_queue_adapter
