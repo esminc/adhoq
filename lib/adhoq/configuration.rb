@@ -12,10 +12,8 @@ module Adhoq
 
     config_accessor :database_connection
 
-    if defined?(ActiveJob)
-      config_accessor :async_execution
-      config_accessor :job_queue_name
-    end
+    config_accessor :async_execution
+    config_accessor :job_queue_name
 
     def callablize(name)
       if (c = config[name]).respond_to?(:call)
