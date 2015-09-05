@@ -22,5 +22,9 @@ module Adhoq
         c.to_proc
       end
     end
+
+    def async_execution?
+      defined?(ActiveJob) && Adhoq.config.async_execution
+    end
   end
 end

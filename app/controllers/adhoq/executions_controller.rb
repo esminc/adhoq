@@ -40,7 +40,7 @@ module Adhoq
     end
 
     def async_execution?
-      defined?(ActiveJob) && Adhoq.config.async_execution && !Adhoq.current_storage.is_a?(Adhoq::Storage::OnTheFly)
+      Adhoq.config.async_execution? && !Adhoq.current_storage.is_a?(Adhoq::Storage::OnTheFly)
     end
   end
 end
