@@ -7,6 +7,12 @@ module Adhoq
     end
 
     def create
+      async_execution? ? asynced_create : synced_create
+    end
+
+    private
+
+    def synced_create
       @execution = current_query.execute!(params[:execution][:report_format])
 
       if @execution.report.on_the_fly?
@@ -16,7 +22,10 @@ module Adhoq
       end
     end
 
-    private
+    def asynced_create
+      Adhoq::ExecuteJob.perform_later(current_query, params[:execution][:report_format])
+      redirect_to current_query
+    end
 
     def current_query
       @query ||= Adhoq::Query.find(params[:query_id])
@@ -28,6 +37,10 @@ module Adhoq
       else
         send_data report.data, type: report.mime_type, filename: report.name, disposition: 'attachment'
       end
+    end
+
+    def async_execution?
+      Adhoq.config.async_execution? && !Adhoq.current_storage.is_a?(Adhoq::Storage::OnTheFly)
     end
   end
 end
