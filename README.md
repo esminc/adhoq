@@ -56,7 +56,7 @@ Rails.application.routes.draw do
 end
 ```
 
-Edit initialization file in `config/initializer/adhoq.rb`
+Edit initialization file in `config/initializers/adhoq.rb`
 
 ```ruby
 Adhoq.configure do |config|
