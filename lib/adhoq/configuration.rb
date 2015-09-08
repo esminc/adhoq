@@ -11,6 +11,7 @@ module Adhoq
     config_accessor :current_user
 
     config_accessor :database_connection
+    config_accessor :ignore_table_names
 
     def callablize(name)
       if (c = config[name]).respond_to?(:call)

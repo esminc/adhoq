@@ -1,7 +1,8 @@
 Adhoq.configure do |c|
-  c.authorization = :adhoq_authorized?
-  c.current_user  = :current_user
-  c.storage       = [:local_file, Rails.root + "./tmp/adhoq/#{Rails.env}"]
+  c.authorization      = :adhoq_authorized?
+  c.current_user       = :current_user
+  c.storage            = [:local_file, Rails.root + "./tmp/adhoq/#{Rails.env}"]
+  c.ignore_table_names = %w(SecretTable)
 =begin
   # S3 setting example
   c.storage       = [
