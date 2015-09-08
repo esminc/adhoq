@@ -26,5 +26,9 @@ module Adhoq
     def query_friendly_name(query)
       "Query: #{query.name}"
     end
+
+    def table_order_key(ar_class)
+      ar_class.primary_key || ar_class.columns.first.name
+    end
   end
 end

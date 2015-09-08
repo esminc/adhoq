@@ -8,7 +8,7 @@ h3
 
 ul.list-unstyled.tables
   - @ar_classes.each do |ar_class|
-    - first_record = ar_class.unscoped.order(:id).first
+    - first_record = ar_class.unscoped.order(table_order_key(ar_class)).first
 
     li.ar_class data-table-name=ar_class.table_name
       table.table.table-striped.table-hover.table-bordered

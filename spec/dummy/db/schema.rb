@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908073801) do
+ActiveRecord::Schema.define(version: 20150908112456) do
 
   create_table "adhoq_executions", force: :cascade do |t|
     t.integer  "query_id",                            null: false
@@ -47,4 +47,8 @@ ActiveRecord::Schema.define(version: 20150908073801) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "no_id_tables", id: false, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 end
