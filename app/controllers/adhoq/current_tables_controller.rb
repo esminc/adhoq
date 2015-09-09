@@ -3,8 +3,11 @@ module Adhoq
     before_filter :eager_load_models
 
     def index
+      hidden_model_names = Array(Adhoq.config.hidden_model_names)
+      hidden_model_names << 'ActiveRecord::SchemaMigration'
+
       @ar_classes = ActiveRecord::Base.subclasses.
-        reject {|klass| klass.name == 'ActiveRecord::SchemaMigration' }.
+        reject {|klass| hidden_model_names.include?(klass.name) }.
         sort_by(&:name)
 
       render layout: false

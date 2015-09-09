@@ -17,6 +17,9 @@ feature 'Can see database schema at editing form' do
         ["description", "string"],
         ["query",       "text"],
       ]
+
+      # NOTE spec/dummy/config/initializers/adhoq.rb:5
+      expect(page).not_to have_text('secret_tables')
     end
   end
 end
