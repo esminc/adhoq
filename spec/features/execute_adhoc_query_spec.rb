@@ -20,6 +20,7 @@ feature 'Golden-path: execute adhoc query' do
     fill_in  'Description', with: 'Description about this query'
 
     click_on 'Save'
+    expect(page).to have_content('Create report')
   end
 
   scenario 'Visit root, input query and click explain then we get a EXPLAIN query result' do
