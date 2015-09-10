@@ -54,23 +54,7 @@ feature 'Golden-path: execute adhoc query' do
   end
 
   if defined?(ActiveJob)
-    context "async_execution feature is ON" do
-      around do |ex|
-        current_async_execution = Adhoq.config.async_execution
-        current_active_job_queue_adapter = Adhoq::Engine.config.active_job.queue_adapter
-
-        Adhoq.config.async_execution = true
-        Adhoq::Engine.config.active_job.queue_adapter = :test
-        Adhoq::ExecuteJob.queue_adapter.perform_enqueued_jobs = true
-
-        ex.call
-
-        Adhoq::ExecuteJob.queue_adapter.performed_jobs.clear
-
-        Adhoq.config.async_execution = current_async_execution
-        Adhoq::Engine.config.active_job.queue_adapter = current_active_job_queue_adapter
-      end
-
+    context "async_execution feature is ON", async_execution: true,  active_job_test_adapter: true do
       scenario 'Visit root, input query and generate report then we get a report' do
         visit '/adhoq'
 
@@ -95,23 +79,7 @@ feature 'Golden-path: execute adhoc query' do
       end
     end
 
-    context "async_execution feature is OFF" do
-      around do |ex|
-        current_async_execution = Adhoq.config.async_execution
-        current_active_job_queue_adapter = Adhoq::Engine.config.active_job.queue_adapter
-
-        Adhoq.config.async_execution = false
-        Adhoq::Engine.config.active_job.queue_adapter = :test
-        Adhoq::ExecuteJob.queue_adapter.perform_enqueued_jobs = true
-
-        ex.call
-
-        Adhoq::ExecuteJob.queue_adapter.performed_jobs.clear
-
-        Adhoq.config.async_execution = current_async_execution
-        Adhoq::Engine.config.active_job.queue_adapter = current_active_job_queue_adapter
-      end
-
+    context "async_execution feature is OFF", async_execution: false,  active_job_test_adapter: true do
       scenario 'Visit root, input query and generate report then we get a report' do
         visit '/adhoq'
 
