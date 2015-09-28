@@ -1,5 +1,8 @@
 source "https://rubygems.org"
 
+gem 'adhoq-core', path: './adhoq-core'
+gem 'adhoq-rails', path: './adhoq-rails'
+
 # Declare your gem's dependencies in adhoq.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.

@@ -3,14 +3,15 @@ sudo: false
 rvm:
 - 2.1
 - 2.2
-cache: bundler
-before_script:
-- bundle exec rake db:migrate
 env:
+  matrix:
+    - SUBPROJECT=adhoq-core RAILS_VERSION=3.2
+    - SUBPROJECT=adhoq-core RAILS_VERSION=4.0
+    - SUBPROJECT=adhoq-core RAILS_VERSION=4.1
+    - SUBPROJECT=adhoq-core RAILS_VERSION=4.2
+    - SUBPROJECT=adhoq-rails RAILS_VERSION=3.2
+    - SUBPROJECT=adhoq-rails RAILS_VERSION=4.0
+    - SUBPROJECT=adhoq-rails RAILS_VERSION=4.1
+    - SUBPROJECT=adhoq-rails RAILS_VERSION=4.2
   global:
     secure: a+K4odT4GG5TVJ/vgK4JRcgV1ZaT8uLNNshf0h0ZjOsJQEvc60NF7i4C8epZatnx66YhKHzFaI3T/hvmVVbtefanBCnPfCH1NJQWFpmaeya8M7GBPWmQgXVpgqWR3tVuOZNzTQDEAdAg04JMYdGs1hDY9P+RIHHBbj7yeVgQZcI=
-gemfile:
-- gemfiles/Gemfile-rails-3.2.x
-- gemfiles/Gemfile-rails-4.0.x
-- gemfiles/Gemfile-rails-4.1.x
-- gemfiles/Gemfile-rails-4.2.x

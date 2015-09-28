@@ -1,0 +1,5 @@
+source 'https://rubygems.org'
+
+gem 'adhoq-core', path: '../adhoq-core'
+# Specify your gem's dependencies in adhoq-rails.gemspec
+gemspec
