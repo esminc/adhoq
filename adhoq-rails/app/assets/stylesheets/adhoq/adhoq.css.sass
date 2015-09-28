@@ -1,0 +1,131 @@
+@import "bootstrap/_variables"
+@import "font-awesome-sprockets"
+@import "font-awesome"
+
+$mid-span:    $font-size-base * 1.5
+$short-span:  $font-size-base / 2
+
+// engine styles
+
+.new-execution form.form-inline
+  .form-group.report_format
+    margin-right: $font-size-base
+
+    label
+      margin-right: $short-span
+
+#main > section > .page-header, #main > section > form.query-form .page-header
+  margin-top: 0
+
+  small
+    margin: 0 10px
+    font-size: $font-size-base
+
+#queries
+  a.new-query
+    margin-bottom: $short-span
+
+  ol.queries-index
+    li.panel
+      margin-bottom: $short-span
+
+    .panel-heading
+      padding: $short-span $short-span * 2
+      h2
+        margin:   0
+        font-size: $font-size-base
+
+    p.panel-body.description
+      margin-bottom: 0
+      font-size: $font-size-base * 0.9
+
+#the-query
+  .page-header
+    margin-top: 0
+    h1
+      margin-top: 0
+
+      small
+        font-size: $font-size-base
+
+form.query-form
+  margin-bottom: 30px
+
+  h1
+    font-size: $font-size-base
+    margin-top: $font-size-base / 2
+    margin-bottom: $font-size-base / 4
+
+  textarea#query_query
+    font-family: monospace
+
+.btn-in-header
+  display:  inline-block
+  margin-left: $short-span
+
+  .btn
+    margin-left: $short-span
+
+.preview .js-preview-result
+  overflow: scroll
+
+.fa-pad-r
+  padding-right: $short-span / 2
+
+.fa-pad-l
+  padding-left: $short-span / 2
+
+#current-tables
+  display: none
+  font-size: $font-size-base * 0.9
+
+  h3
+    font-size: $font-size-base
+    margin-top: $font-size-base / 2
+    margin-bottom: $font-size-base / 4
+
+    small
+      margin-left: $font-size-base
+  table
+
+    caption
+      text-align: left
+      margin-bottom:  $short-span
+      font-size:  $font-size-base * 1.5
+
+      span.name
+        font-family:  monospace
+      small.count
+        font-size:  $font-size-base * 1
+        color:      gray
+        margin-left:  $font-size-base
+
+    th.pk, td.pk
+      width: $font-size-base * 1.5
+    th, td.icon
+      text-align: center
+    th.number, td.number
+      text-align: right
+    th.monospace, td.monospace
+      font-family: monospace
+    th.data
+      width: $font-size-base * 10
+
+.tab-content
+  margin-top:  $font-size-base
+  padding-left:  1em
+  padding-right: 1em
+
+  max-height: 600px
+  overflow:   scroll
+
+  .tab-pane > h3
+    font-size: $font-size-base * 1.5
+    margin-top: $font-size-base / 2
+
+    small
+      font-size: $font-size-base
+      margin-left: $font-size-base
+
+.js-preview-result table, .js-explain-result pre
+  font-family: monospace
