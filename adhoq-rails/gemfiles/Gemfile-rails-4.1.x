@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'adhoq-core', path: '../../adhoq-core'
 gemspec path: '..'
 
 gem 'rails', '~> 4.1.0'
