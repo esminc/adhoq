@@ -1,9 +1,0 @@
-#current-tables
-  a.loading[href=current_tables_path]
-
-javascript:
-  $(function() {
-    $(document).on('click', '[data-trigger="toggleCurrentTables"]', function($ev) {
-      Adhoq.toggleCurrentTables($($ev.target).attr('role'), {main: '#main', tables: '#current-tables'});
-    })
-  });

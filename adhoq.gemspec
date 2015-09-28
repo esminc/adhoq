@@ -14,19 +14,10 @@ Gem::Specification.new do |s|
   s.description = 'Rails engine to generate instant reports from adhoc SQL query.'
   s.license     = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "LICENSE.txt", "Rakefile", "README.md"]
+  s.files = Dir["{lib}/**/*", "LICENSE.txt", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", ">= 3.2"
-
-  s.add_dependency 'axlsx', '~> 2.0'
-  s.add_dependency 'coffee-rails'
-  s.add_dependency 'fog',   '~> 1.23'
-  s.add_dependency 'font-awesome-sass', '~> 4.2.0'
-  s.add_dependency 'jquery-rails'
-  s.add_dependency 'sass-rails'
-  s.add_dependency 'slim-rails'
-  s.add_dependency 'active_decorator'
-  s.add_dependency 'rouge'
+  s.add_dependency "adhoq-core"
+  s.add_dependency "adhoq-rails"
 
   s.add_development_dependency 'capybara', '~> 2.4.3'
   s.add_development_dependency 'database_cleaner'

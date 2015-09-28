@@ -1,12 +1,12 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "adhoq/version"
+require "adhoq/core/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "adhoq-core"
-  s.version     = Adhoq::VERSION
+  s.version     = Adhoq::Core::VERSION
   s.authors     = ['Kyosuke MOROHASHI', 'Tomohiro Hashidate']
   s.email       = ['moronatural@gmail.com']
   s.homepage    = 'https://github.com/esminc/adhoq'

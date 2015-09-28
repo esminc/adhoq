@@ -16,7 +16,7 @@ module Adhoq
 
     context 'config.storage = [:local_file, ....]' do
       before do
-        reset_storage_config(:local_file, Rails.root + "/tmp/adhoq/#{Rails.env}")
+        reset_storage_config(:local_file, ::Rails.root + "/tmp/adhoq/#{::Rails.env}")
       end
 
       specify do

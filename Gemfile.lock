@@ -1,14 +1,29 @@
 PATH
   remote: .
   specs:
-    adhoq (0.0.5)
-      active_decorator
+    adhoq (0.1.0)
+      adhoq-core
+      adhoq-rails
+
+PATH
+  remote: ./adhoq-core
+  specs:
+    adhoq-core (0.1.0)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
       axlsx (~> 2.0)
-      coffee-rails
       fog (~> 1.23)
+
+PATH
+  remote: ./adhoq-rails
+  specs:
+    adhoq-rails (0.1.0)
+      active_decorator
+      adhoq-core
+      coffee-rails
       font-awesome-sass (~> 4.2.0)
       jquery-rails
-      rails (>= 3.2)
+      railties (>= 3.2)
       rouge
       sass-rails
       slim-rails
@@ -143,7 +158,7 @@ GEM
     fog-ecloud (0.3.0)
       fog-core
       fog-xml
-    fog-google (0.0.7)
+    fog-google (0.0.9)
       fog-core
       fog-json
       fog-xml
@@ -215,11 +230,11 @@ GEM
     method_source (0.8.2)
     mime-types (2.6.2)
     mini_portile (0.6.2)
-    minitest (5.8.0)
+    minitest (5.8.1)
     multi_json (1.11.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (2.9.2)
+    net-ssh (3.0.1)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     poltergeist (1.6.0)
@@ -227,7 +242,7 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
-    pry (0.10.1)
+    pry (0.10.2)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
@@ -237,17 +252,6 @@ GEM
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails (4.2.4)
-      actionmailer (= 4.2.4)
-      actionpack (= 4.2.4)
-      actionview (= 4.2.4)
-      activejob (= 4.2.4)
-      activemodel (= 4.2.4)
-      activerecord (= 4.2.4)
-      activesupport (= 4.2.4)
-      bundler (>= 1.3.0, < 2.0)
-      railties (= 4.2.4)
-      sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -306,8 +310,8 @@ GEM
       railties (>= 3.1, < 5.0)
       slim (~> 3.0)
     slop (3.6.0)
-    sprockets (3.3.4)
-      rack (~> 1.0)
+    sprockets (3.3.5)
+      rack (> 1, < 3)
     sprockets-rails (2.3.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -332,6 +336,8 @@ PLATFORMS
 
 DEPENDENCIES
   adhoq!
+  adhoq-core!
+  adhoq-rails!
   capybara (~> 2.4.3)
   codeclimate-test-reporter
   database_cleaner
@@ -345,4 +351,4 @@ DEPENDENCIES
   tapp
 
 BUNDLED WITH
-   1.10.3
+   1.10.6
