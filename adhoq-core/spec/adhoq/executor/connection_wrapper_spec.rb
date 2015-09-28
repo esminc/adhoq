@@ -1,3 +1,5 @@
+require 'active_support/core_ext/string'
+
 module Adhoq
   RSpec.describe Executor::ConnectionWrapper, type: :model do
     describe '.select' do
