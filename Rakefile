@@ -1,28 +1,26 @@
-begin
-  require 'bundler/setup'
-rescue LoadError
-  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
+require "bundler/gem_tasks"
+
+root = File.expand_path("../", __FILE__)
+subprojects = %w(adhoq-core adhoq-rails)
+
+subprojects.each do |prj|
+  namespace prj do
+    desc "Run specs of #{prj}"
+    task :spec do
+      Bundler.with_clean_env do
+        Dir.chdir(File.join(root, prj))
+        bundle_gemfile = ENV["RAILS_VERSION"] ?
+          "gemfiles/Gemfile-rails-#{ENV["RAILS_VERSION"]}.x" :
+          "./Gemfile"
+        sh "BUNDLE_GEMFILE=#{bundle_gemfile} bundle install --jobs=3 --retry=3 --path=.bundle"
+        sh "BUNDLE_GEMFILE=#{bundle_gemfile} bundle exec rake spec"
+      end
+    end
+  end
 end
 
-require 'rdoc/task'
-
-RDoc::Task.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'Adhoq'
-  rdoc.options << '--line-numbers'
-  rdoc.rdoc_files.include('README.rdoc')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
-APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
-load 'rails/tasks/engine.rake'
-
-require 'rspec/core'
-require 'rspec/core/rake_task'
-desc "Run all specs in spec directory (excluding plugin specs)"
-RSpec::Core::RakeTask.new
+spec_target = ENV["SUBPROJECT"] || "adhoq-core"
+desc "Run specs selected by ENV['SUBPROJECT'] (default adhoq-core)"
+task spec: ["#{spec_target}:spec"]
 
 task default: :spec
-
-Bundler::GemHelper.install_tasks
-
