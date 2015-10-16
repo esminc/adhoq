@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adhoq (0.0.5)
+    adhoq (0.0.6)
       active_decorator
       axlsx (~> 2.0)
       coffee-rails
@@ -343,6 +343,3 @@ DEPENDENCIES
   simple_xlsx_reader
   sqlite3
   tapp
-
-BUNDLED WITH
-   1.10.3
