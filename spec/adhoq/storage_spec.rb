@@ -17,13 +17,26 @@ module Adhoq
     end
 
     describe Storage::S3, :fog_mock do
-      let(:storage) { Storage::S3.new('my-adhoq-bucket', aws_access_key_id: 'key_id', aws_secret_access_key: 'access_key') }
-
-      let(:identifier) do
-        storage.store('.txt') { StringIO.new("Hello adhoq!\n") }
+      context 'access key' do
+        let(:storage) { Storage::S3.new('my-adhoq-bucket', aws_access_key_id: 'key_id', aws_secret_access_key: 'access_key') }
+  
+        let(:identifier) do
+          storage.store('.txt') { StringIO.new("Hello adhoq!\n") }
+        end
+  
+        specify { expect(storage.get(identifier)).to eq "Hello adhoq!\n" }
       end
 
-      specify { expect(storage.get(identifier)).to eq "Hello adhoq!\n" }
+      context 'iam profile' do
+        let(:storage) { Storage::S3.new('my-adhoq-bucket', use_iam_profile: true) }
+  
+        let(:identifier) do
+          storage.store('.txt') { StringIO.new("Hello adhoq!\n") }
+        end
+  
+        specify { expect(storage.get(identifier)).to eq "Hello adhoq!\n" }
+      end
+
     end
 
     describe Storage::OnTheFly do
