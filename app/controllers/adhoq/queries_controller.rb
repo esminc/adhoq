@@ -29,6 +29,11 @@ module Adhoq
       redirect_to @query
     end
 
+    def destroy
+      Adhoq::Query.find(params[:id]).destroy!
+      redirect_to :action => :index
+    end
+
     private
 
     def query_attributes
