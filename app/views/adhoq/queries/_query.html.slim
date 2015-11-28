@@ -6,6 +6,8 @@ section.query
         = link_to [:edit, query], class: 'btn btn-default btn-sm' do
           i.fa.fa-pencil.fa-pad-r
           | Edit
+      .pull-right
+        = link_to 'Delete', query, class: 'btn btn-default btn-sm', :method => :delete, data: { confirm: 'Are you sure?' }
       .clearfix
       small= "Updated at #{l(query.updated_at, format: :short)}"
   p.description= query.description
