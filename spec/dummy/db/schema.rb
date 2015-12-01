@@ -42,13 +42,14 @@ ActiveRecord::Schema.define(version: 20150908112456) do
 
   add_index "adhoq_reports", ["execution_id"], name: "index_adhoq_reports_on_execution_id"
 
+  create_table "no_id_tables", id: false, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "secret_tables", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "no_id_tables", id: false, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 end

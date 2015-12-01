@@ -26,10 +26,10 @@ section.query
       - if query.parameters.present?
         h4 Query parameters
         .form-group.query_parameters
-          - query.parameters.each do |query_parameter|
+          - query.parameters.each do |param_name|
             .form-inline.query_parameter
-              = label_tag "parameters_#{query_parameter[:name]}", "#{query_parameter[:name]}"
-              = query_parameter_field(query_parameter[:name], query_parameter[:type])
+              = label_tag "parameters_#{param_name}", "#{param_name}"
+              = query_parameter_field(param_name)
       .form-group
         = f.submit 'Create report', class: 'btn btn-default'
 
