@@ -60,6 +60,7 @@ Edit initialization file in `config/initializers/adhoq.rb`
 
 ```ruby
 Adhoq.configure do |config|
+  # if not set, use :on_the_fly.(default)
   config.storage       = [:local_file, Rails.root + './path/to/store/report/files']
   config.authorization = ->(controller) { controller.signed_in? }
 end

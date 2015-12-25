@@ -3,7 +3,9 @@ module Adhoq
   class Configuration
     include ActiveSupport::Configurable
 
-    config_accessor :storage
+    config_accessor :storage do
+      [:on_the_fly]
+    end
 
     config_accessor :authorization
     config_accessor :authorization_failure_action
