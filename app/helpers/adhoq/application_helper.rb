@@ -30,5 +30,9 @@ module Adhoq
     def table_order_key(ar_class)
       ar_class.primary_key || ar_class.columns.first.name
     end
+
+    def query_parameter_field(name)
+      text_field_tag "parameters[#{name}]", nil, class: "form-control"
+    end
   end
 end

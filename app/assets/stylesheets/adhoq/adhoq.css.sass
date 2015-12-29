@@ -7,12 +7,15 @@ $short-span:  $font-size-base / 2
 
 // engine styles
 
-.new-execution form.form-inline
-  .form-group.report_format
+.new-execution form
+  .form-group.report_format, .form-group.query_parameters
     margin-right: $font-size-base
 
     label
       margin-right: $short-span
+
+  .query_parameter
+    margin-bottom: $short-span
 
 #main > section > .page-header, #main > section > form.query-form .page-header
   margin-top: 0
