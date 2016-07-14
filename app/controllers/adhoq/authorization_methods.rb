@@ -6,7 +6,6 @@ module Adhoq
       controller.before_filter Authorizer.new
 
       helper_method :adhoq_current_user
-      hide_action   :adhoq_current_user
     end
 
     class Authorizer
