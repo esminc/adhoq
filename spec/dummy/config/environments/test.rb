@@ -49,9 +49,7 @@ Dummy::Application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # Time columns will become time zone aware in Rails 5.1.
-  begin
+  if Rails.version.split('.').first.to_i >= 5
     config.active_record.time_zone_aware_types = [:datetime, :time]
-  rescue 
-    # NOP
   end
 end
