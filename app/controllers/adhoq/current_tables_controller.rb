@@ -1,6 +1,6 @@
 module Adhoq
   class CurrentTablesController < Adhoq::ApplicationController
-    before_filter :eager_load_models
+    before_action :eager_load_models
 
     def index
       hidden_model_names = Array(Adhoq.config.hidden_model_names)

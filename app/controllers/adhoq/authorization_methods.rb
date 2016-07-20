@@ -3,7 +3,7 @@ module Adhoq
     extend ActiveSupport::Concern
 
     included do |controller|
-      controller.before_filter Authorizer.new
+      controller.before_action Authorizer.new
 
       helper_method :adhoq_current_user
     end
