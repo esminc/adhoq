@@ -26,6 +26,8 @@ module Adhoq
       end
     end
 
+    private
+
     def adhoq_current_user
       @_adhoq_current_user_proc ||= Adhoq.config.callablize(:current_user)
 
