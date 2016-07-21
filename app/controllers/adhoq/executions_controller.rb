@@ -49,8 +49,7 @@ module Adhoq
           params[:parameters]
         else
           # for after Rails5
-          params[:parameters].permit!
-          params[:parameters].to_h
+          params[:parameters].to_unsafe_hash
         end
       else
         HashWithIndifferentAccess.new
