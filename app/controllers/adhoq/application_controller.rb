@@ -4,7 +4,7 @@ module Adhoq
 
     # NOTE support for before Rails5 application
     unless respond_to?(:before_action)
-      def before_action(*args)
+      def self.before_action(*args)
         before_filter(*args)
       end
     end
