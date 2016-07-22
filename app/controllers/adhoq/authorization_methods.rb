@@ -3,10 +3,9 @@ module Adhoq
     extend ActiveSupport::Concern
 
     included do |controller|
-      controller.before_filter Authorizer.new
+      controller.before_action Authorizer.new
 
       helper_method :adhoq_current_user
-      hide_action   :adhoq_current_user
     end
 
     class Authorizer
@@ -26,6 +25,8 @@ module Adhoq
         @authorization ||= Adhoq.config.callablize(:authorization)
       end
     end
+
+    private
 
     def adhoq_current_user
       @_adhoq_current_user_proc ||= Adhoq.config.callablize(:current_user)

@@ -44,7 +44,16 @@ module Adhoq
     end
 
     def query_parameters
-      params[:parameters] || HashWithIndifferentAccess.new
+      if params[:parameters]
+        if params[:parameters].kind_of?(Hash)
+          params[:parameters]
+        else
+          # for after Rails5
+          params[:parameters].to_unsafe_hash
+        end
+      else
+        HashWithIndifferentAccess.new
+      end
     end
   end
 end

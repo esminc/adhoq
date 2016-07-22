@@ -13,12 +13,19 @@ Dummy::Application.configure do
   config.eager_load = true
 
   # Configure static asset server for tests with Cache-Control for performance.
-  if config.respond_to?(:serve_static_files)
-    config.serve_static_files = true
+  #
+  if config.respond_to?(:public_file_server)
+    # after Rails5 confguration
+    config.public_file_server.enabled = true
+    config.public_file_server.headers = {'Cache-Control' => 'public, max-age=3600'}
   else
-    config.serve_static_assets = true
+    if config.respond_to?(:serve_static_files)
+      config.serve_static_files = true
+    else
+      config.serve_static_assets = true
+    end
+    config.static_cache_control = 'public, max-age=3600'
   end
-  config.static_cache_control = 'public, max-age=3600'
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -40,4 +47,9 @@ Dummy::Application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Time columns will become time zone aware in Rails 5.1.
+  if  Rails::VERSION::MAJOR >= 5
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+  end
 end

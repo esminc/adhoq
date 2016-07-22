@@ -2,7 +2,7 @@ language: ruby
 sudo: false
 rvm:
 - 2.1
-- 2.2
+- 2.2.2
 cache: bundler
 before_script:
 - bundle exec rake db:migrate
@@ -13,3 +13,8 @@ gemfile:
 - gemfiles/Gemfile-rails-4.0.x
 - gemfiles/Gemfile-rails-4.1.x
 - gemfiles/Gemfile-rails-4.2.x
+- gemfiles/Gemfile-rails-5.0.x
+matrix:
+  exclude:
+    - rvm: 2.1
+      gemfile: gemfiles/Gemfile-rails-5.0.x
