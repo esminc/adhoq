@@ -11,3 +11,4 @@ tmp/*
 coverage/*
 gemfiles/Gemfile-rails-3.2.x.lock
 gemfiles/Gemfile-rails-4.0.x.lock
+./Gemfile.lock
