@@ -12,7 +12,7 @@ Rails engine to generate instant reports from adhoc SQL query.
   - .json
   - .xlsx
 - Persist generated report as local file or in AWS S3
-- Rails 4.x & 3.2 support
+- Rails 4.x
 - Nice administration console with rails engine
 
 ### Future planning
