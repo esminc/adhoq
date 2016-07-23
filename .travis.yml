@@ -24,4 +24,5 @@ matrix:
     - rvm: 2.1
       gemfile: gemfiles/Gemfile-rails-edge
   allow_failures:
+      - rvm: ruby-head
       - gemfile: gemfiles/Gemfile-rails-edge
