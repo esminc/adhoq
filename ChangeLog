@@ -1,3 +1,7 @@
+== 2016-07-22 version 0.1.1
+
+* fix current_table bug in Rails5
+
 == 2016-07-22 version 0.1.0
 
 * support Rails5.X.X
