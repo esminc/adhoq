@@ -3,7 +3,7 @@ sudo: false
 rvm:
 - 2.1
 - 2.2.2
-- 2.3.1
+- 2.3.3
 - ruby-head
 cache: bundler
 before_script:
