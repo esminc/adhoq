@@ -18,7 +18,7 @@ module Adhoq
         ["A query", "Simple simple SELECT"]
       ])
 
-      # Accessable only once
+      # Accessible only once
       expect(execution.report.data).to be_nil
     end
   end
