@@ -13,13 +13,7 @@ module Adhoq
     end
 
     def schema_version
-      if defined?(ActiveRecord::SchemaMigration)
-        ActiveRecord::SchemaMigration.maximum(:version)
-      else
-        connection = Adhoq::Executor::ConnectionWrapper.new
-        result = connection.select("SELECT MAX(version) AS current_version FROM #{ActiveRecord::SchemaMigration.table_name}")
-        result.rows.first.first
-      end
+      ActiveRecord::SchemaMigration.maximum(:version)
     end
 
     # TODO extract into presenter
