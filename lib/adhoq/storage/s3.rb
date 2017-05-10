@@ -7,7 +7,8 @@ module Adhoq
         @bucket                  = bucket
         @direct_download         = s3_options.delete(:direct_download)
         @direct_download_options = s3_options.delete(:direct_download_options) || default_direct_download_options
-        @s3 = Fog::Storage.new({provider: 'AWS'}.merge(s3_options))
+        s3_options[:use_iam_profile] ||= false
+        @s3 = Fog::Storage::AWS.new(s3_options)
       end
 
       def direct_download?
