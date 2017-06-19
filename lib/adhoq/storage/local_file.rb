@@ -1,4 +1,4 @@
-require 'fog'
+require 'fog/local'
 
 module Adhoq
   module Storage
