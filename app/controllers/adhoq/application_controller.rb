@@ -1,5 +1,5 @@
 module Adhoq
-  class ApplicationController < ::ApplicationController
+  class ApplicationController < Adhoq.config.base_controller.constantize
     layout 'adhoq/application'
 
     # NOTE support for before Rails5 application
