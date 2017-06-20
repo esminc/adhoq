@@ -8,7 +8,7 @@ module Adhoq
       hidden_model_names << 'ApplicationRecord'
 
       @ar_classes = ActiveRecord::Base.descendants.
-        reject {|klass| hidden_model_names.include?(klass.name) }.
+        reject {|klass| klass.abstract_class? || hidden_model_names.include?(klass.name) }.
         sort_by(&:name)
 
       render layout: false
