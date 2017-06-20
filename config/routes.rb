@@ -1,7 +1,7 @@
 Adhoq::Engine.routes.draw do
   root to: 'queries#new'
 
-  resources :queries, path: 'q', except: %w(new) do
+  resources :queries, path: 'q', only: %w(create edit show index update destroy) do
     resources :executions, only: %w(create show)
   end
 
