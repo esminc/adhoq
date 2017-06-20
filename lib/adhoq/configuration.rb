@@ -7,6 +7,10 @@ module Adhoq
       [:on_the_fly]
     end
 
+    config_accessor :base_controller do
+      'ApplicationController'
+    end
+
     config_accessor :authorization
     config_accessor :authorization_failure_action
 

@@ -1,4 +1,5 @@
 Adhoq.configure do |c|
+  c.base_controller    = 'MyApplicationController'
   c.authorization      = :adhoq_authorized?
   c.current_user       = :current_user
   c.storage            = [:local_file, Rails.root + "./tmp/adhoq/#{Rails.env}"]
