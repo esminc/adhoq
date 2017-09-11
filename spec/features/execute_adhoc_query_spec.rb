@@ -86,6 +86,25 @@ feature 'Golden-path: execute adhoc query' do
     ])
   end
 
+  scenario 'Visit root and input invalid query then we get a error message' do
+    visit '/adhoq'
+
+    fill_in 'New query', with: 'SELECT * from adhoq_queries_xxx'
+
+    click_on 'Refresh'
+    expect(find('.js-preview-result')).to have_content(/SQLite3::SQLException/)
+  end
+
+  scenario 'Visit root, input invalid query and click explain then we get a error message' do
+    visit '/adhoq'
+
+    fill_in 'New query', with: 'SELECT * from adhoq_queries_xxx'
+
+    click_on 'Explain'
+    click_on 'Refresh'
+    expect(find('.js-explain-result')).to have_content(/SQLite3::SQLException/)
+  end
+
   if defined?(ActiveJob)
     context "async_execution feature is ON", async_execution: true,  active_job_test_adapter: true do
       scenario 'Visit root, input query and generate report then we get a report' do
