@@ -1,5 +1,5 @@
 module Adhoq
-  class Execution < ActiveRecord::Base
+  class Execution < ApplicationRecord
     include Adhoq::TimeBasedOrders
 
     belongs_to :query

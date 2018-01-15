@@ -1,5 +1,5 @@
 module Adhoq
-  class Report < ActiveRecord::Base
+  class Report < ApplicationRecord
     belongs_to :execution
 
     delegate :name, to: 'execution'

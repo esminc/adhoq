@@ -1,5 +1,5 @@
 module Adhoq
-  class Query < ActiveRecord::Base
+  class Query < ApplicationRecord
     include Adhoq::TimeBasedOrders
 
     has_many :executions, dependent: :destroy, inverse_of: :query
