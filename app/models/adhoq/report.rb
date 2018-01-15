@@ -9,7 +9,9 @@ module Adhoq
       self.generated_at = Time.now
       self.storage      = storage.identifier
 
-      save!
+      ApplicationRecord.with_writable do
+        save!
+      end
     end
 
     def on_the_fly?
@@ -36,7 +38,9 @@ module Adhoq
 
     def generate_and_persist_report!(storage)
       storage.store(".#{execution.report_format}") {
-        Adhoq::Reporter.generate(execution)
+        ApplicationRecord.with_readonly do
+          Adhoq::Reporter.generate(execution)
+        end
       }
     end
   end

@@ -13,7 +13,9 @@ module Adhoq
     end
 
     def create
-      @query = Adhoq::Query.create!(query_attributes)
+      ApplicationRecord.with_writable do
+        @query = Adhoq::Query.create!(query_attributes)
+      end
 
       redirect_to @query
     end
@@ -24,13 +26,17 @@ module Adhoq
 
     def update
       @query = Adhoq::Query.find(params[:id])
-      @query.update_attributes!(query_attributes)
+      ApplicationRecord.with_writable do
+        @query.update_attributes!(query_attributes)
+      end
 
       redirect_to @query
     end
 
     def destroy
-      Adhoq::Query.find(params[:id]).destroy!
+      ApplicationRecord.with_writable do
+        Adhoq::Query.find(params[:id]).destroy!
+      end
       redirect_to action: :index
     end
 

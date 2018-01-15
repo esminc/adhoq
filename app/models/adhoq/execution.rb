@@ -8,10 +8,14 @@ module Adhoq
     delegate   :supported_formats, to: Adhoq::Reporter
 
     def generate_report!
-      build_report.generate!
-      update_attributes(status: :success)
+      ApplicationRecord.with_writable do
+        build_report.generate!
+        update_attributes(status: :success)
+      end
     rescue
-      update_attributes(status: :failure)
+      ApplicationRecord.with_writable do
+        update_attributes(status: :failure)
+      end
     end
 
     def name

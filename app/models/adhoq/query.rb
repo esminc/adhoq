@@ -7,10 +7,12 @@ module Adhoq
     PARAMETER_PATTERN = /\$(?<name>\w+)|\${(?<name>\w+)}/i.freeze
 
     def execute!(report_format, query_parameters = {})
-      executions.create! {|exe|
-        exe.report_format = report_format
-        exe.raw_sql       = substitute_query(query_parameters)
-      }.tap(&:generate_report!)
+      ApplicationRecord.with_writable do
+        executions.create! {|exe|
+          exe.report_format = report_format
+          exe.raw_sql       = substitute_query(query_parameters)
+        }.tap(&:generate_report!)
+      end
     end
 
     def parameters
