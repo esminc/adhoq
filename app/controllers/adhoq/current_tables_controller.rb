@@ -7,7 +7,7 @@ module Adhoq
       hidden_model_names << 'ActiveRecord::SchemaMigration'
       hidden_model_names << 'ApplicationRecord'
 
-      @ar_classes = ActiveRecord::Base.descendants.
+      @ar_classes = ApplicationRecord.descendants.
         reject {|klass| klass.abstract_class? || hidden_model_names.include?(klass.name) }.
         sort_by(&:name)
 
