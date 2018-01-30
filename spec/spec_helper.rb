@@ -6,7 +6,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'database_cleaner'
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 require 'pry-byebug'
 
 Rails.backtrace_cleaner.remove_silencers!
@@ -36,7 +36,7 @@ RSpec.configure do |config|
   config.profile_examples = 10
   config.order = :random
 
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   Kernel.srand config.seed
 
   config.around(:each, :fog_mock) do |example|
