@@ -8,7 +8,8 @@
           | Show tables
 
   .form-group
-    = f.text_area :query, class: 'form-control', rows: 15, required: true
+    .form-control.query-editor
+      #query_field(data-current-tables-path="#{current_tables_path}" data-id="query_query" data-name="query[query]" data-placeholder="#{@query.persisted? ? 'Edit' : 'New'} query")
 
   .modal.fade#nameAndDesc[role='dialog']
     .modal-dialog
@@ -90,4 +91,3 @@ javascript:
 
     Adhoq.enablePreviewKeybordShortCut($('#query_query'), '#previews .tab-pane.active a:has(".fa-refresh")')
   });
-

@@ -11,3 +11,5 @@ tmp/*
 coverage/*
 gemfiles/*.lock
 ./Gemfile.lock
+.cache
+Gemfile.lock

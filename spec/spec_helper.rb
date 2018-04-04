@@ -13,6 +13,7 @@ Rails.backtrace_cleaner.remove_silencers!
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f }
 
 Capybara.default_driver = :poltergeist
+Capybara.default_wait_time = 30
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
