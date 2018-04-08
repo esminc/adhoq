@@ -13,6 +13,6 @@ module Adhoq
       g.fixture_replacement :factory_girl, dir:     'spec/factories'
     end
 
-    config.assets.paths << "#{__dir__}/../../editor/dist"
+    config.assets.paths << "#{__dir__}/../../query_editor/dist"
   end
 end
