@@ -16,6 +16,6 @@
 //= require ./bootstrap
 //= require ./previewer
 //= require ./current_tables
-//= require query_editor.bundle
+//= require queryEditor.bundle
 
 window.Adhoq = {}

@@ -7,6 +7,11 @@
           i.fa.fa-database.fa-pad-r
           | Show tables
 
+  .clearfix
+    a#disable_code_editor.pull-right(href='#')
+      i.fa.fa-edit
+      | Switch to Plain Editor
+
   .form-group
     .form-control.query-editor
       #query_field(data-current-tables-path="#{current_tables_path}" data-id="query_query" data-name="query[query]" data-placeholder="#{@query.persisted? ? 'Edit' : 'New'} query")
@@ -86,6 +91,23 @@ ul.nav.nav-tabs[role='tablist']
 
 javascript:
   $(function() {
+    var element = document.getElementById('query_field');
+
+    Adhoq.editor = Adhoq.launchEditor(element);
+    Adhoq.installCompletion(element.dataset.currentTablesPath);
+
+    $('#disable_code_editor').on('click', function(e) {
+      e.preventDefault();
+
+      Adhoq.switchToTextareaEditor({
+        editor: Adhoq.editor,
+        element: element.parentNode,
+        content: Adhoq.editor.getModel().getValue()
+      });
+
+      e.target.remove();
+    });
+
     Adhoq.enablePreview($('#preview a.js-preview-button'));
     Adhoq.enablePreview($('#explain a.js-explain-button'));
 

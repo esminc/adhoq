@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   mode: process.env.NODE_ENV || 'production',
   entry: {
-    'query_editor': path.resolve(__dirname, 'index.js'),
+    'queryEditor': path.resolve(__dirname, 'index.js'),
   },
   output: {
     filename: '[name].bundle.js',
