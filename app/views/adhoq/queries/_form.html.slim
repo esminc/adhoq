@@ -14,7 +14,13 @@
 
   .form-group
     .form-control.query-editor
-      #query_field(data-current-tables-path="#{current_tables_path}" data-id="query_query" data-name="query[query]" data-placeholder="#{@query.persisted? ? 'Edit' : 'New'} query")
+      #query_field(
+        data-current-tables-path="#{current_tables_path}"
+        data-id="query_query"
+        data-name="query[query]"
+        data-placeholder="#{@query.persisted? ? 'Edit' : 'New'} query"
+        data-query="#{@query.query}"
+      )
 
   .modal.fade#nameAndDesc[role='dialog']
     .modal-dialog

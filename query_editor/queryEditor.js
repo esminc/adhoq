@@ -15,7 +15,10 @@ export function launchEditor(element) {
     minimap: { enabled: false },
   });
 
-  editor.getModel().updateOptions({ tabSize: 2 });
+  const model = editor.getModel();
+
+  model.updateOptions({ tabSize: 2 });
+  model.setValue(element.dataset.query);
 
   const textarea = editor.domElement.getElementsByTagName('textarea')[0];
   textarea.setAttribute('placeholder', element.dataset.placeholder);
