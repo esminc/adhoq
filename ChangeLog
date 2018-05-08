@@ -1,3 +1,16 @@
+== 2018-05-08 version 0.3.0
+
+* Fix show table feature error(a case where there is an anonymous class inherited ActiveRecord::Base)
+
+== 2017-09-12 version 0.2.0
+
+* Add base_controller configuration
+* Fix ActionView::Template::Error on SQL statement error
+
+== 2017-02-28 version 0.1.2
+
+* support Rails5.1.X
+
 == 2016-07-22 version 0.1.1
 
 * fix current_table bug in Rails5
