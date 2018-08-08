@@ -14,7 +14,8 @@ ul.list-unstyled.tables
       table.table.table-striped.table-hover.table-bordered
         caption
           span.name= ar_class.table_name
-          small.count #{ar_class.unscoped.count} rows
+          - unless Adhoq.config.hide_rows_count
+            small.count #{ar_class.unscoped.count} rows
         thead
           tr
             th.col-sm-1.pk PK
