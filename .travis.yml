@@ -1,11 +1,9 @@
 language: ruby
 sudo: false
 rvm:
-- 2.1
-- 2.2.9
 - 2.3.6
-- 2.4.3
-- 2.5.0
+- 2.4.4
+- 2.5.1
 - ruby-head
 cache: bundler
 before_install:
@@ -21,26 +19,29 @@ gemfile:
 - gemfiles/Gemfile-rails-4.2.x
 - gemfiles/Gemfile-rails-5.0.x
 - gemfiles/Gemfile-rails-5.1.x
+- gemfiles/Gemfile-rails-5.2.x
 - gemfiles/Gemfile-rails-edge
 matrix:
   exclude:
-    - rvm: 2.1
+    - rvm: 2.3.6
+      gemfile: gemfiles/Gemfile-rails-5.2.x
+    - rvm: 2.3.6
       gemfile: gemfiles/Gemfile-rails-5.1.x
-    - rvm: 2.1
+    - rvm: 2.3.6
       gemfile: gemfiles/Gemfile-rails-5.0.x
-    - rvm: 2.1
+    - rvm: 2.3.6
       gemfile: gemfiles/Gemfile-rails-edge
-    - rvm: 2.4.3
+    - rvm: 2.4.4
       gemfile: gemfiles/Gemfile-rails-4.0.x
-    - rvm: 2.4.3
+    - rvm: 2.4.4
       gemfile: gemfiles/Gemfile-rails-4.1.x
-    - rvm: 2.4.3
+    - rvm: 2.4.4
       gemfile: gemfiles/Gemfile-rails-4.2.x
-    - rvm: 2.5.0
+    - rvm: 2.5.1
       gemfile: gemfiles/Gemfile-rails-4.0.x
-    - rvm: 2.5.0
+    - rvm: 2.5.1
       gemfile: gemfiles/Gemfile-rails-4.1.x
-    - rvm: 2.5.0
+    - rvm: 2.5.1
       gemfile: gemfiles/Gemfile-rails-4.2.x
   allow_failures:
       - rvm: ruby-head
