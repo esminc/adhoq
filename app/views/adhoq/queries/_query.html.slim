@@ -43,6 +43,6 @@ section.query
           th.status=     human(Adhoq::Execution, :status)
           th.report
       tbody
-        - query.executions.recent_first.each do |exec|
+        - query.executions.recent_first.preload(:report).each do |exec|
           - next if exec.report.try(:on_the_fly?)
           = render 'execution', query: query, exec: exec
