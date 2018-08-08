@@ -11,6 +11,7 @@ module Adhoq
       build_report.generate!
       update_attributes(status: :success)
     rescue
+      self.report = nil
       update_attributes(status: :failure)
     end
 
