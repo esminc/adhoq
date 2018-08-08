@@ -28,6 +28,7 @@ module Adhoq
         when :local_file then Adhoq::Storage::LocalFile
         when :s3         then Adhoq::Storage::S3
         when :on_the_fly then Adhoq::Storage::OnTheFly
+        when :cache      then Adhoq::Storage::Cache
         else
           raise NotImplementedError
         end
