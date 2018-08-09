@@ -30,13 +30,13 @@ module Adhoq
       context 'when execute query successfully' do
         let(:query) { create(:adhoq_query, query: 'SELECT name, description FROM adhoq_queries') }
 
-        it { is_expected.to change { execution.status }.to('success') }
+        it { is_expected.to change { execution.status.to_s }.to('success') }
       end
 
       context 'when execute query failed' do
         let(:query) { create(:adhoq_query, query: 'INVALID SQL') }
 
-        it { is_expected.to change { execution.status }.to('failure') }
+        it { is_expected.to change { execution.status.to_s }.to('failure') }
       end
     end
   end
