@@ -1,3 +1,12 @@
+== 2018-08-09 version 0.4.0
+
+* refactor execution failure handling [#160](https://github.com/esminc/adhoq/pull/160)
+* add new storage type cache [#162](https://github.com/esminc/adhoq/pull/162)
+* refactor ConnectionWrapper for connection scope [#161](https://github.com/esminc/adhoq/pull/161)
+* fix N+1 queries for adhoq_reports [#158](https://github.com/esminc/adhoq/pull/158)
+* add `hide_rows_count` configuration [#157](https://github.com/esminc/adhoq/pull/157)
+* drop support below ruby 2.3 [#159](https://github.com/esminc/adhoq/pull/159)
+
 == 2018-05-08 version 0.3.0
 
 * Fix show table feature error(a case where there is an anonymous class inherited ActiveRecord::Base)
