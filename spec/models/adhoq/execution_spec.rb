@@ -21,5 +21,23 @@ module Adhoq
       # Accessable only once
       expect(execution.report.data).to be_nil
     end
+
+    describe '#generate_report!' do
+      subject { -> { execution.generate_report! } }
+
+      let(:execution) { Execution.new(query: query, raw_sql: query.query, report_format: 'csv') }
+
+      context 'when execute query successfully' do
+        let(:query) { create(:adhoq_query, query: 'SELECT name, description FROM adhoq_queries') }
+
+        it { is_expected.to change { execution.status }.to('success') }
+      end
+
+      context 'when execute query failed' do
+        let(:query) { create(:adhoq_query, query: 'INVALID SQL') }
+
+        it { is_expected.to change { execution.status }.to('failure') }
+      end
+    end
   end
 end

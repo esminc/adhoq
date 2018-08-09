@@ -10,7 +10,9 @@ module Adhoq
     def generate_report!
       build_report.generate!
       update_attributes(status: :success)
-    rescue
+    rescue => e
+      Rails.logger.error(e)
+      self.report = nil
       update_attributes(status: :failure)
     end
 
