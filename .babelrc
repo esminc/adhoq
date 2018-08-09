@@ -1,0 +1,14 @@
+{
+  "presets": [
+    ["es2015", {
+      "modules": false,
+      "targets": {
+        "browsers": "> 1%",
+        "uglify": true
+      },
+      "useBuiltIns": true
+    }],
+    "env",
+    "stage-0"
+  ]
+}

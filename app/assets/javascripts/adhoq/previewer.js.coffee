@@ -18,6 +18,14 @@ class Previewer
     )
 
   source: ->
+    # NOTE: Sometimes the textarea is empty even if the monaco editor has some contents.
+    #       That's why the editor source is preferred.
+    @editorSource() || @domSource()
+
+  editorSource: ->
+    Adhoq.editor && Adhoq.editor.getValue()
+
+  domSource: ->
     $(@el.data('source')).val()
 
   result: ->

@@ -12,5 +12,7 @@ module Adhoq
       g.test_framework      :rspec,        fixture: false
       g.fixture_replacement :factory_girl, dir:     'spec/factories'
     end
+
+    config.assets.paths << "#{__dir__}/../../query_editor/dist"
   end
 end

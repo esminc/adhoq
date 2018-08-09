@@ -1,0 +1,11 @@
+.query-editor {
+  height: 260px;
+  padding: 1px;
+}
+
+.query-editor #query_field {
+  border: none !important;
+  max-width: 100%;
+  height:250px;
+  border:1px solid #ccc;
+}
