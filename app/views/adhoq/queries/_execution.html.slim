@@ -6,5 +6,5 @@ tr[exec]
   td.report
     - if exec.success?
       = link_to(query_execution_path(query, exec, format: exec.report_format), class: 'btn btn-sm btn-default') do
-        i.fa.fa-download.fa-pad-r
+        i.fas.fa-download.fa-pad-r
         = exec.report_format

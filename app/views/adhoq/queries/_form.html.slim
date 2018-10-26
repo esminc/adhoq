@@ -4,7 +4,7 @@
       = f.label :query, title, class: 'control-label'
       .pull-right
         a.btn.btn-default.btn-sm[href='#' data-trigger='toggleCurrentTables' role='show']
-          i.fa.fa-database.fa-pad-r
+          i.fas.fa-database.fa-pad-r
           | Show tables
 
   .form-group
@@ -32,32 +32,32 @@
                 = f.text_area :description, class: 'form-control', required: true
         .modal-footer
           button.btn.btn-primary.center-block
-            i.fa.fa-floppy-o.fa-pad-r
+            i.fas.fa-save.fa-pad-r
             | Save
 
   .actions
     - if query.persisted?
       = link_to query do
-        i.fa.fa-arrow-left.fa-pad-r
+        i.fas.fa-arrow-left.fa-pad-r
         | Cancel
     - else
       = link_to :queries do
-        i.fa.fa-arrow-left.fa-pad-r
+        i.fas.fa-arrow-left.fa-pad-r
         | Back to Index
 
     .pull-right
       = link_to '#nameAndDesc', class: 'btn btn-default btn-sm', data: {toggle: 'modal', target: '#nameAndDesc'} do
-        i.fa.fa-floppy-o.fa-pad-r
+        i.fas.fa-save.fa-pad-r
         | Save as...
 
 ul.nav.nav-tabs[role='tablist']
   li.active
     a[role='tab' data-toggle='tab' href='#preview' ]
-      i.fa.fa-eye.fa-pad-r
+      i.fas.fa-eye.fa-pad-r
       | Preview
   li
     a[role='tab' data-toggle='tab' href='#explain' ]
-      i.fa.fa-info.fa-pad-r
+      i.fas.fa-info.fa-pad-r
       | Explain
 
 #previews.tab-content
@@ -66,7 +66,7 @@ ul.nav.nav-tabs[role='tablist']
       | Query preview
       small
         = link_to preview_path, class: 'js-preview-button', data: {source: '#query_query', result: '.js-preview-result', remote: true, method: 'POST'} do
-          i.fa.fa-refresh.fa-pad-r[data-title='Refresh preview']
+          i.fas.fa-sync-alt.fa-pad-r[data-title='Refresh preview']
           | Refresh
 
     .js-preview-result
@@ -77,7 +77,7 @@ ul.nav.nav-tabs[role='tablist']
       | Query explain
       small
         = link_to explain_path, class: 'js-explain-button', data: {source: '#query_query', result: '.js-explain-result', remote: true, method: 'POST'} do
-          i.fa.fa-refresh.fa-pad-r[data-title='Refresh explain']
+          i.fas.fa-sync-alt.fa-pad-r[data-title='Refresh explain']
           | Refresh
 
     .js-explain-result
@@ -90,4 +90,3 @@ javascript:
 
     Adhoq.enablePreviewKeybordShortCut($('#query_query'), '#previews .tab-pane.active a:has(".fa-refresh")')
   });
-
