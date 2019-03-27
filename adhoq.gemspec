@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE.txt", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", ">= 4.0"
+  s.add_dependency "rails", ">= 5.1"
 
   s.add_dependency 'axlsx', '>= 2.0'
   s.add_dependency 'coffee-rails'
@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'poltergeist', '~> 1.6.0'
   s.add_development_dependency 'pry-byebug'
-  s.add_development_dependency 'rspec-rails', '~> 3.8.0'
+  s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'simple_xlsx_reader'
   s.add_development_dependency 'sqlite3', '~> 1.3.6'
   s.add_development_dependency 'tapp'
