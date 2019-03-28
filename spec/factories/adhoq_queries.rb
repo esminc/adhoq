@@ -2,14 +2,14 @@
 
 FactoryBot.define do
   factory :adhoq_query, class: 'Adhoq::Query' do
-    name        'A query'
-    description 'Simple simple SELECT'
-    query       'SELECT 1'
+    name        { 'A query' }
+    description { 'Simple simple SELECT' }
+    query       { 'SELECT 1' }
 
     trait :complex do
-      name        'adhoq current use'
-      description 'Simple analysys: count execution per query'
-      query <<-SQL.strip_heredoc
+      name        { 'adhoq current use' }
+      description { 'Simple analysys: count execution per query' }
+      query { <<-SQL.strip_heredoc }
         SELECT
           q.id
          ,q.name
@@ -27,9 +27,9 @@ FactoryBot.define do
     end
 
     trait :greeting do
-      name        'greeting'
-      description 'Static query for testing data'
-      query       'SELECT "hello" AS name ,"English greeting message" AS description'
+      name        { 'greeting' }
+      description { 'Static query for testing data' }
+      query       { 'SELECT "hello" AS name ,"English greeting message" AS description' }
     end
   end
 end
