@@ -1,0 +1,13 @@
+<div class="col-md-12">
+	<ol class="breadcrumb">
+		<li><%= link_to 'Index', :queries %></li>
+		<li><%= link_to query_friendly_name(@query), @query %></li>
+		<li class="active"> Edit</li>
+	</ol>
+</div>
+<div class="col-md-12" id="main">
+	<section class="edit-query">
+		<%= render 'form', query: @query, title: "Edit query > #{query_friendly_name(@query)}" %>
+	</section>
+</div>
+<%= render 'current_tables_leftbar' %>

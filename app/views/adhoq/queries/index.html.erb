@@ -1,0 +1,15 @@
+<div class="col-md-12">
+	<ol class="breadcrumb">
+		<li class="active">Index</li>
+	</ol>
+</div>
+<div class="col-md-3" id="queries">
+	<section class="queries">
+		<%= render 'queries', queries: @queries %>
+	</section>
+</div>
+<div class="col-md-9" id="the-query">
+	<% if first_query = @queries.first %>
+		<%= render 'query', query: first_query %>
+	<% end %>
+</div>

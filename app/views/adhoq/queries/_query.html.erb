@@ -1,0 +1,67 @@
+<section class="query">
+	<div class="page-header">
+		<h1>
+			<%= query.name %>
+			<div class="pull-right">
+				<%= link_to [:edit, query], class: 'btn btn-default btn-sm' do %>
+					<i class="fa fa-pencil fa-pad-r" ></i> Edit
+				<% end %>
+			</div>
+			<div class="pull-right">
+				<%= link_to 'Delete', query, class: 'btn btn-default btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>
+			</div>
+			<div class="clearfix" />
+			<small><%= "Updated at #{l(query.updated_at, format: :short)}" %></small>
+		</h1>
+	</div>
+
+	<p class="description"><%= query.description %></p>
+	<style type="text/css">
+		<%= Rouge::Themes::Github.render(scope: '.highlight') %>
+	</style>
+
+	<%= raw query.query_with_highlight %>
+
+	<section class="new-execution">
+		<h2>Create report</h2>
+		<%= form_for [query, query.executions.build], html: {role: 'form'} do |f| %>
+			<div class="form-inline form-group report_format">
+				<%= f.label :report_format %>
+				<%= f.select :report_format, f.object.supported_formats, {}, class: 'form-control' %>
+				<% if query.parameters.present? %>
+					<h4>Query parameters</h4>
+					<div class="form-group query_parameters">
+						<% query.parameters.each do |param_name| %>
+							<div class="form-inline query_parameter">
+								<%= label_tag "parameters_#{param_name}", "#{param_name}" %>
+								<%= query_parameter_field(param_name) %>
+							</div>
+						<% end %>
+					</div>
+				<% end %>
+				<div class="form-group">
+					<%= f.submit 'Create report', class: 'btn btn-default' %>
+				</div>
+			</div>
+		<% end %>
+	</section>
+	<section class="past-executions">
+		<h2>Reports</h2>
+			<table class="executions table table-striped table-hover">
+				<thead>
+					<tr>
+						<th class="wip">&nbsp;</th>
+						<th class="created_at"><%= human(Adhoq::Execution, :created_at) %></th>
+						<th class="status"><%= human(Adhoq::Execution, :status) %></th>
+						<th class="report"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% query.executions.recent_first.preload(:report).each do |exec| %>
+						<% next if exec.report.try(:on_the_fly?) %>
+ 						<%= render 'execution', query: query, exec: exec %>
+					<% end %>
+				</tbody>
+			</table>
+	</section>
+</section>

@@ -1,0 +1,14 @@
+<div class="col-md-12">
+	<ol class="breadcrumb">
+		<li><%= link_to 'Index', :queries %></li>
+		<li class="active"><%= query_friendly_name(@query) %></li>
+	</ol>
+</div>
+<div class="col-md-3" id="queries">
+	<section class="queries">
+		<%= render 'queries', queries: ::Adhoq::Query.recent_first, highlight: @query %>
+	</section>
+</div>
+<div class="col-md-9" id="the-query">
+	<%= render 'query', query: @query %>
+</div>

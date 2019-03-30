@@ -1,0 +1,16 @@
+<% highlight ||= nil %>
+<section>
+	<%= link_to :root, class: 'btn btn-default new-query btn-sm center-block' do %>
+		<i class="fa fa-plus-square fa-pad-r"></i>New query
+	<% end %>
+	<ol class="queries-index list-unstyled">
+		<% queries.each do |query| %>
+			<li class="panel <%= query == highlight ? 'panel-success' : 'panel-default' %>">
+				<div class="panel-heading">
+					<h2><%= link_to query.name, query_path(query) %></h2>
+				</div>
+				<p class="panel-body description"><%= query.description %></p>
+			</li>
+		<% end %>
+	</ol>
+</section>

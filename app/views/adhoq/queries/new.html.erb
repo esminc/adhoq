@@ -1,0 +1,12 @@
+<div class="col-md-12">
+	<ol class="breadcrumb">
+		<li><%= link_to 'Index', :queries %></li>
+		<li class="active"> New query</li>
+	</ol>
+</div>
+<div class="col-md-12" id="main">
+	<section class="new-query">
+		<%= render 'form', query: @query, title: 'New query' %>
+	</section>
+</div>
+<%= render 'current_tables_leftbar' %>

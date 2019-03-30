@@ -1,0 +1,124 @@
+<%= form_for query, html: {class: 'form query-form', role: 'form'} do |f| %>
+	<div class="page-header">
+		<h1>
+			<%= f.label :query, title, class: 'control-label' %>
+			<div class="pull-right">
+				<a href="#" class="btn btn-default btn-sm" data-trigger="toggleCurrentTables" role="show">
+					<i class="fa fa-database fa-pad-r"></i> Show tables
+				</a>
+			</div>
+		</h1>
+	</div>
+
+	<div class="form-group">
+		<%= f.text_area :query, class: 'form-control', rows: 15, required: true %>
+	</div>
+
+	<div class="modal fade" id="nameAndDesc" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal" aria-label="close" />
+					<button class="close" type="button" data-dismiss="modal" aria-label="close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<h4>Add name and description to query</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<%= f.label :name, class: 'control-label col-sm-2' %>
+							<div class="col-sm-8">
+								<%= f.text_field :name, class: 'form-control', required: true %>
+							</div>
+						</div>
+						<div class="form-group">
+							<%= f.label :description, class: 'control-label col-sm-2' %>
+							<div class="col-sm-8">
+								<%= f.text_area :description, class: 'form-control', required: true %>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary center-block">
+						<i class="fa fa-floppy-o fa-pad-r"></i>Save
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="actions">
+		<% if query.persisted? %>
+			<%= link_to query do %>
+				<i class="fa fa-arrow-left fa-pad-r"></i>Cancel
+			<% end %>
+		<% else %>
+			<%= link_to :queries do %>
+				<i class="fa fa-arrow-left fa-pad-r"></i>Back to Index
+			<% end %>
+		<% end %>
+
+		<div class="pull-right">
+			<%= link_to '#nameAndDesc', class: 'btn btn-default btn-sm', data: {toggle: 'modal', target: '#nameAndDesc'} do %>
+				<i class="fa fa-floppy-o fa-pad-r"></i>Save as...
+			<% end %>
+		</div>
+	</div>
+
+<% end %>
+
+<ul class="nav nav-tabs" role="tablist">
+	<li class="active">
+		<a data-toggle="tab" href="#preview" role="tab">
+			<i class="fa fa-eye fa-pad-r"></i>Preview
+		</a>
+	</li>
+	<li>
+		<a data-toggle="tab" href="#explain" role="tab">
+			<i class="fa fa-info fa-pad-r"></i>Explain
+		</a>
+	</li>
+</ul>
+
+<div class="tab-content" id="previews">
+	<div class="tab-pane active" id="preview">
+		<h3>Query preview
+			<small>
+				<%= link_to preview_path, class: 'js-preview-button', data: {source: '#query_query', result: '.js-preview-result', remote: true, method: 'POST'} do %>
+					<i class="fa fa-refresh fa-pad-r" data-title="Refresh preview"></i> Refresh
+				<% end %>
+			</small>
+		</h3>
+		<div class="js-preview-result">
+			<div class="alert alert-info">Preview is shown here</div>
+		</div>
+	</div>
+	<div class="tab-pane" id="explain">
+		<h3>Query explain
+			<small>
+				<%= link_to explain_path, class: 'js-explain-button', data: {source: '#query_query', result: '.js-explain-result', remote: true, method: 'POST'} do %>
+					<i class="fa fa-refresh fa-pad-r" data-title="Refresh explain"></i> Refresh
+				<% end %>
+			</small>
+		</h3>
+		<div class="js-explain-result">
+			<div class="alert alert-info">Explain result is shown here</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(function() {
+	
+	  Adhoq.enablePreview($('#preview a.js-preview-button'));
+	
+	  Adhoq.enablePreview($('#explain a.js-explain-button'));
+	
+	
+	
+	  Adhoq.enablePreviewKeybordShortCut($('#query_query'), '#previews .tab-pane.active a:has(".fa-refresh")')
+	
+	});
+</script>
