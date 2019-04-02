@@ -7,8 +7,9 @@ rvm:
 - ruby-head
 cache: bundler
 before_install:
+- rvm use @global
 - gem update --system # Need for Ruby 2.5.0. https://github.com/travis-ci/travis-ci/issues/8978
-- gem uninstall bundler
+- gem uninstall bundler -x
 - gem install bundler -v 1.17.3
 before_script:
 - bundle exec rake db:migrate
