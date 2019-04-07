@@ -10,4 +10,4 @@ spec/dummy/.sass-cache
 tmp/*
 coverage/*
 gemfiles/*.lock
-./Gemfile.lock
+Gemfile.lock
