@@ -3,7 +3,7 @@ module Adhoq
     extend ActiveSupport::Concern
 
     included do
-      scope :recent_first, -> { order("#{quoted_table_name}.updated_at DESC") }
+      scope :recent_first, -> { order(arel_table[:updated_at].desc) }
     end
   end
 end
