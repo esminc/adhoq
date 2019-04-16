@@ -1,7 +1,6 @@
 # TODO where to write?
 require 'font-awesome-sass'
 require 'jquery-rails'
-require 'slim-rails'
 require 'active_decorator'
 require 'sassc-rails'
 

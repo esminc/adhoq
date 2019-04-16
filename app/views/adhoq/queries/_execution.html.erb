@@ -1,0 +1,10 @@
+<tr exec="">
+	<td class="wip"></td>
+	<td class="created_at"><%= exec.created_at.localtime.iso8601 %></td>
+	<td class="status"><%= exec.status_label %></td>
+	<td class="report">
+		<% if exec.success? %>
+			<%= link_to(query_execution_path(query, exec, format: exec.report_format), class: 'btn btn-sm btn-default') do %>
+				<i class="fa fa-download fa-pad-r"></i><%= exec.report_format %>
+			<% end %>
+		<% end %>

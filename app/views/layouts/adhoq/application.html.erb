@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adhoq</title>
+		<%= stylesheet_link_tag    'adhoq/application', media: 'all' %>
+		<%= javascript_include_tag 'adhoq/application' %>
+		<%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="container">
+		<%= render 'global_nav' %>
+
+		<div class="row" id="contents">
+			<%= yield %>
+		</div>
+	</div>
+</body>
+</html>

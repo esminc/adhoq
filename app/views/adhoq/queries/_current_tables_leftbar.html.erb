@@ -1,0 +1,14 @@
+<div id="current-tables">
+	<a class="loading" href="<%= current_tables_path %>"></a>
+</div>
+<script>
+$(function() {
+
+  $(document).on('click', '[data-trigger="toggleCurrentTables"]', function($ev) {
+
+    Adhoq.toggleCurrentTables($($ev.target).attr('role'), {main: '#main', tables: '#current-tables'});
+
+  })
+
+});
+</script>

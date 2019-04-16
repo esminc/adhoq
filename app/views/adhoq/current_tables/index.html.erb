@@ -1,0 +1,53 @@
+<h3>
+	<i class="fa fa-database fa-pad-r" />Current tables
+	<small><%= "Version #{schema_version}" %></small>
+	<div class="pull-right">
+		<button class="close" data-trigger="toggleCurrentTables" role="close">
+			<span aria-hidden="">&times;</span>
+		</button>
+	</div>
+</h3>
+
+<ul class="list-unstyled tables">
+	<% @ar_classes.each do |ar_class| %>
+		<% first_record = ar_class.unscoped.order(table_order_key(ar_class)).first %>
+
+		<li class="ar_class" data-table-name="<%= ar_class.table_name %>">
+			<table class="table table-striped table-hover table-bordered">
+				<caption>
+					<span class="name"><%= ar_class.table_name %></span>
+					<% unless Adhoq.config.hide_rows_count %>
+							<small class="count"><%= ar_class.unscoped.count %> rows</small>
+					<% end %>
+				</caption>
+				<thead>
+					<tr>
+					<th class="col-sm-1 pk">PK</th>
+					<th class="col-sm-3 name"> Name</th>
+					<th class="col-sm-2 type"> Type</th>
+					<th class="col-sm-1 null"> Non-Null</th>
+					<th class="col-sm-2 limit">Limit</th>
+					<th class="col-sm-3 default"> Default</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% ar_class.columns.each do |column| %>
+						<tr>
+							<td class="pk icon"><%= column.name == ar_class.primary_key ? icon_fa('check-circle') : '' %>
+							</td>
+							<td class="monospace"><%= column.name %>
+							</td>
+							<td><%= column.type %>
+							</td>
+							<td class="null icon"><%= column.null ? '' : icon_fa('check') %>
+							</td>
+							<td class="limit number"><%= column.limit %>
+							</td>
+							<td><%= column.default %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</li>
+	<% end %>
+</ul>

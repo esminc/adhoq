@@ -1,0 +1,21 @@
+<p class="note">
+	<%= @result.rows.size %> rows
+</p>
+<table class="table table-striped table-focus">
+	<thead>
+		<tr>
+			<% @result.header.each do |column| %>
+				<th><%= column %></th>
+			<% end %>
+		</tr>
+	</thead>
+	<tbody>
+		<% @result.rows.take(100).each do |row| %>
+			<tr>
+				<% row.each do |val| %>
+					<td><%= val %></td>
+				<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

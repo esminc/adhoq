@@ -1,0 +1,18 @@
+<nav class="navbar navbar-default" id="global-nav" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<%= link_to 'Adhoq', root_path, class: 'navbar-brand' %>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<% if main_app.respond_to?(:root_path) %>
+					<li>
+						<%= link_to main_app.root_path do %>
+							<i class="fa fa-arrow-circle-right fa-pad-r"></i>Main app
+						<% end %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</nav>
