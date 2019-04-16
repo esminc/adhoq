@@ -17,10 +17,6 @@ env:
   global:
     secure: a+K4odT4GG5TVJ/vgK4JRcgV1ZaT8uLNNshf0h0ZjOsJQEvc60NF7i4C8epZatnx66YhKHzFaI3T/hvmVVbtefanBCnPfCH1NJQWFpmaeya8M7GBPWmQgXVpgqWR3tVuOZNzTQDEAdAg04JMYdGs1hDY9P+RIHHBbj7yeVgQZcI=
 gemfile:
-- gemfiles/Gemfile-rails-4.0.x
-- gemfiles/Gemfile-rails-4.1.x
-- gemfiles/Gemfile-rails-4.2.x
-- gemfiles/Gemfile-rails-5.0.x
 - gemfiles/Gemfile-rails-5.1.x
 - gemfiles/Gemfile-rails-5.2.x
 - gemfiles/Gemfile-rails-edge
@@ -31,21 +27,7 @@ matrix:
     - rvm: 2.3.6
       gemfile: gemfiles/Gemfile-rails-5.1.x
     - rvm: 2.3.6
-      gemfile: gemfiles/Gemfile-rails-5.0.x
-    - rvm: 2.3.6
       gemfile: gemfiles/Gemfile-rails-edge
-    - rvm: 2.4.4
-      gemfile: gemfiles/Gemfile-rails-4.0.x
-    - rvm: 2.4.4
-      gemfile: gemfiles/Gemfile-rails-4.1.x
-    - rvm: 2.4.4
-      gemfile: gemfiles/Gemfile-rails-4.2.x
-    - rvm: 2.5.1
-      gemfile: gemfiles/Gemfile-rails-4.0.x
-    - rvm: 2.5.1
-      gemfile: gemfiles/Gemfile-rails-4.1.x
-    - rvm: 2.5.1
-      gemfile: gemfiles/Gemfile-rails-4.2.x
   allow_failures:
       - rvm: ruby-head
       - gemfile: gemfiles/Gemfile-rails-edge
