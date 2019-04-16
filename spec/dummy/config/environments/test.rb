@@ -51,5 +51,8 @@ Dummy::Application.configure do
   # Time columns will become time zone aware in Rails 5.1.
   if  Rails::VERSION::MAJOR >= 5
     config.active_record.time_zone_aware_types = [:datetime, :time]
+    if  Rails::VERSION::MAJOR > 5 || (Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 2)
+      config.active_record.sqlite3.represent_boolean_as_integer = true
+    end
   end
 end
