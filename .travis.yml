@@ -6,6 +6,8 @@ rvm:
 - 2.5.5
 - 2.6.3
 - ruby-head
+addons:
+  chrome: stable
 cache: bundler
 before_install:
 - rvm use @global
