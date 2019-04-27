@@ -10,7 +10,6 @@ addons:
   chrome: stable
 cache: bundler
 before_install:
-- sudo dpkg -i $CHROME_SOURCE_URL
 - rvm use @global
 - gem update --system # Need for Ruby 2.5.0. https://github.com/travis-ci/travis-ci/issues/8978
 - gem install --force bundler -v 1.17.3
