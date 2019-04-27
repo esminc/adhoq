@@ -25,6 +25,7 @@ RSpec::Core::RakeTask.new
 task default: :spec
 
 task :webdriver_update do
+  require 'webdrivers'
   Webdrivers::Chromedriver.update
 end
 
