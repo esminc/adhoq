@@ -24,5 +24,9 @@ RSpec::Core::RakeTask.new
 
 task default: :spec
 
+task :webdriver_update do
+  Webdrivers::Chromedriver.update
+end
+
 Bundler::GemHelper.install_tasks
 
