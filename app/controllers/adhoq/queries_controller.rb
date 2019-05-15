@@ -24,7 +24,7 @@ module Adhoq
 
     def update
       @query = Adhoq::Query.find(params[:id])
-      @query.update_attributes!(query_attributes)
+      @query.update!(query_attributes)
 
       redirect_to @query
     end
