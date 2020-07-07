@@ -1,3 +1,16 @@
+== 2020-07-07 version 1.0.1
+
+* adopt Rails6.0.0 rc1 [#182](https://github.com/esminc/adhoq/pull/182)
+* Remove old test matrix settings [#183](https://github.com/esminc/adhoq/pull/183)
+* I may not want to enter description [#185](https://github.com/esminc/adhoq/pull/185)
+* update Rails version in Gemfile.6.0.x [#186](https://github.com/esminc/adhoq/pull/186)
+* fix assets errors in spec [#189](https://github.com/esminc/adhoq/pull/189)
+* update ruby version in travis.yml [#188](https://github.com/esminc/adhoq/pull/188)
+* exclude matrix rails-edge with 2.4 [#190](https://github.com/esminc/adhoq/pull/190)
+* fix up exclude matrix [#191](https://github.com/esminc/adhoq/pull/191)
+* remove gem upate system and stop install bundler [#192](https://github.com/esminc/adhoq/pull/192)
+* replace axslx to caxslx [#187](https://github.com/esminc/adhoq/pull/187)
+
 == 2019-04-19 version 1.0.0
 
 * ignore Gemfile.lock [#178](https://github.com/esminc/adhoq/pull/178)
