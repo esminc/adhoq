@@ -1,3 +1,7 @@
+== 2021-02-04 version 1.0.2
+
+* Symbolize table_order_key in ApplicationHelper [#194](https://github.com/esminc/adhoq/pull/194)
+
 == 2020-07-07 version 1.0.1
 
 * adopt Rails6.0.0 rc1 [#182](https://github.com/esminc/adhoq/pull/182)
