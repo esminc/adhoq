@@ -24,7 +24,7 @@ module Adhoq
     end
 
     def table_order_key(ar_class)
-      ar_class.primary_key || ar_class.columns.first.name
+      (ar_class.primary_key || ar_class.columns.first.name).to_sym
     end
 
     def query_parameter_field(name)
