@@ -1,18 +1,16 @@
 ENV['RAILS_ENV'] ||= 'test'
 require_relative 'dummy/config/environment'
 
+require 'selenium-webdriver'
 require 'rspec/rails'
 
 require 'capybara/rspec'
-require 'capybara/poltergeist'
 require 'database_cleaner'
 require 'factory_bot_rails'
 require 'pry-byebug'
 
 Rails.backtrace_cleaner.remove_silencers!
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f }
-
-Capybara.default_driver = :poltergeist
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -58,6 +56,12 @@ RSpec.configure do |config|
   config.around(:each) do |example|
     DatabaseCleaner.cleaning do
       example.run
+    end
+
+    config.before(:each) do |example|
+      if example.metadata[:type] == :system
+        driven_by :selenium_chrome_headless
+      end
     end
   end
 end

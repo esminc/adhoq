@@ -1,5 +1,5 @@
-feature 'Can see database schema at editing form' do
-  include FeatureSpecHelper
+feature 'Can see database schema at editing form', type: :system do
+  include SystemSpecHelper
 
   scenario 'See database schema' do
     visit adhoq.root_path
