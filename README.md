@@ -119,7 +119,7 @@ one input being substituted multiple times.
 
 Parameters can also be manipluated programatically. For example the following code shows how you might use parameters
 in an API type situation. The index method returns all queries as JSON with the parameters extracted and added as a separate 
-property. Note that the query.parameters method actually extracts the parameters from query on the fly rather than 
+property. Note that the query.parameters method actually extracts the parameters from the query on the fly rather than 
 being a simple Getter for a parameters property, hence the need to add it into the as_json variable.
 
 The associated show method substitutes in any query parameters passed in and runs the report. The line 
