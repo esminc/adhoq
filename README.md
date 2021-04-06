@@ -105,6 +105,59 @@ key = storage.store('.xlsx') { Adhoq::Reporter.generate(execution) }
 storage.get(key) #=> report data
 ```
 
+###Query Parameters
+A query may contain parameters that can be substitued in at run time. Parameters are identified with a $ prefix for 
+string parameters and $ prefix with curly brackets for number parameters, for example :
+
+```sql
+SELECT * FROM users where created_at > '$time' AND activated = ${activated}
+```
+
+Parameters are shown as input fields in the engine UI in the Create Report section below the query. Note that currently
+if the same parameter is used more than once in the query there is an input field for each occurance in the query, rather than
+one input being substituted multiple times. 
+
+Parameters can also be manipluated programatically. For example the following code shows how you might use parameters
+in an API type situation. The index method returns all queries as JSON with the parameters extracted and added as a separate 
+property. Note that the query.parameters method actually extracts the parameters from the query on the fly rather than 
+being a simple Getter for a parameters property, hence the need to add it into the as_json variable.
+
+The associated show method substitutes in any query parameters passed in and runs the report. The line 
+
+    sub = params.permit(*query.parameters).to_hash
+
+uses the query's paramenters as a white list against any passed in params, which are then stored as a hash to be used
+in the subsequent substitute_query call.
+
+```ruby
+class AdminApi::ReportsController < AdminApi::BaseController
+  def index
+    respond_to do |format|
+      @output = []
+      ah_queries = Adhoq::Query.all
+      ah_queries.each do |ah_query|
+        j_query = ah_query.as_json
+        j_query['params'] = ah_query.parameters
+        @output.push(j_query)
+      end
+      format.html { render json: @output }
+      format.json { render json: @output }
+    end
+  end
+
+  def show
+    query = Adhoq::Query.find(params[:id])
+    sub = params.permit(*query.parameters).to_hash
+    substituted_query = query.substitute_query(sub)
+    execution = Adhoq::AdhocExecution.new(
+        'csv',
+        substituted_query
+    )
+    report = (Adhoq::Reporter.generate(execution))
+    send_file report
+  end
+end
+```
 ## Contributing
 
 1. Fork it ( https://github.com/esminc/adhoq/fork )
