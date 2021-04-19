@@ -23,6 +23,9 @@ module Adhoq
     config_accessor :async_execution
     config_accessor :job_queue_name
 
+    config_accessor :csv_row_separator
+    config_accessor :csv_column_separator
+
     def callablize(name)
       if (c = config[name]).respond_to?(:call)
         c
