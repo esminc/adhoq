@@ -13,7 +13,11 @@
 		<% @result.rows.take(100).each do |row| %>
 			<tr>
 				<% row.each do |val| %>
-					<td><%= val %></td>
+					<%- if val.is_a?(String) %>
+						<td><%= val.force_encoding("UTF-8") %></td>
+					<%- else %>
+						<td><%= val %></td>
+					<%- end %>
 				<% end %>
 			</tr>
 		<% end %>
