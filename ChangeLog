@@ -1,3 +1,7 @@
+== 2021-05-19 version 1.0.3
+
+* Add csv to gemspec [#198](https://github.com/esminc/adhoq/pull/198)
+
 == 2021-02-04 version 1.0.2
 
 * Symbolize table_order_key in ApplicationHelper [#194](https://github.com/esminc/adhoq/pull/194)
