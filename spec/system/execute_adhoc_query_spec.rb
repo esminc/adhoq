@@ -1,5 +1,5 @@
-feature 'Golden-path: execute adhoc query' do
-  include FeatureSpecHelper
+feature 'Golden-path: execute adhoc query', type: :system do
+  include SystemSpecHelper
 
   def create_query(query_text, preview: true)
     fill_in 'New query', with: query_text

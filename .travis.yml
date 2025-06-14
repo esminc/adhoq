@@ -7,11 +7,15 @@ rvm:
 - 2.6.6
 - 2.7.2
 - ruby-head
+addons:
+  chrome: stable
 cache: bundler
 before_install:
 - rvm use @global
 before_script:
 - bundle exec rake db:migrate
+- bundle exec rake webdriver_update
+- sudo cp $HOME/.webdrivers/chromedriver /usr/local/bin/chromedriver
 env:
   global:
     secure: a+K4odT4GG5TVJ/vgK4JRcgV1ZaT8uLNNshf0h0ZjOsJQEvc60NF7i4C8epZatnx66YhKHzFaI3T/hvmVVbtefanBCnPfCH1NJQWFpmaeya8M7GBPWmQgXVpgqWR3tVuOZNzTQDEAdAg04JMYdGs1hDY9P+RIHHBbj7yeVgQZcI=
