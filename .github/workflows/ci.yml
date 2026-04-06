@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Ruby 2.4 × Rails 5.1–5.2
+          - { ruby: '2.4', gemfile: gemfiles/Gemfile-rails-5.1.x }
+          - { ruby: '2.4', gemfile: gemfiles/Gemfile-rails-5.2.x }
+          # Ruby 2.5 × Rails 5.1–6.0
+          - { ruby: '2.5', gemfile: gemfiles/Gemfile-rails-5.1.x }
+          - { ruby: '2.5', gemfile: gemfiles/Gemfile-rails-5.2.x }
+          - { ruby: '2.5', gemfile: gemfiles/Gemfile-rails-6.0.x }
+          # Ruby 2.6 × Rails 5.1–6.0
+          - { ruby: '2.6', gemfile: gemfiles/Gemfile-rails-5.1.x }
+          - { ruby: '2.6', gemfile: gemfiles/Gemfile-rails-5.2.x }
+          - { ruby: '2.6', gemfile: gemfiles/Gemfile-rails-6.0.x }
+          # Ruby 2.7 × Rails 5.1–7.1
+          - { ruby: '2.7', gemfile: gemfiles/Gemfile-rails-5.1.x }
+          - { ruby: '2.7', gemfile: gemfiles/Gemfile-rails-5.2.x }
+          - { ruby: '2.7', gemfile: gemfiles/Gemfile-rails-6.0.x }
+          - { ruby: '2.7', gemfile: gemfiles/Gemfile-rails-7.0.x }
+          - { ruby: '2.7', gemfile: gemfiles/Gemfile-rails-7.1.x }
+          # Ruby 3.1 × Rails 7.0–7.2
+          - { ruby: '3.1', gemfile: gemfiles/Gemfile-rails-7.0.x }
+          - { ruby: '3.1', gemfile: gemfiles/Gemfile-rails-7.1.x }
+          - { ruby: '3.1', gemfile: gemfiles/Gemfile-rails-7.2.x }
+          # Ruby 3.2 × Rails 7.0–8.1
+          - { ruby: '3.2', gemfile: gemfiles/Gemfile-rails-7.0.x }
+          - { ruby: '3.2', gemfile: gemfiles/Gemfile-rails-7.1.x }
+          - { ruby: '3.2', gemfile: gemfiles/Gemfile-rails-7.2.x }
+          - { ruby: '3.2', gemfile: gemfiles/Gemfile-rails-8.0.x }
+          - { ruby: '3.2', gemfile: gemfiles/Gemfile-rails-8.1.x }
+          # Ruby 3.3 × Rails 7.0–8.1
+          - { ruby: '3.3', gemfile: gemfiles/Gemfile-rails-7.0.x }
+          - { ruby: '3.3', gemfile: gemfiles/Gemfile-rails-7.1.x }
+          - { ruby: '3.3', gemfile: gemfiles/Gemfile-rails-7.2.x }
+          - { ruby: '3.3', gemfile: gemfiles/Gemfile-rails-8.0.x }
+          - { ruby: '3.3', gemfile: gemfiles/Gemfile-rails-8.1.x }
+    env:
+      BUNDLE_GEMFILE: ${{ matrix.gemfile }}
+      RAILS_ENV: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - run: bundle exec rake db:migrate
+      # Default task runs RSpec via Rakefile, kept from Travis CI era.
+      - run: bundle exec rake
