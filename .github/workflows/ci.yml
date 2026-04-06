@@ -46,6 +46,12 @@ jobs:
           - { ruby: '3.3', gemfile: gemfiles/Gemfile-rails-7.2.x }
           - { ruby: '3.3', gemfile: gemfiles/Gemfile-rails-8.0.x }
           - { ruby: '3.3', gemfile: gemfiles/Gemfile-rails-8.1.x }
+          # Ruby 4.0 × Rails 7.0–8.1
+          - { ruby: '4.0', gemfile: gemfiles/Gemfile-rails-7.0.x }
+          - { ruby: '4.0', gemfile: gemfiles/Gemfile-rails-7.1.x }
+          - { ruby: '4.0', gemfile: gemfiles/Gemfile-rails-7.2.x }
+          - { ruby: '4.0', gemfile: gemfiles/Gemfile-rails-8.0.x }
+          - { ruby: '4.0', gemfile: gemfiles/Gemfile-rails-8.1.x }
     env:
       BUNDLE_GEMFILE: ${{ matrix.gemfile }}
       RAILS_ENV: test
