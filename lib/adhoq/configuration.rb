@@ -1,30 +1,20 @@
-# see https://github.com/amatsuda/kaminari/blob/master/lib/kaminari/config.rb
 module Adhoq
   class Configuration
-    include ActiveSupport::Configurable
-
-    config_accessor :storage do
-      [:on_the_fly]
-    end
-
-    config_accessor :base_controller do
-      'ApplicationController'
-    end
-
-    config_accessor :authorization
-    config_accessor :authorization_failure_action
-
-    config_accessor :current_user
-
-    config_accessor :database_connection
-    config_accessor :hidden_model_names
-    config_accessor :hide_rows_count
-
-    config_accessor :async_execution
-    config_accessor :job_queue_name
+    class_attribute :storage
+    self.storage = [:on_the_fly]
+    class_attribute :base_controller
+    self.base_controller = 'ApplicationController'
+    class_attribute :authorization
+    class_attribute :authorization_failure_action
+    class_attribute :current_user
+    class_attribute :database_connection
+    class_attribute :hidden_model_names
+    class_attribute :hide_rows_count
+    class_attribute :async_execution
+    class_attribute :job_queue_name
 
     def callablize(name)
-      if (c = config[name]).respond_to?(:call)
+      if (c = public_send(name)).respond_to?(:call)
         c
       else
         c.to_proc
