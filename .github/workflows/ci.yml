@@ -1,0 +1,110 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    name: Ruby ${{ matrix.ruby }} / ${{ matrix.gemfile }}
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental == true }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Ruby 2.4 supports Rails 5.1-5.2
+          - {ruby: '2.4', gemfile: gemfiles/Gemfile-rails-5.1.x}
+          - {ruby: '2.4', gemfile: gemfiles/Gemfile-rails-5.2.x}
+
+          # Ruby 2.5 supports Rails 5.1-6.1
+          - {ruby: '2.5', gemfile: gemfiles/Gemfile-rails-5.1.x}
+          - {ruby: '2.5', gemfile: gemfiles/Gemfile-rails-5.2.x}
+          - {ruby: '2.5', gemfile: gemfiles/Gemfile-rails-6.0.x}
+          - {ruby: '2.5', gemfile: gemfiles/Gemfile-rails-6.1.x}
+
+          # Ruby 2.6 supports Rails 5.1-6.1
+          - {ruby: '2.6', gemfile: gemfiles/Gemfile-rails-5.1.x}
+          - {ruby: '2.6', gemfile: gemfiles/Gemfile-rails-5.2.x}
+          - {ruby: '2.6', gemfile: gemfiles/Gemfile-rails-6.0.x}
+          - {ruby: '2.6', gemfile: gemfiles/Gemfile-rails-6.1.x}
+
+          # Ruby 2.7 supports Rails 5.1-7.1
+          - {ruby: '2.7', gemfile: gemfiles/Gemfile-rails-5.1.x}
+          - {ruby: '2.7', gemfile: gemfiles/Gemfile-rails-5.2.x}
+          - {ruby: '2.7', gemfile: gemfiles/Gemfile-rails-6.0.x}
+          - {ruby: '2.7', gemfile: gemfiles/Gemfile-rails-6.1.x}
+          - {ruby: '2.7', gemfile: gemfiles/Gemfile-rails-7.0.x}
+          - {ruby: '2.7', gemfile: gemfiles/Gemfile-rails-7.1.x}
+
+          # Ruby 3.0 supports Rails 6.0-7.1
+          - {ruby: '3.0', gemfile: gemfiles/Gemfile-rails-6.0.x}
+          - {ruby: '3.0', gemfile: gemfiles/Gemfile-rails-6.1.x}
+          - {ruby: '3.0', gemfile: gemfiles/Gemfile-rails-7.0.x}
+          - {ruby: '3.0', gemfile: gemfiles/Gemfile-rails-7.1.x}
+
+          # Ruby 3.1 supports Rails 6.0-7.2
+          - {ruby: '3.1', gemfile: gemfiles/Gemfile-rails-6.0.x}
+          - {ruby: '3.1', gemfile: gemfiles/Gemfile-rails-6.1.x}
+          - {ruby: '3.1', gemfile: gemfiles/Gemfile-rails-7.0.x}
+          - {ruby: '3.1', gemfile: gemfiles/Gemfile-rails-7.1.x}
+          - {ruby: '3.1', gemfile: gemfiles/Gemfile-rails-7.2.x}
+
+          # Ruby 3.2 supports Rails 6.0-8.2
+          - {ruby: '3.2', gemfile: gemfiles/Gemfile-rails-6.0.x}
+          - {ruby: '3.2', gemfile: gemfiles/Gemfile-rails-6.1.x}
+          - {ruby: '3.2', gemfile: gemfiles/Gemfile-rails-7.0.x}
+          - {ruby: '3.2', gemfile: gemfiles/Gemfile-rails-7.1.x}
+          - {ruby: '3.2', gemfile: gemfiles/Gemfile-rails-7.2.x}
+          - {ruby: '3.2', gemfile: gemfiles/Gemfile-rails-8.0.x}
+          - {ruby: '3.2', gemfile: gemfiles/Gemfile-rails-8.1.x}
+          - {ruby: '3.2', gemfile: gemfiles/Gemfile-rails-8.2.x}
+
+          # Ruby 3.3 supports Rails 6.0-8.2
+          - {ruby: '3.3', gemfile: gemfiles/Gemfile-rails-6.0.x}
+          - {ruby: '3.3', gemfile: gemfiles/Gemfile-rails-6.1.x}
+          - {ruby: '3.3', gemfile: gemfiles/Gemfile-rails-7.0.x}
+          - {ruby: '3.3', gemfile: gemfiles/Gemfile-rails-7.1.x}
+          - {ruby: '3.3', gemfile: gemfiles/Gemfile-rails-7.2.x}
+          - {ruby: '3.3', gemfile: gemfiles/Gemfile-rails-8.0.x}
+          - {ruby: '3.3', gemfile: gemfiles/Gemfile-rails-8.1.x}
+          - {ruby: '3.3', gemfile: gemfiles/Gemfile-rails-8.2.x}
+
+          # Ruby 3.4 supports Rails 6.0-8.2
+          - {ruby: '3.4', gemfile: gemfiles/Gemfile-rails-6.0.x}
+          - {ruby: '3.4', gemfile: gemfiles/Gemfile-rails-6.1.x}
+          - {ruby: '3.4', gemfile: gemfiles/Gemfile-rails-7.0.x}
+          - {ruby: '3.4', gemfile: gemfiles/Gemfile-rails-7.1.x}
+          - {ruby: '3.4', gemfile: gemfiles/Gemfile-rails-7.2.x}
+          - {ruby: '3.4', gemfile: gemfiles/Gemfile-rails-8.0.x}
+          - {ruby: '3.4', gemfile: gemfiles/Gemfile-rails-8.1.x}
+          - {ruby: '3.4', gemfile: gemfiles/Gemfile-rails-8.2.x}
+
+          # Ruby 4.0 supports Rails 8.x
+          - {ruby: '4.0', gemfile: gemfiles/Gemfile-rails-8.0.x}
+          - {ruby: '4.0', gemfile: gemfiles/Gemfile-rails-8.1.x}
+          - {ruby: '4.0', gemfile: gemfiles/Gemfile-rails-8.2.x}
+
+          # Ruby head - experimental
+          - {ruby: head, gemfile: gemfiles/Gemfile-rails-8.2.x, experimental: true}
+
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.gemfile }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+
+      - name: Migrate database
+        run: bundle exec rake db:migrate
+
+      - name: Run tests
+        run: bundle exec rake spec
