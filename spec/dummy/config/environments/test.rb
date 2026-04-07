@@ -5,7 +5,12 @@ Dummy::Application.configure do
   # test suite. You never need to work with it otherwise. Remember that
   # your test database is "scratch space" for the test suite and is wiped
   # and recreated between test runs. Don't rely on the data there!
-  config.cache_classes = true
+  # config.cache_classes was removed in Rails 7.2; use config.enable_reloading instead
+  if config.respond_to?(:enable_reloading=)
+    config.enable_reloading = false
+  else
+    config.cache_classes = true
+  end
 
   # Do not eager load code on boot. This avoids loading your whole application
   # just for the purpose of running a single test. If you are using a tool that
@@ -32,7 +37,12 @@ Dummy::Application.configure do
   config.action_controller.perform_caching = false
 
   # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = false
+  # show_exceptions value changed from boolean to symbol in Rails 7.1
+  if Rails.gem_version >= Gem::Version.new('7.1.0')
+    config.action_dispatch.show_exceptions = :none
+  else
+    config.action_dispatch.show_exceptions = false
+  end
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
@@ -42,8 +52,13 @@ Dummy::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
-  # Print deprecation notices to the stderr.
-  config.active_support.deprecation = :stderr
+  # Print deprecation notices to stderr.
+  # active_support.deprecation was replaced by report_deprecations in Rails 7.1
+  if Rails.gem_version >= Gem::Version.new('7.1.0')
+    config.active_support.report_deprecations = true
+  else
+    config.active_support.deprecation = :stderr
+  end
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
