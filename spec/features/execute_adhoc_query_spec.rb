@@ -40,7 +40,7 @@ feature 'Golden-path: execute adhoc query' do
 
     click_on 'Explain'
     click_on 'Refresh'
-    expect(find('.js-explain-result')).to have_content(/SCAN TABLE adhoq_querie/)
+    expect(find('.js-explain-result')).to have_content(/SCAN( TABLE)? adhoq_querie/)
   end
 
   scenario 'Visit root, input query and generate report then we get a report' do
