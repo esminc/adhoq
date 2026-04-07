@@ -12,4 +12,5 @@ if RUBY_VERSION < '2.5'
   gem 'rails-html-sanitizer', '~> 1.4.3'  # 1.4.4+ requires loofah >= 2.19
   gem 'simple_xlsx_reader', '~> 1.0'       # 2.x+ uses Struct keyword_init: (Ruby 2.5+)
   gem 'puma', '~> 4.0'                     # puma 5+ requires Ruby >= 2.5
+  gem 'sass-rails', '~> 5.0'              # sass-rails 6+ requires Ruby >= 2.5 (font-awesome-sass 4.x dep)
 end
