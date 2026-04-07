@@ -103,8 +103,12 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
 
-      - name: Migrate database
-        run: bundle exec rake db:migrate
+      - name: Set up database
+        run: bundle exec rake db:schema:load
+        env:
+          RAILS_ENV: test
 
       - name: Run tests
         run: bundle exec rake spec
+        env:
+          RAILS_ENV: test
