@@ -22,7 +22,6 @@ Capybara.register_driver :chrome_headless do |app|
 end
 
 Capybara.default_driver = :chrome_headless
-Capybara.server = :puma, { Silent: true, Threads: "1:1" }
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

@@ -117,6 +117,9 @@ feature 'Golden-path: execute adhoc query' do
             select   'xlsx', from: 'Report format'
             click_on 'Create report'
           end
+          # Wait for the redirect to complete so the job has been enqueued
+          # (Selenium doesn't wait for navigation after click_on)
+          expect(page).to have_css('.past-executions table.executions')
         }.to change { Adhoq::ExecuteJob.queue_adapter.performed_jobs.size }.from(0).to(1)
 
         within '.past-executions' do
@@ -141,6 +144,9 @@ feature 'Golden-path: execute adhoc query' do
             fill_in  'num',  with: "10"
             click_on 'Create report'
           end
+          # Wait for the redirect to complete so the job has been enqueued
+          # (Selenium doesn't wait for navigation after click_on)
+          expect(page).to have_css('.past-executions table.executions')
         }.to change { Adhoq::ExecuteJob.queue_adapter.performed_jobs.size }.from(0).to(1)
 
         within '.past-executions' do
