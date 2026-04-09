@@ -14,7 +14,12 @@ module Adhoq
 
     def schema_version
       connection = Adhoq::Executor::ConnectionWrapper.new
-      result = connection.select("SELECT MAX(version) AS current_version FROM #{ActiveRecord::SchemaMigration.table_name}")
+      table = if ActiveRecord::SchemaMigration.respond_to?(:table_name)
+                ActiveRecord::SchemaMigration.table_name  # Rails <= 7.0
+              else
+                "schema_migrations"                       # Rails 7.1+ (instance-based API)
+              end
+      result = connection.select("SELECT MAX(version) AS current_version FROM #{table}")
       result.rows.first.first
     end
 

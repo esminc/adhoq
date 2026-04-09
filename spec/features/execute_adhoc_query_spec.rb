@@ -40,7 +40,7 @@ feature 'Golden-path: execute adhoc query' do
 
     click_on 'Explain'
     click_on 'Refresh'
-    expect(find('.js-explain-result')).to have_content(/SCAN TABLE adhoq_querie/)
+    expect(find('.js-explain-result')).to have_content(/SCAN( TABLE)? adhoq_querie/)
   end
 
   scenario 'Visit root, input query and generate report then we get a report' do
@@ -117,6 +117,9 @@ feature 'Golden-path: execute adhoc query' do
             select   'xlsx', from: 'Report format'
             click_on 'Create report'
           end
+          # Wait for the redirect to complete so the job has been enqueued
+          # (Selenium doesn't wait for navigation after click_on)
+          find('.past-executions table.executions tbody tr')
         }.to change { Adhoq::ExecuteJob.queue_adapter.performed_jobs.size }.from(0).to(1)
 
         within '.past-executions' do
@@ -141,6 +144,9 @@ feature 'Golden-path: execute adhoc query' do
             fill_in  'num',  with: "10"
             click_on 'Create report'
           end
+          # Wait for the redirect to complete so the job has been enqueued
+          # (Selenium doesn't wait for navigation after click_on)
+          find('.past-executions table.executions tbody tr')
         }.to change { Adhoq::ExecuteJob.queue_adapter.performed_jobs.size }.from(0).to(1)
 
         within '.past-executions' do
