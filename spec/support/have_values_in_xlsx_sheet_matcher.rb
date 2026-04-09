@@ -20,7 +20,15 @@ RSpec::Matchers.define :have_values_in_xlsx_sheet do |expect_values|
       f.flush
 
       sheet = SimpleXlsxReader::Document.new(f.path).sheets.first
-      [sheet.headers, *sheet.data]
+      if Gem::Version.new(SimpleXlsxReader::VERSION) < Gem::Version.new('2.0')
+        # simple_xlsx_reader 1.x: eager sheet.headers / sheet.data
+        [sheet.headers, *sheet.data]
+      else
+        # simple_xlsx_reader 2.x+: rows is lazy; use #each (safe without slurp)
+        all_rows = []
+        sheet.rows.each { |row| all_rows << row }
+        [all_rows.first, *all_rows[1..-1]]
+      end
     end
   end
 end

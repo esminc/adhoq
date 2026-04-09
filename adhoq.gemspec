@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'capybara', '>= 3.0'
   s.add_development_dependency 'database_cleaner'
-  s.add_development_dependency 'factory_bot_rails', '~> 4.11.1'
+  s.add_development_dependency 'factory_bot_rails', '>= 4.11'
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'pry-byebug'
   s.add_development_dependency 'puma'
