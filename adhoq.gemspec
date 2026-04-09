@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'csv'
   s.add_dependency 'fog-aws', '>= 1.4'
   s.add_dependency 'fog-local', '~> 0.3'
-  s.add_dependency 'font-awesome-sass', '>= 4.2'
+  s.add_dependency 'font-awesome-sass', '~> 4.7'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'sassc-rails'
   s.add_dependency 'active_decorator'
