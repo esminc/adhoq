@@ -14,6 +14,10 @@ Gem::Specification.new do |s|
   s.description = 'Rails engine to generate instant reports from adhoc SQL query.'
   s.license     = "MIT"
 
+  s.metadata = {
+    'rubygems_mfa_required' => 'true'
+  }
+
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE.txt", "Rakefile", "README.md"]
 
   s.add_dependency "rails", ">= 5.1"
