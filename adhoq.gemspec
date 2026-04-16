@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'fog-local', '~> 0.3'
   s.add_dependency 'font-awesome-sass', '~> 4.7'
   s.add_dependency 'jquery-rails'
-  s.add_dependency 'sassc-rails'
+  s.add_dependency 'sass-rails'
   s.add_dependency 'active_decorator'
   s.add_dependency 'rouge'
 
@@ -38,7 +38,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'pry-byebug'
   s.add_development_dependency 'puma'
-  s.add_development_dependency 'sass-rails'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'selenium-webdriver', '>= 3.0'
   s.add_development_dependency 'simple_xlsx_reader'
