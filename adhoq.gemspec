@@ -29,7 +29,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'font-awesome-sass', '~> 4.7'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'sass-rails'
-  s.add_dependency 'sassc-rails'
   s.add_dependency 'active_decorator'
   s.add_dependency 'rouge'
 
