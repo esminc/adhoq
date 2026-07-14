@@ -1,3 +1,7 @@
+== 2026-07-14 version 1.1.0
+
+* Add sass-rails as runtime dependency for font-awesome-sass 4.x compa [#203](https://github.com/esminc/adhoq/pull/203)
+
 == 2026-04-14 version 1.0.4
 
 * Suppress `ActiveSupport::Configurable` deprecation warning on Rails 8.1+ [#199](https://github.com/esminc/adhoq/pull/199)
