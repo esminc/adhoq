@@ -13,6 +13,9 @@ module Adhoq
     class_attribute :async_execution
     class_attribute :job_queue_name
 
+    config_accessor :csv_row_separator
+    config_accessor :csv_column_separator
+
     def callablize(name)
       if (c = public_send(name)).respond_to?(:call)
         c
